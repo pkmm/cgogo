@@ -1,0 +1,27 @@
+/* pages/tieba/index.wxss */
+
+
+.waterfall {
+  column-count: 3;
+  column-gap: 0;
+ 
+}
+.item {
+  break-inside: avoid;
+  padding:2px;
+  text-align: center;
+}
+.item-detail {
+  text-align: left;
+  font-size: small;
+}
+.item-detail-error {
+  text-align: left;
+  font-size: small;
+  background-color: rosybrown;
+}
+
+.item-inner{
+  border: 1px solid black;
+  height: 100%;
+}

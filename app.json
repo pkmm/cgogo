@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/tieba/index",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/zcmu/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  }
+}

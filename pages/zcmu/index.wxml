@@ -1,0 +1,12 @@
+<!--pages/zcmu/index.wxml-->
+<view>
+  <view>
+  
+  </view>
+
+  <view>
+  <text wx:for=""></text>
+  </view>
+
+</view>
+

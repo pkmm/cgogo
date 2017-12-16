@@ -1,0 +1,16 @@
+<!--pages/tieba/index.wxml-->
+
+<view class='waterfall'>
+<view wx:for="{{tiebaList}}" wx:key="item.Id" class='item' style='{{ styles[index] }}'>
+  <view class='item-inner'>
+    {{item.Kw}}
+    <view wx:if="{{ item.SignInfo.error_msg != '' }}" class='item-detail-error'>
+     {{ item.SignInfo.error_msg }}
+    </view>
+    <view wx:else class='item-detail'>
+      <view>签到排名：{{ item.SignInfo.user_info.user_sign_rank}}</view>
+      <view>连续签到：{{ item.SignInfo.user_info.hun_sign_num}} 天</view>
+    </view>
+  </view>
+</view>
+</view>
