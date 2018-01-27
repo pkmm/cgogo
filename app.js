@@ -23,6 +23,7 @@ App({
     }
   },
 
+// 设置全局使用的数据
   globalData: {
     userInfo: null
   }

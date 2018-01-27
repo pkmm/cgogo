@@ -1,12 +1,31 @@
 <!--pages/zcmu/index.wxml-->
-<view>
-  <view>
-  
-  </view>
+<view class='page'>
+    <view class='page__hd'>
+        <view class='page__title' style='text-align:center'></view>
+    </view>
+    <view class='page__bd'>
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">
+                成绩列表
+            </view>
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text" wx:for='{{scores}}' wx:key="{{index}}">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{item.Kcmc}}</view>
+                    <view class="weui-media-box__desc not-accept" wx:if="{{(item.Cj == '不合格' || item.Cj < 60)}}">
+                        成绩: {{item.Cj}} | 绩点:{{item.Jd}} | 学分:{{item.Xf}} | 学年:{{item.Xn}} | 学期:{{item.Xq}}
+                    </view>
+                    <view class="weui-media-box__desc" wx:else>
+                        成绩: {{item.Cj}} | 绩点:{{item.Jd}} | 学分:{{item.Xf}} | 学年:{{item.Xn}} | 学期:{{item.Xq}}
+                    </view>
+                </view>
+            </view>
 
-  <view>
-  <text wx:for=""></text>
-  </view>
-
+            <view class="weui-footer">
+                <view class="weui-footer__links">
+                    <navigator url="https://github.com/pkmm" class="weui-footer__link">Github</navigator>
+                </view>
+                <view class="weui-footer__text">Copyright © 2018 Ataraxia-pkm</view>
+            </view>
+        </view>
+    </view>
 </view>
-

@@ -74,14 +74,31 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.load();
+      wx.showNavigationBarLoading()
+      let self = this;
+      wx.request({
+          url: "https://api.52pkm.cn",
+          success(rep) {
+              console.log(rep.data)
+              let sy = [];
+              for (let x in rep.data.forums) {
+                  sy.push(self.getCls());
+              }
+              self.setData({
+                  tiebaList: rep.data.forums,
+                  styles: sy
+              });
+              wx.hideNavigationBarLoading()
+              wx.stopPullDownRefresh() 
+          }
+      });
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.load();
+
   },
 
   /**

@@ -1,1 +1,14 @@
 /* pages/zcmu/index.wxss */
+
+.not-accept {
+    color: red;
+}
+
+.float-button {
+    position: fixed;
+    height: 90px;
+    width: 40px;
+    bottom: 90px;
+    right: 50px;
+    background: #b4d145;
+}

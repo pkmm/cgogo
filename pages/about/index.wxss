@@ -1,0 +1,7 @@
+/* pages/about/index.wxss */
+
+.list-style {
+    line-height: 1.2;
+    font-size: 13px;
+    color: #999;
+}

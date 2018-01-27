@@ -1,14 +1,49 @@
 {
-  "pages": [
-    "pages/tieba/index",
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/zcmu/index"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
-  }
+    "pages": [
+        "pages/zcmu/index",
+        "pages/tieba/index",
+        "pages/index/index",
+        "pages/logs/logs",
+        "pages/zcmu_login/index",
+        "pages/about/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Ataraxia",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 50
+    },
+    "tabBar": {
+        "color": "#bfbfbf",
+        "selectedColor": "#1afa29",
+        "backgroundColor": "#fff",
+        "position": "bottom",
+        "list": [
+            {
+                "pagePath": "pages/zcmu/index",
+                "text": "正方成绩",
+                "iconPath": "images/score.png",
+                "selectedIconPath": "images/selected_score.png"
+            },
+            {
+                "pagePath": "pages/tieba/index",
+                "text": "我的吧",
+                "iconPath": "images/tieba.png",
+                "selectedIconPath": "images/tieba_active.png"
+            },
+            {
+                "pagePath": "pages/about/index",
+                "text": "About",
+                "iconPath": "images/about.png",
+                "selectedIconPath": "images/about_active.png"
+            }
+        ]
+    },
+    "networkTimeout": {
+        "request": 10000,
+        "downloadFile": 10000
+    },
+    "debug": true
 }

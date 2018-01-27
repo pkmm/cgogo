@@ -1,0 +1,42 @@
+<!--pages/zcmu_login/index.wxml-->
+
+<view class='page' xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class='page__hd'>
+        <view class='page__title' style='text-align: center'>输入正方系统的学号密码</view>
+    </view>
+
+    <view class='page__bd'>
+        <view class='weui-toptips weui-toptips-warn' wx:if='{{showTopTips}}'>Error</view>
+        <view class='weui-cells__title'></view>
+        <view class='weui-cells weui-cells_after-title'>
+            <view class='weui-cell weui-cell_input'>
+                <view class='weui-cell__hd'>
+                    <view class='weui-label'>学号</view>
+                </view>
+                <view class='weui-cell__bd'>
+                    <input type='number' class='weui-input' placeholder='学号' data-name='num' bindinput='updateData' value='{{num}}' auto-focus='true'></input>
+                </view>
+            </view>
+
+            <view class='weui-cell weui-cell_input'>
+                <view class='weui-cell__hd'>
+                    <view class='weui-label'>密码</view>
+                </view>
+                <view class='weui-cell__bd'>
+                    <input type='password' class='weui-input' placeholder='密码' value='{{pwd}}' data-name='pwd' bindinput='updateData' bindfocus='clearData'></input>
+                </view>
+            </view>
+        </view>
+
+         <view class="button-sp-area"> 
+            <button class="weui-btn" type="primary" plain="true" bindtap='save'>保存</button>
+         </view> 
+
+        <view class='weui-cell__bd'>
+            系统会自动识别验证码(有一定的失败率)，验证账号时，遇到验证码错误的话，可以再次尝试！
+        </view>
+
+
+    </view>
+
+</view>

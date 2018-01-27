@@ -9,7 +9,7 @@
     </view>
     <view wx:else class='item-detail'>
       <view>签到排名：{{ item.SignInfo.user_info.user_sign_rank}}</view>
-      <view>连续签到：{{ item.SignInfo.user_info.hun_sign_num}} 天</view>
+      <view>连续签到：{{ item.SignInfo.user_info.cont_sign_num}} 天</view>
     </view>
   </view>
 </view>
