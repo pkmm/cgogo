@@ -12,3 +12,6 @@
     right: 50px;
     background: #b4d145;
 }
+.jd-des {
+  color: orange
+}

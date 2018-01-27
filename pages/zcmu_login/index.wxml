@@ -32,8 +32,8 @@
             <button class="weui-btn" type="primary" plain="true" bindtap='save'>保存</button>
          </view> 
 
-        <view class='weui-cell__bd'>
-            系统会自动识别验证码(有一定的失败率)，验证账号时，遇到验证码错误的话，可以再次尝试！
+        <view class='weui-cell__bd input-info'>
+            提示：系统会自动识别验证码(有一定的失败率)，验证账号时，遇到验证码错误的话，可以多次尝试！验证可能会花费较长的时间~~
         </view>
 
 
