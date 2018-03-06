@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/zcmu/main_page/index",
         "pages/zcmu/index",
         "pages/tieba/index",
         "pages/index/index",
@@ -17,12 +18,12 @@
     },
     "tabBar": {
         "color": "#bfbfbf",
-        "selectedColor": "#1afa29",
+        "selectedColor": "#580EAD",
         "backgroundColor": "#fff",
         "position": "bottom",
         "list": [
             {
-                "pagePath": "pages/zcmu/index",
+                "pagePath": "pages/zcmu/main_page/index",
                 "text": "正方成绩",
                 "iconPath": "images/score.png",
                 "selectedIconPath": "images/selected_score.png"

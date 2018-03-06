@@ -1,0 +1,30 @@
+.parent {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.child {
+    flex-grow: 1;
+    width: 32%;
+    height: 100px;
+    border: 1px solid white;
+    background-color: #F2F1F2;
+}
+/* .child:nth-child(even) {
+    background-color: #23a;
+}
+.child:nth-child(odd) {
+    background-color: #49b;
+} */
+.child:active {
+    background-color: #E9E8E8;
+}
+.page {
+    margin-left: 10rpx;
+    margin-right: 10rpx;
+}
+.menu-item {
+    display: flex;
+    align-items: center;
+    font-size: small;
+}
