@@ -1,2 +1,6 @@
 <!--pages/profile/index.wxml-->
-<text>pages/profile/index.wxml</text>
+<view class='page'>
+    <view>
+    还没想好做啥
+    </view>
+</view>

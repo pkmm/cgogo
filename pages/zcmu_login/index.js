@@ -130,9 +130,9 @@ Page({
                         title: '账号通过验证',
                         content: '快去查看成绩吧',
                         success: function () {
-                            wx.switchTab({
+                            wx.redirectTo({
                                 url: '/pages/zcmu/index',
-                            })
+                            });
                         }
                     });
                 } else {
