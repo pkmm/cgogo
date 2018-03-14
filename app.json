@@ -1,45 +1,46 @@
 {
-    "pages": [
-        "pages/index/index",
-        "pages/zcmu/main_page/index",
-        "pages/zcmu/index",
-        "pages/tieba/index",
-        "pages/zcmu_login/index",
-        "pages/about/index",
-        "pages/profile/index",
-        "pages/zcmu/failed_lessons/index"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "",
-        "navigationBarTextStyle": "black",
-        "enablePullDownRefresh": true,
-        "onReachBottomDistance": 50
-    },
-    "tabBar": {
-        "color": "#bfbfbf",
-        "selectedColor": "#580EAD",
-        "backgroundColor": "#fff",
-        "position": "bottom",
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "text": "功能",
-                "iconPath": "images/score.png",
-                "selectedIconPath": "images/selected_score.png"
-            },
-            {
-                "pagePath": "pages/profile/index",
-                "text": "我的",
-                "iconPath": "images/tieba.png",
-                "selectedIconPath": "images/tieba_active.png"
-            }
-        ]
-    },
-    "networkTimeout": {
-        "request": 10000,
-        "downloadFile": 10000
-    },
-    "debug": true
+  "pages": [
+    "pages/index/index",
+    "pages/zcmu/main_page/index",
+    "pages/zcmu/index",
+    "pages/tieba/index",
+    "pages/zcmu_login/index",
+    "pages/about/index",
+    "pages/profile/index",
+    "pages/zcmu/failed_lessons/index",
+    "pages/holiday/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50
+  },
+  "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "#580EAD",
+    "backgroundColor": "#fff",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "功能",
+        "iconPath": "images/score.png",
+        "selectedIconPath": "images/selected_score.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的",
+        "iconPath": "images/tieba.png",
+        "selectedIconPath": "images/tieba_active.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
 }

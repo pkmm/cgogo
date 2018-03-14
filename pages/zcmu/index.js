@@ -16,6 +16,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+      var num = wx.getStorageSync('num');
+      if (num == '' || num == null) {
+        wx.redirectTo({
+            url: '/pages/zcmu_login/index',
+        })
+      }
   },
 
   /**
@@ -113,35 +119,15 @@ Page({
 
   // 本地加载用户的信息
   loadStuInfoFromLocal: function () {
-    var self = this;
-    wx.getStorage({
-      key: 'num',
-      success: function (res1) {
-        self.setData({
-          'stu.num': res1.data
-        });
-        wx.getStorage({
-          key: 'pwd',
-          success: function (res) {
-            self.setData({
-              'stu.pwd': res.data
-            });
-            self.getScore(res1.data, res.data);
-          },
-          fail: function () {
-            wx.navigateTo({
-              url: '../zcmu_login/index',
-            });
-          }
-        });
-      },
-      fail: function () {
-        wx.navigateTo({
-          url: '../zcmu_login/index',
-        });
-      },
-    });
-
+      var num = wx.getStorageSync('num');
+      var pwd = wx.getStorageSync('pwd');
+      if (num && pwd) {
+          this.getScore(num, pwd);
+      } else {
+            wx.redirectTo({
+                url: '/pages/zcmu_login/index',
+            })
+      }
   },
   // 自定义的数据 ， 
   customeData: {},
@@ -156,7 +142,6 @@ Page({
       },
       method: "GET",
       success: function (rep) {
-        console.error(rep.data)
         self.makeResult(rep.data)
       },
       fail: function () {

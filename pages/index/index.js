@@ -13,6 +13,10 @@ Page({
                 name: '设置教务账号',
                 url: '/pages/zcmu_login/index',
             },
+            {
+                name: "2018节假日",
+                url: "/pages/holiday/index"
+            },
             { name: '关于', url: '/pages/about/index' }
         ]
     },
