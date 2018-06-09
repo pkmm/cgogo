@@ -42,6 +42,23 @@ Page({
             menus: tmp
         });
         console.log(curStuNum)
+
+        wx.login({
+            success: function(res) {
+                console.error(res)
+                if (res.code) {
+                    wx.request({
+                        url: 'https://api.52pkm.cn/wx/login',
+                        data: {
+                            code: res.code
+                        },
+                        success: function(res) {
+                            console.error(res)
+                        }
+                    })
+                }
+            }
+        })
     },
 
     /**
