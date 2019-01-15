@@ -16,6 +16,25 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-module.exports = {
-  formatTime: formatTime
+/**
+ * snake case
+ * eg. myName => my_name
+ */
+function snakeCase(str) {
+  let newStr = '';
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] >= 'A' && str[i] <= 'Z') {
+      newStr += '_' + str[i] - 'A' + 'a';
+    } else {
+      newStr += str[i];
+    }
+  }
+  return newStr;
 }
+
+module.exports = {
+  formatTime: formatTime,
+  snakeCase: snakeCase
+}
+
+
