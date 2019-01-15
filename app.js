@@ -29,6 +29,7 @@ App({
 
   // 设置全局使用的数据
   globalData: {
+    serverHost: 'http://47.101.58.36',
     userInfo: null,
     stu: {
       num: '',

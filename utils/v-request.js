@@ -2,14 +2,14 @@ wx.vrequest = function (options) {
   // 默认配置
   const OPT = Object.assign({
     method: 'GET',
-    // dataType: 'json',
-    responseType: 'text'
+    dataType: 'json',
+    responseType: 'json'
   }, options);
 
   // 默认header
   OPT['header'] = Object.assign({
     'Content-Type': 'application/json',
-    'UserAgent': 'github@guren-cloud/v-request 20181229'
+    'UserAgent': 'cc la yun'
   }, options.header);
 
   // 发送的数据
@@ -18,7 +18,13 @@ wx.vrequest = function (options) {
   let POST_DATA = {
     body: options.data
   };
-  if (typeof options.data === 'object') POST_DATA['body'] = JSON.stringify(POST_DATA['body']);
+  const mth = OPT['method'].toLowerCase();
+
+
+  if (typeof options.data === 'object') {
+    POST_DATA['body'] = JSON.stringify(POST_DATA['body']);
+  }
+
 
   // 开始请求
   return new Promise((RES, REJ) => {

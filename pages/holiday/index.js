@@ -27,7 +27,7 @@ Page({
      */
     onShow: function () {
         var urls = [];
-        const prefix = "https://api.52pkm.cn/static/images/";
+        const prefix = getApp().globalData.serverHost +"/static/images/";
         for (var i = 0; i < this.data.images.length; i++) {
             urls.push({
                 url: prefix + this.data.images[i] + '.gif',

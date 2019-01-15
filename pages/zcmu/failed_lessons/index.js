@@ -27,8 +27,8 @@ Page({
      */
     onShow: function () {
         var self = this;
-        wx.request({
-            url: 'https://api.52pkm.cn/zf/get_failed_lessons',
+        wx.vrequest({
+            url: getApp().globalData.serverHost + '/zf/get_failed_lessons',
             success: function (rep) {
                 self.setData({
                     lessons: rep.data
@@ -57,8 +57,8 @@ Page({
     onPullDownRefresh: function () {
         wx.showNavigationBarLoading()
         var self = this;
-        wx.request({
-            url: 'https://api.52pkm.cn/zf/get_failed_lessons',
+        wx.vrequest({
+          url: getApp().globalData.serverHost + '/zf/get_failed_lessons',
             success: function (rep) {
                 self.setData({
                     lessons: rep.data
