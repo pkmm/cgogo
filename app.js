@@ -1,11 +1,7 @@
-//app.js
 require('./utils/v-request.js');
+require('./conf/conf.js');
 App({
   onLaunch: function() {
-    //调用API从本地缓存中获取数据
-    var self = this;
-    this.globalData.stu.num = wx.getStorageSync('num');
-    this.globalData.stu.pwd = wx.getStorageSync('pwd');
     wx.cloud.init({
       traceUser: true
     })
@@ -26,8 +22,7 @@ App({
       })
     }
   },
-
-  // 设置全局使用的数据
+  
   globalData: {
     userInfo: null,
     stu: {

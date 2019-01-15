@@ -2,14 +2,14 @@ wx.vrequest = function (options) {
   // 默认配置
   const OPT = Object.assign({
     method: 'GET',
-    // dataType: 'json',
+    dataType: 'json',
     responseType: 'text'
   }, options);
 
   // 默认header
   OPT['header'] = Object.assign({
     'Content-Type': 'application/json',
-    'UserAgent': 'github@guren-cloud/v-request 20181229'
+    'UserAgent': 'ccla'
   }, options.header);
 
   // 发送的数据
