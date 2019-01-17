@@ -1,25 +1,26 @@
 // pages/zcmu_login/index.js
+import api from '../../utils/api.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    showTopTips: false,
-    num: '',
-    pwd: '',
+    // showTopTips: false,
+    // num: '',
+    // pwd: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    const num = wx.getStorageSync('num');
-    const pwd = wx.getStorageSync('pwd');
-    this.setData({
-      num,
-      pwd,
-    });
+    // const num = wx.getStorageSync('num');
+    // const pwd = wx.getStorageSync('pwd');
+    // this.setData({
+    //   num,
+    //   pwd,
+    // });
   },
 
   /**
@@ -33,7 +34,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
   },
 
   /**
@@ -70,18 +70,7 @@ Page({
   onShareAppMessage: function() {
 
   },
-  showTopTips: function() {
-    var that = this;
-    this.setData({
-      showTopTips: true,
-    });
-
-    setTimeout(function() {
-      that.setData({
-        showTopTips: false,
-      })
-    }, 3000);
-  },
+ 
   save: function() {
     var self = this;
     if (self.data.num == '' || self.data.pwd == '') {

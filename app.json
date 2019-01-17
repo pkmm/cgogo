@@ -8,7 +8,9 @@
     "pages/about/index",
     "pages/profile/index",
     "pages/zcmu/failed_lessons/index",
-    "pages/holiday/index"
+    "pages/holiday/index",
+    "pages/zcmu/score/index",
+    "pages/zcmu/login/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -42,5 +44,6 @@
     "request": 10000,
     "downloadFile": 10000
   },
-  "debug": true
+  "debug": true,
+  "cloud": true
 }

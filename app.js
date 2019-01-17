@@ -1,5 +1,4 @@
 require('./utils/v-request.js');
-require('./conf/conf.js');
 App({
   onLaunch: function() {
     wx.cloud.init({
@@ -24,11 +23,8 @@ App({
   },
   
   globalData: {
-    serverHost: 'http://47.101.58.36',
     userInfo: null,
-    stu: {
-      num: '',
-      pwd: ''
-    }
+    token: null,
+    user: null,
   }
 })

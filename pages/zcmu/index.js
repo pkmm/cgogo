@@ -5,23 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    stu: {
-      num: '',
-      pwd: '',
-    },
-    scores: [],
+    // stu: {
+    //   num: '',
+    //   pwd: '',
+    // },
+    // scores: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var num = wx.getStorageSync('num');
-    if (num == '' || num == null) {
-      wx.redirectTo({
-        url: '/pages/zcmu_login/index',
-      })
-    }
+    // var num = wx.getStorageSync('num');
+    // if (num == '' || num == null) {
+    //   wx.redirectTo({
+    //     url: '/pages/zcmu_login/index',
+    //   })
+    // }
   },
 
   /**
@@ -83,7 +83,7 @@ Page({
       fail: function() {
         wx.showModal({
           title: '获取成绩失败',
-          content: '检查学号密码正确性，以及教务系统是否正常. 获取Emial：zccxxx79@gmail.com',
+          content: '请再次尝试....',
         })
       }
     })

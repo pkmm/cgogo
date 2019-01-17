@@ -1,0 +1,32 @@
+<view class='page'>
+  <view class='page__bd'>
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__hd">
+        <view class='jd-des'>
+         <view>
+           在校总平均绩点：【{{scores.total_jd_avg}}】已修必修课：{{scores.total_cnt}}
+         </view>
+          <view style='display: block'>
+            {{scores.cur_xn}}学年均绩点：【{{scores.current_xn_jd_avg}}】已修必修课：{{scores.current_xn_cnt}}
+          </view>
+          <view style='color: green'>提示: 绩点只计算必修课</view>
+        </view>
+      </view>
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_text" wx:for='{{scores.scores}}' wx:key="{{index}}">
+          <view class="weui-media-box__title weui-media-box__title_in-text">{{item.Kcmc}} -【{{item.Type}}】</view>
+          <view class="weui-media-box__desc not-accept" wx:if="{{(item.Cj == '不合格' || item.Cj < 60)}}">
+            成绩: {{item.Cj}} | 绩点:{{item.Jd}} | 学分:{{item.Xf}} | 学年:{{item.Xn}} | 学期:{{item.Xq}}
+          </view>
+          <view class="weui-media-box__desc" wx:else>
+            成绩: {{item.Cj}} | 绩点:{{item.Jd}} | 学分:{{item.Xf}} | 学年:{{item.Xn}} | 学期:{{item.Xq}}
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-footer">
+        <view class="weui-footer__text">Copyright © 2019 Ataraxia-pkm</view>
+      </view>
+    </view>
+  </view>
+</view>
