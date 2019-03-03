@@ -1,4 +1,5 @@
 // pages/index/index.js
+const api = require('../../utils/api');
 Page({
 
     /**
@@ -6,7 +7,7 @@ Page({
      */
     data: {
         menus: [
-            { name: '查成绩', url: '/pages/zcmu/index' },
+            { name: '查成绩', url: '/pages/zcmu/score/index' },
             // { name: '挂科TOP10', url: '/pages/zcmu/failed_lessons/index' },
             // { name: '我的贴吧', url: "/pages/tieba/index" },
             {
@@ -71,10 +72,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        wx.cloud.callFunction({
-            name: "getUserInfo",
-            complete: console.log,
-        })
+        // wx.cloud.callFunction({
+        //     name: "getUserInfo",
+        //     complete: console.log,
+        // })
     },
 
     /**

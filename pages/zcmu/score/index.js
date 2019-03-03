@@ -7,15 +7,85 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    scores: [],
+    allSemesterInfo: {
+      total: 0,
+      avg: 0.00,
+    },
+    currentSemesterInfo: {
+      total: 0,
+      avg: 0.00,
+    },
+    currentSemester: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getScore();
 
   },
+
+  getScore() {
+    api.fetchRequest('/zf/get_scores').then(resp => {
+      wx.hideLoading();
+      if (resp.data.code == 0) {
+        this.processScores(resp.data.data);
+      } else {
+        wx.showModal({
+          title: '发生错误',
+          content: resp.data.msg || '未知错误',
+          showCancel: false,
+        })
+      }
+    })
+  },
+
+  processScores(scores) {
+    console.log('process scores', scores);
+    this.calcAllSemesterInfo(scores);
+    this.calcCurrentSemesterInfo(scores);
+    this.setData({
+      scores: scores.reverse()
+    });
+  },
+
+  // 计算在校的总平均绩点， 只计算必修课
+  calcAllSemesterInfo(scores) {
+    if (scores.length == 0) {
+      return;
+    }
+    let total = 0, sum = 0;
+    scores.forEach(i => {
+      if (i.type == '必修课') {
+        sum += i.jd;
+        total++;
+      }
+    });
+    this.setData({
+      allSemesterInfo: { total: total, avg: (sum / total).toFixed(2) }
+    });
+  },
+
+  calcCurrentSemesterInfo(scores) {
+    if (scores.length == 0) {
+      return;
+    }
+    let total = 0, sum = 0;
+    let currentSemester = scores[scores.length - 1].xn;
+    scores.forEach(i => {
+      if (i.type == '必修课' && currentSemester == i.xn) {
+        total++;
+        sum += i.jd;
+      }
+    })
+    this.setData({
+      currentSemesterInfo: { total: total, avg: (sum / total).toFixed(2) },
+      currentSemester: currentSemester,
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -26,7 +96,7 @@ Page({
 
   /**
    * 生命周期函数--监听页面显示
-   */
+   *
   onShow: function () {
 
   },
@@ -49,7 +119,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.showLoading();
+    this.getScore();
   },
 
   /**

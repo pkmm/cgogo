@@ -8,8 +8,11 @@
                     <view class="weui-media-box__title weui-media-box__title_in-text">关于</view>
                     <view class="list-style">
                         <view>
-                            大家觉得还能用的话，就分享给同学使用吧，有时间我会更新下界面的，
-                            希望朋友多多转发支持~~~~
+                            <text class="" selectable="false" space="false" decode="false">
+                                大家觉得还能用的话，就分享给同学使用吧
+                            </text>
+                            <text>希望朋友多多转发支持~~~~</text>
+                            <button open-type='share'>分享给小伙伴</button>
                         </view>
                     </view>
                 </view>
@@ -52,7 +55,8 @@
                     <view class="weui-media-box__title weui-media-box__title_in-text">可能遇到的问题</view>
                     <view class="list-style">
                         <view> 无法加载成绩？</view>
-                        <view class='list-style'>1. 检查学号密码正确性，就是登陆教务系统的密码 http://zfxk.zjtcm.net的密码，以前是身份证后六位，记得教务系统后来让大家改过，反正就是你平时登陆正方教务系统的那个密码。别填错了就ok</view>
+                        <view class='list-style'>1. 检查学号密码正确性，就是登陆教务系统的密码
+                            http://zfxk.zjtcm.net的密码，以前是身份证后六位，记得教务系统后来让大家改过，反正就是你平时登陆正方教务系统的那个密码。别填错了就ok</view>
                         <view class='list-style'>2. 检查教务系统是否能正常访问</view>
                         <view class='list-style'>3. 遇到问题，邮件通知 zccxxx79@gmail.com </view>
                         <!-- <view class="button-sp-area list-style">

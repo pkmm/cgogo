@@ -1,4 +1,5 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "设置教务系统账号"
+    "usingComponents": {},
+    "navigationBarTitleText": "设置教务系统账号",
+    "enablePullDownRefresh": false
 }

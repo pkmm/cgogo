@@ -3,12 +3,17 @@ const API_BASE_URL = "http://47.101.58.36:8189";
 // const API_BASE_URL = "http://localhost:8654";
 
 
-function FetchRequest(url, data, method = "POST", header = {}) {
+function FetchRequest(url, data = {}, method = "POST", header = {}) {
   console.log('request: ', url, data)
+  wx.showLoading();
   return new Promise(Request);
 
   function Request(resolve, reject) {
     let _url = API_BASE_URL + url;
+
+    // 添加上认证的信息
+    data['token'] = wx.getStorageSync('token');
+
     // 使用云函数 v-request 代理
     wx.vrequest({
       url: _url,
@@ -40,6 +45,7 @@ function FetchRequest(url, data, method = "POST", header = {}) {
 
     function RequestOver() {
       console.log('request completed.')
+      wx.hideLoading();
     }
   }
 }

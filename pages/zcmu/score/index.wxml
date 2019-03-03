@@ -3,23 +3,31 @@
     <view class="weui-panel weui-panel_access">
       <view class="weui-panel__hd">
         <view class='jd-des'>
-         <view>
-           在校总平均绩点：【{{scores.total_jd_avg}}】已修必修课：{{scores.total_cnt}}
-         </view>
+          <view>
+            总平均绩点：【{{allSemesterInfo.avg}}】已修必修课：{{allSemesterInfo.total}}
+          </view>
           <view style='display: block'>
-            {{scores.cur_xn}}学年均绩点：【{{scores.current_xn_jd_avg}}】已修必修课：{{scores.current_xn_cnt}}
+            {{currentSemester}}学年均绩点：【{{currentSemesterInfo.avg}}】已修必修课：{{currentSemesterInfo.total}}
           </view>
           <view style='color: green'>提示: 绩点只计算必修课</view>
         </view>
       </view>
       <view class="weui-panel__bd">
-        <view class="weui-media-box weui-media-box_text" wx:for='{{scores.scores}}' wx:key="{{index}}">
-          <view class="weui-media-box__title weui-media-box__title_in-text">{{item.Kcmc}} -【{{item.Type}}】</view>
-          <view class="weui-media-box__desc not-accept" wx:if="{{(item.Cj == '不合格' || item.Cj < 60)}}">
-            成绩: {{item.Cj}} | 绩点:{{item.Jd}} | 学分:{{item.Xf}} | 学年:{{item.Xn}} | 学期:{{item.Xq}}
+        <view class="weui-media-box weui-media-box_text" wx:for='{{scores}}' wx:key="{{index}}">
+          <view class="weui-media-box__title weui-media-box__title_in-text">{{item.kcmc}} -【{{item.type}}】</view>
+          <view class="weui-media-box__desc not-accept" wx:if="{{(item.cj == '不合格' || item.cj < 60)}}">
+            <icon type="info_circle" size="20"></icon>
+            <text>成绩: {{item.cj}} | 绩点:{{item.jd}} | 学分:{{item.xf}} | 学年:{{item.xn}} | 学期:{{item.xq}}</text>
           </view>
           <view class="weui-media-box__desc" wx:else>
-            成绩: {{item.Cj}} | 绩点:{{item.Jd}} | 学分:{{item.Xf}} | 学年:{{item.Xn}} | 学期:{{item.Xq}}
+            <icon type="success_no_circle" size="20"></icon>
+            <text>成绩: {{item.cj}} | 绩点:{{item.jd}} | 学分:{{item.xf}} | 学年:{{item.xn}} | 学期:{{item.xq}}</text>
+          </view>
+          <view class="weui-media-box__desc" hover-class="none" hover-stop-propagation="false" wx:if="{{item.cxcj}}">
+            <text>重修成绩: {{item.cxcj}}</text>
+          </view>
+          <view class="weui-media-box__desc" hover-class="none" hover-stop-propagation="false" wx:if="{{item.bkcj}}">
+            <text>补考成绩: {{item.bkcj}}</text>
           </view>
         </view>
       </view>

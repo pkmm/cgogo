@@ -15,7 +15,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (app.globalData.user) {
+      this.setData({
+        num: app.globalData.user.num,
+        pwd: app.globalData.user.pwd,
+      })
+    } else { // 本地缓存加载
+      let user = wx.getStorageSync('user')
+      this.setData({
+        num: user.num,
+        pwd: user.pwd,
+      });
+    }
   },
 
   /**
@@ -73,15 +84,15 @@ Page({
       [key]: value,
     });
   },
-  clearData(e) {
-    const value = e.detail.value;
-    const key = e.currentTarget.dataset.name;
-    this.setData({
-      [key]: '',
-    });
-  },
+  // clearData(e) {
+  //   const value = e.detail.value;
+  //   const key = e.currentTarget.dataset.name;
+  //   this.setData({
+  //     [key]: '',
+  //   });
+  // },
   setAccount() {
-    if (this.data.num == '' || this.data.pwd == '') {
+    if (!this.data.num || !this.data.pwd) {
       wx.showModal({
         title: "错误",
         content: "账号/密码不能为空",
@@ -94,49 +105,36 @@ Page({
       pwd: this.data.pwd,
     }).then(res => {
       if (res.data.code == 0) {
-        // this.setData({
-        //   num: res.data
-        // })
+        let data = res.data.data;
+        wx.setStorageSync('token', data.token) // 更新新的token 这个token有最新的num信息
+        app.globalData.user = data.user;
+        wx.setStorageSync('user', data.user);
+        wx.showModal({
+          title: "设置成功",
+          content: '快去查看成绩吧',
+          success: function (res) {
+            if (res.confirm) {
+              wx.redirectTo({
+                url: '/pages/zcmu/score/index',
+              })
+            }
+          },
+          fail: function () {
+
+          }
+        })
       } else {
         wx.showModal({
           title: "发生错误",
-          content: res.data.Msg || "未知错误",
+          content: res.data.msg || "未知错误",
+          showCancel: false,
         })
       }
     })
   },
   bindGetUserInfo(e) {
-    // console.error(e)
-    wx.login({
-      success: function(resOfLogin){
-        // success
-        wx.getUserInfo({
-          success: function(resOfGetUserInfo){
-            // success
-            api.fetchRequest('/zf/login', {
-              code: resOfLogin.code,
-              iv: resOfGetUserInfo.iv,
-              encrypted_data: resOfGetUserInfo.encryptedData,
-            }).then(resp => {
-              let data = resp.data.data;
-              app.globalData.token = data.token;
-              app.globalData.user = data.user;
-            })
-          },
-          fail: function() {
-            // fail
-          },
-          complete: function() {
-            // complete
-          }
-        })
-      },
-      fail: function() {
-        // fail
-      },
-      complete: function() {
-        // complete
-      }
-    })
+    app.login(user => {
+      this.setAccount();
+    });
   }
 });

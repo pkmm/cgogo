@@ -67,5 +67,12 @@ Page({
         wx.navigateTo({
             url: '../zcmu_login/index',
         });
+    },
+    onShareAppMessage(obj) {
+        return {
+            title: "使用Cgogo方便快速查教务系统成绩",
+            path: '/pages/zcmu/score/index',
+            imageUrl: '/images/score.jpg',
+        };
     }
 })
