@@ -9,7 +9,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.7.2",
-	"appid": "you appid",
+	"appid": "your appid",
 	"projectname": "cg",
 	"condition": {
 		"search": {

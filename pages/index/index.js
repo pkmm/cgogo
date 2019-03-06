@@ -18,7 +18,8 @@ Page({
             // name: "2018节假日",
             // url: "/pages/holiday/index"
             // },
-            { name: '关于', url: '/pages/about/index' }
+            { name: '关于', url: '/pages/about/index' },
+            { name: '教务处新闻', url: '/pages/zcmu/news/index' }
         ]
     },
 

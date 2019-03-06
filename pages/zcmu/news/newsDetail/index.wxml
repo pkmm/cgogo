@@ -1,0 +1,5 @@
+
+
+<view>
+  <rich-text nodes="{{newsDetail}}"></rich-text>
+</view>

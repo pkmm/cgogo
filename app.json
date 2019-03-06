@@ -4,7 +4,9 @@
     "pages/about/index",
     "pages/profile/index",
     "pages/zcmu/score/index",
-    "pages/zcmu/login/index"
+    "pages/zcmu/login/index",
+    "pages/zcmu/news/index",
+    "pages/zcmu/news/newsDetail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -14,7 +16,6 @@
     "enablePullDownRefresh": true,
     "onReachBottomDistance": 50
   },
-
   "networkTimeout": {
     "request": 10000,
     "downloadFile": 10000

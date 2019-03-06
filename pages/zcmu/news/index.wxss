@@ -1,0 +1,9 @@
+/* pages/zcmu/news/index.wxss */
+
+.title {
+  font-size: inherit;
+}
+
+.date {
+  font-size: smaller;
+}
