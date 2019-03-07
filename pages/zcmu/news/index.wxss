@@ -1,9 +1,30 @@
 /* pages/zcmu/news/index.wxss */
 
 .title {
-  font-size: inherit;
+  font-size: medium;
+  padding: 2px 10px 0 10px;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: left;
+  display: inline-block;
+}
+
+.box {
+  border-bottom: 1px dashed gray;
 }
 
 .date {
   font-size: smaller;
+  text-align: right;
+  font-family: 'Courier New', Courier, monospace;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  color: gray;
+}
+
+.button-wrapper {
+  margin-top: 10px;
+}
+
+button {
+  margin-bottom: 10px;
 }

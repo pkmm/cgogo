@@ -4,7 +4,6 @@ const API_BASE_URL = "http://47.101.58.36:8189";
 
 
 function FetchRequest(url, data = {}, method = "POST", header = {}) {
-  console.log('request: ', url, data)
   wx.showLoading();
   return new Promise(Request);
 
@@ -44,7 +43,6 @@ function FetchRequest(url, data = {}, method = "POST", header = {}) {
     }
 
     function RequestOver() {
-      console.log('request completed.')
       wx.hideLoading();
     }
   }

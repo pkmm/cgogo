@@ -43,7 +43,6 @@ Page({
   },
 
   processScores(scores) {
-    console.log('process scores', scores);
     this.calcAllSemesterInfo(scores);
     this.calcCurrentSemesterInfo(scores);
     this.setData({

@@ -28,7 +28,6 @@ Page({
     wx.request({
       url: "https://api.52pkm.cn",
       success(rep) {
-        console.log(rep.data)
         let sy = [];
         for (let x in rep.data.forums) {
           sy.push(self.getCls());
@@ -79,7 +78,6 @@ Page({
       wx.request({
           url: "https://api.52pkm.cn",
           success(rep) {
-              console.log(rep.data)
               let sy = [];
               for (let x in rep.data.forums) {
                   sy.push(self.getCls());

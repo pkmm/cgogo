@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    news: []
+    news: [],
+    currentPageNumber: 0,
   },
 
   /**
@@ -69,6 +70,7 @@ Page({
       url: '/pages/zcmu/news/newsDetail/index?news_url=' + newsUrl,
     })
   },
+
   loadNews(pageNumber = 0) {
     wx.showLoading();
     const self = this;
@@ -80,10 +82,38 @@ Page({
     }).then((res) => {
       wx.hideLoading();
       let news = res.result.news || [];
+      if (news.length == 0) {
+        wx.showModal({
+          title: '提示',
+          content: "已经没有更多的新闻啦!"
+        })
+        return;
+      }
       self.setData({
         news,
       });
     })
+  },
+  
+  nextPage() {
+    this.setData({
+      currentPageNumber: this.data.currentPageNumber + 1,
+    })
+    this.loadNews(this.data.currentPageNumber + 1);
+  },
+
+  indexPage() {
+    if (this.data.currentPageNumber == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '当前已经是第一页啦'
+      })
+      return;
+    }
+    this.loadNews(0);
+    this.setData({
+      currentPageNumber: 0,
+    });
   }
 
 })

@@ -46,7 +46,6 @@ App({
               iv: resp.iv,
               encrypted_data: resp.encryptedData,
             }).then(resp => {
-              console.log('login:index', resp.data);
               let data = resp.data.data;
               if (resp.data.code !== 0) {
                 // 发生了错误 业务逻辑处理 todo

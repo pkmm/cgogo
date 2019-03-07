@@ -1,11 +1,13 @@
 <view class="" hover-class="none" hover-stop-propagation="false">
     <view wx:for="{{news}}" wx:key="*this">
-        <text class="" selectable="false" space="false" decode="false" bindtap='showDetail' data-news-url='{{item.link}}'>
-            <text class='title'>{{item.title}}</text> <text class='date'>post at {{item.date}}</text>
-        </text>
+        <view class="box" selectable="false" space="false" decode="false" bindtap='showDetail' data-news-url='{{item.link}}'>
+            <view class='title'>{{item.title}} </view>
+            <view class='date'>post at {{item.date}}</view>
+        </view>
     </view>
-    <view>
-      <text>首页</text>  <text>下一页</text>
+    <view class="button-wrapper">
+      <button bindtap='indexPage'>首页</button>
+      <button bindtap='nextPage'>下一页</button>
     </view>
 
 </view>

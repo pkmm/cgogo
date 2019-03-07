@@ -31,7 +31,7 @@ class Crawl {
       const element = $(ele);
       news.push({
         title: element.text().trim(),
-        link: this.host + element.attr('href'),
+        link: this.host + element.attr('href').replace('../', ''),
       });
     });
     const length = news.length;

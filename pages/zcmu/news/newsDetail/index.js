@@ -12,7 +12,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.error(options);
     const self = this;
     wx.cloud.callFunction({
       name: 'zf-news',
