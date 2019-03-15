@@ -84,13 +84,7 @@ Page({
       [key]: value,
     });
   },
-  // clearData(e) {
-  //   const value = e.detail.value;
-  //   const key = e.currentTarget.dataset.name;
-  //   this.setData({
-  //     [key]: '',
-  //   });
-  // },
+  
   setAccount() {
     if (!this.data.num || !this.data.pwd) {
       wx.showModal({

@@ -18,22 +18,6 @@ App({
     
   },
 
-  // getUserInfo: function (cb) {
-  //   var that = this
-  //   if (this.globalData.userInfo) {
-  //     typeof cb == "function" && cb(this.globalData.userInfo)
-  //   } else {
-  //     //调用登录接口
-  //     wx.getUserInfo({
-  //       withCredentials: false,
-  //       success: function (res) {
-  //         that.globalData.userInfo = res.userInfo
-  //         typeof cb == "function" && cb(that.globalData.userInfo)
-  //       }
-  //     })
-  //   }
-  // },
-
   // 调用服务端的登陆接口 拿到用户的信息
   login: function (cb) {
     let self = this;
@@ -63,10 +47,6 @@ App({
     });
   },
   globalData: {
-    api_param: {
-      __user_id: null,
-      __access_token: null,
-    },
     user: null,
   }
 })
