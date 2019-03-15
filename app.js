@@ -43,11 +43,10 @@ App({
             })
           },
           fail(err) {
-            
-            // 用户还没有授权过  所以直接打开 函数调用失败
-            wx.redirectTo({
-              url: '/pages/zcmu/login/index',
-            })
+            // 用户还没有授权过 
+            // wx.redirectTo({
+            //   url: '/pages/zcmu/login/index',
+            // })
           }
         })
       },

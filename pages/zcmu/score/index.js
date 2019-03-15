@@ -28,6 +28,12 @@ Page({
   },
 
   getScore() {
+    if (app.globalData.user == null) {
+      wx.redirectTo({
+        url: '/pages/zcmu/login/index',
+      })
+      return;
+    }
     api.fetchRequest('/zf/get_scores').then(resp => {
       wx.hideLoading();
       if (resp.data.code == 0) {
@@ -55,7 +61,8 @@ Page({
     if (scores.length == 0) {
       return;
     }
-    let total = 0, sum = 0;
+    let total = 0,
+      sum = 0;
     scores.forEach(i => {
       if (i.type == '必修课') {
         sum += i.jd;
@@ -63,7 +70,10 @@ Page({
       }
     });
     this.setData({
-      allSemesterInfo: { total: total, avg: (sum / total).toFixed(2) }
+      allSemesterInfo: {
+        total: total,
+        avg: (sum / total).toFixed(2)
+      }
     });
   },
 
@@ -71,7 +81,8 @@ Page({
     if (scores.length == 0) {
       return;
     }
-    let total = 0, sum = 0;
+    let total = 0,
+      sum = 0;
     let currentSemester = scores[scores.length - 1].xn;
     scores.forEach(i => {
       if (i.type == '必修课' && currentSemester == i.xn) {
@@ -80,7 +91,10 @@ Page({
       }
     })
     this.setData({
-      currentSemesterInfo: { total: total, avg: (sum / total).toFixed(2) },
+      currentSemesterInfo: {
+        total: total,
+        avg: (sum / total).toFixed(2)
+      },
       currentSemester: currentSemester,
     })
   },
@@ -136,4 +150,3 @@ Page({
 
   }
 })
-

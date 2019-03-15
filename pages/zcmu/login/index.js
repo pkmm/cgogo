@@ -21,7 +21,10 @@ Page({
         pwd: app.globalData.user.pwd,
       })
     } else { // 本地缓存加载
-      let user = wx.getStorageSync('user')
+      let user = wx.getStorageSync('user');
+      if (!user) {
+        return;
+      }
       this.setData({
         num: user.num,
         pwd: user.pwd,
