@@ -17,40 +17,6 @@
                     </view>
                 </view>
 
-                <!-- <view class="weui-media-box weui-media-box_text">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">缘由</view>
-                    <view class="list-style">
-                        <view>
-                            有同学问我以前做的那个查成绩的网页还能不能用，因为服务器到期了，所以用不了。不过刚好手上有个vps，就做了这个
-                        </view>
-                    </view>
-                </view>
-
-                <view class="weui-media-box weui-media-box_text">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">可能有点慢</view>
-                    <view class="list-style">
-                        <view>慢是正常的，为什么？</view>
-                        <view class='list-style'>1. 我的vps是在境外的, 因为墙的存在，访问不能算快.</view>
-                        <view class='list-style'>2. 教务系统的响应速度, 大家心里应该有数的.</view>
-                    </view>
-                </view>
-
-                <view class="weui-media-box weui-media-box_text">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">一些优化</view>
-                    <view class="list-style">
-                        <view class='list-style'>1. 我的服务器会缓存一些数据，这样在后来的打开速度会很快.(目前使用者较少，十分钟会更新一次数据,压力大的话会增加同步的时间</view>
-                        <view class='list-style'>2. 加了缓存就意味着失去了实时性，数据最坏的情况下大概会延时十分钟(可能会更长一点，看服务的压力.</view>
-                    </view>
-                </view>
-
-                <view class="weui-media-box weui-media-box_text">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">有时间会做</view>
-                    <view class="list-style">
-                        <view class='list-style'>1. 添加通知，成绩更新之后进行通知.</view>
-                        <view class='list-style'>2. 提取教务处新闻资讯，看大家需求吧.</view>
-                    </view>
-                </view> -->
-
                 <view class="weui-media-box weui-media-box_text">
                     <view class="weui-media-box__title weui-media-box__title_in-text">可能遇到的问题</view>
                     <view class="list-style">
