@@ -1,10 +1,14 @@
 require('./utils/v-request.js');
 const api = require('./utils/api')
+const md5 = require('./utils/md5.js')
 App({
   onLaunch: function () {
+    // 配置云函数
     wx.cloud.init({
       traceUser: true
-    })
+    });
+
+    // 检查token的合法性
     let token = wx.getStorageSync('token')
     if (token) {
       api.fetchRequest('/zf/check_token').then(resp => {
@@ -15,44 +19,44 @@ App({
     } else {
       this.login();
     }
-    
+
   },
 
-  // 调用服务端的登陆接口 拿到用户的信息
+  // 调用服务端的登陆接口拿到用户的Token信息
+  // 首先调用云函数获取openId appId用于认证
+  // 使用appId签名openId得到code到server换取token
   login: function (cb) {
     let self = this;
-    wx.login({
-      success(repOfLogin) {
-        wx.getUserInfo({
-          success(resp) {
-            api.fetchRequest('/zf/login', {
-              code: repOfLogin.code,
-              iv: resp.iv,
-              encrypted_data: resp.encryptedData,
-            }).then(resp => {
-              let data = resp.data.data;
-              if (resp.data.code !== 0) {
-                // 发生了错误 业务逻辑处理 todo
-                return;
-              }
-              wx.setStorageSync('token', data.token)
-              self.globalData.user = data.user;
-              if (cb && typeof cb == 'function') {
-                cb(data.user);
-              }
-            })
-          },
-          fail(err) {
-            // 用户还没有授权过 
-            // wx.redirectTo({
-            //   url: '/pages/zcmu/login/index',
-            // })
+    wx.cloud.callFunction({
+      name: "getUserInfo",
+      data: {},
+      complete: (resp) => {
+        self.globalData.appId = resp.result.appid;
+        self.globalData.openId = resp.result.openid;
+        let code = md5.hexMD5("xiaocc_ai_liu_yan_lin" + resp.result.appid + resp.result.openid);
+        api.fetchRequest('/zf/login', {
+          code,
+        }).then(resp => {
+          let data = resp.data.data;
+          if (resp.data.code !== 0) {
+            // todo 发生了错误
+            return 
+          }
+          wx.setStorageSync('token', data.token);
+          self.globalData.user = data.user;
+          if (cb && typeof cb == 'function') {
+            cb(data.user);
           }
         })
       },
+      fail: (resp) => {
+        // todo 提示
+      } 
     });
   },
   globalData: {
     user: null,
+    appId: null,
+    openId: null,
   }
 })
