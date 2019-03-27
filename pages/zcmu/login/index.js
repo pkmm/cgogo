@@ -129,9 +129,4 @@ Page({
       }
     })
   },
-  bindGetUserInfo(e) {
-    app.login(user => {
-      this.setAccount();
-    });
-  }
 });
