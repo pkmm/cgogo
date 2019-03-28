@@ -12,6 +12,6 @@
 4. 其他的功能慢慢添加
 
 ##### 后端的API使用Golang开发
-地址[pkmm](https://github.com/pkmm/pkmm)
+地址[cgin](https://github.com/pkmm/cgin)
 
 ![image](https://github.com/pkmm/cgogo/blob/master/images/cgogo.jpg)

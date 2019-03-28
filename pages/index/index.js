@@ -27,7 +27,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        
+        let token = wx.getStorageSync("token");
+        if (!token) {
+          getApp().login();
+        }
     },
 
     /**

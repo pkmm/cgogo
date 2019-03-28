@@ -1,1 +1,3 @@
-/* pages/zcmu/news/newsDetail/index.wxss */
+.news-detail {
+  padding: 0 10px;
+}
