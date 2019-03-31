@@ -1,0 +1,13 @@
+{
+  "desc": "关于本文件的更多信息，请参考文档 https://developers.weixin.qq.com/miniprogram/dev/framework/sitemap.html",
+  "rules": [{
+  "action": "allow",
+  "page": "*"
+  },{
+    "action": "allow",
+    "page": "/pages/zcmu/score/index",
+    "params": ["正方", "教务", "正方教务", "成绩", "查成绩", "浙江中医药大学", "成绩查询"],
+    "matching": "partial"
+  }
+]
+}

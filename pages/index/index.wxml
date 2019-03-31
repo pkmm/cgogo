@@ -13,4 +13,9 @@
             </block>
         </view>
     </view>
+    <view>
+      <form report-submit='true' bindsubmit='onScoreUpdateInformMe'>
+        <button form-type='submit'>成绩更新获取通知</button>
+      </form>
+    </view>
 </view>

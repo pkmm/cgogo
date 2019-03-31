@@ -21,5 +21,6 @@
     "downloadFile": 10000
   },
   "debug": true,
-  "cloud": true
+  "cloud": true,
+  "sitemapLocation": "sitemap.json"
 }

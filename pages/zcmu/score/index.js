@@ -29,7 +29,7 @@ Page({
 
   getScore() {
     if (app.globalData.user == null || app.globalData.user.num == '' || app.globalData.pwd == '') {
-      wx.redirectTo({
+      wx.navigateTo({
         url: '/pages/zcmu/login/index',
       })
       return;
