@@ -14,8 +14,16 @@
         </view>
     </view>
     <view>
-      <form report-submit='true' bindsubmit='onScoreUpdateInformMe'>
-        <button form-type='submit'>成绩更新获取通知</button>
-      </form>
+        <form report-submit='true' bindsubmit='onScoreUpdateInformMe'>
+            <button form-type='submit'>成绩更新获取通知</button>
+        </form>
     </view>
+
+    <view class="masonry" hover-class="none" hover-stop-propagation="false">
+        <view class="item" wx:for="{{100}}">
+            Hello
+        </view>
+    </view>
+
+
 </view>

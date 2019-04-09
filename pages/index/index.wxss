@@ -1,0 +1,19 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 50%;
+    border-radius: 5px;
+}
+
+.masonry {
+    /* display: flex;
+    flex-direction: row; */
+    column-count: 2;
+    column-gap: 20rpx;
+
+}
+.item {
+    box-sizing: border-box;
+    break-inside: avoid;
+    padding: 10px;
+    border: rebeccapurple 1px solid;
+}
