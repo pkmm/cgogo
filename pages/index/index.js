@@ -27,9 +27,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let token = wx.getStorageSync("token");
-    if (!token) {
-      getApp().login();
+    // 检查token的合法性
+    let token = wx.getStorageSync('token')
+    let app = getApp();
+    if (token) {
+      api.fetchRequest('/zf/check_token').then(resp => {
+        if (resp.data.code != 0) {
+          app.login();
+        }
+      });
+    } else {
+      app.login();
     }
   },
 
@@ -81,7 +89,6 @@ Page({
 
   },
   onScoreUpdateInformMe(evt) {
-    console.log(evt)
     let user = wx.getStorageSync("user")
     api.fetchRequest('/zf/send_template_msg', {
       form_id: evt.detail.formId,

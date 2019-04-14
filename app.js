@@ -7,19 +7,6 @@ App({
     wx.cloud.init({
       traceUser: true
     });
-
-    // 检查token的合法性
-    let token = wx.getStorageSync('token')
-    if (token) {
-      api.fetchRequest('/zf/check_token').then(resp => {
-        if (resp.data.code != 0) {
-          this.login();
-        }
-      });
-    } else {
-      this.login();
-    }
-
   },
 
   // 调用服务端的登陆接口拿到用户的Token信息
