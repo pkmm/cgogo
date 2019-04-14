@@ -1,5 +1,5 @@
 const config = require('../config');
-const API_BASE_URL = config.env == 'prod' ? "https://47.101.58.36:8189" : "http://127.0.0.1:8654";
+const API_BASE_URL = config.env == 'prod' ? "http://47.101.58.36:8189" : "http://127.0.0.1:8654";
 
 function FetchRequest(url, data = {}, method = "POST", header = {}) {
   wx.showLoading();
