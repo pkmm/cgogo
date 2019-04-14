@@ -17,3 +17,8 @@
     padding: 10px;
     border: rebeccapurple 1px solid;
 }
+
+/* 毛玻璃的效果 */
+.bulr {
+    filter: blur(15px);
+}

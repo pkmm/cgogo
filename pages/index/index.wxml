@@ -1,9 +1,12 @@
 <view class="page">
     <view class="page__hd">
-        <view class="page__title">小助手</view>
-        <view class="page__desc">预留位置(adv)</view>
+        <view class="page__title">心好，命就好</view>
+        <view class="page__desc">曾经沧海难为水 除却巫山不是云</view>
     </view>
-    <view class="page__bd">
+    <view style='text-align: center'>
+      <image src='../../images/lin.jpg' mode='widthFix' style='width: 96vw;' class="bulr"></image>
+    </view>
+    <view class="page__bd" style="margin-top: 90px;" >
         <view class="weui-grids">
             <block wx:for="{{menus}}" wx:key="*this">
                 <navigator url="{{item.url}}" open-type='navigate' class="weui-grid" hover-class="weui-grid_active">
@@ -13,17 +16,4 @@
             </block>
         </view>
     </view>
-    <view>
-        <form report-submit='true' bindsubmit='onScoreUpdateInformMe'>
-            <button form-type='submit'>成绩更新获取通知</button>
-        </form>
-    </view>
-
-    <view class="masonry" hover-class="none" hover-stop-propagation="false">
-        <view class="item" wx:for="{{100}}">
-            Hello
-        </view>
-    </view>
-
-
 </view>
