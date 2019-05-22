@@ -1,5 +1,5 @@
 const config = require('../config');
-const API_BASE_URL = config.env == 'prod' ? "http://47.101.58.36:8189" : "http://127.0.0.1:8654";
+const API_BASE_URL = config.url;
 
 function FetchRequest(url, data = {}, method = "POST", header = {}) {
   wx.showLoading();
@@ -10,6 +10,7 @@ function FetchRequest(url, data = {}, method = "POST", header = {}) {
 
     // 添加上认证的信息
     data['token'] = wx.getStorageSync('token');
+    data['device_type'] = 1;
 
     if (config.env == 'prod') {
       // 使用云函数 v-request 代理
@@ -59,6 +60,16 @@ function FetchRequest(url, data = {}, method = "POST", header = {}) {
   }
 }
 
+
+const API_URLS = {
+  login: '/api/auth/login',
+  me: '/api/auth/me',
+  scores: '/api/student/scores',
+  updateStudentAccount: '/api/student/update_student_account',
+  syncDetail: '/api/student/sync_detail'
+}
+
 module.exports = {
   fetchRequest: FetchRequest,
+  api_urls: API_URLS
 }

@@ -6,8 +6,8 @@
                     <view class="weui-media-box__title weui-media-box__title_in-text">Cyan</view>
                     <view>
                         <view>没了你的生活，便再也没有了意义</view>
-                        <view>--最幸福的事，莫过于有一个等你回家的人</view>
-                        <view>--思念你</view>
+                        <!-- <view>--最幸福的事，莫过于有一个等你回家的人</view>
+                        <view>--思念你</view> -->
                     </view>
                 </view>
 

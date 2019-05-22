@@ -17,27 +17,30 @@ Page({
       avg: 0.00,
     },
     currentSemester: '',
+    student: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      student: app.globalData.user.student || {}
+    })
     this.getScore();
-
   },
 
   getScore() {
-    if (app.globalData.user == null || app.globalData.user.num == '' || app.globalData.pwd == '') {
+    if (app.globalData.user == null || app.globalData.user.student == null) {
       wx.navigateTo({
         url: '/pages/zcmu/login/index',
       })
       return;
     }
-    api.fetchRequest('/zf/get_scores').then(resp => {
+    api.fetchRequest(api.api_urls.scores).then(resp => {
       wx.hideLoading();
       if (resp.data.code == 0) {
-        this.processScores(resp.data.data);
+        this.processScores(resp.data.data.scores);
       } else {
         wx.showModal({
           title: '发生错误',

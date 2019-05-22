@@ -3,6 +3,9 @@
     <view class="weui-panel weui-panel_access">
       <view class="weui-panel__hd">
         <view class='jd-des'>
+        <view wx:if="{{student.name}}" style='color: black'>
+          {{student.name}}
+        </view>
           <view>
             总平均绩点：【{{allSemesterInfo.avg}}】已修必修课：{{allSemesterInfo.total}}
           </view>

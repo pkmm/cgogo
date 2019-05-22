@@ -3,9 +3,9 @@
         <view class="page__title">心好，命就好</view>
         <view class="page__desc">曾经沧海难为水 除却巫山不是云</view>
     </view>
-    <view style='text-align: center; border-radius: 4px'>
+    <!-- <view style='text-align: center; border-radius: 4px'>
       <image src='../../images/lin.jpg' mode='aspectFill' style='width: 400px; height: 500px;' class="bulr"></image>
-    </view>
+    </view> -->
     <view class="page__bd" style="margin-top: 90px;" >
         <view class="weui-grids">
             <block wx:for="{{menus}}" wx:key="*this">

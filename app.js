@@ -21,7 +21,7 @@ App({
         self.globalData.appId = resp.result.appid;
         self.globalData.openId = resp.result.openid;
         let code = md5.hexMD5("xiaocc_ai_liu_yan_lin" + resp.result.appid + resp.result.openid);
-        api.fetchRequest('/zf/login', {
+        api.fetchRequest(api.api_urls.login, {
           code: code,
           openid: self.globalData.openId,
         }).then(resp => {

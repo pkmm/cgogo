@@ -15,20 +15,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.user) {
+    if (app.globalData.user && app.globalData.user.student) {
       this.setData({
-        num: app.globalData.user.num,
-        pwd: app.globalData.user.pwd,
+        num: app.globalData.user.student.num || '',
+        pwd: app.globalData.user.student.pwd || '',
       })
-    } else { // 本地缓存加载
-      let user = wx.getStorageSync('user');
-      if (!user) {
-        return;
-      }
-      this.setData({
-        num: user.num,
-        pwd: user.pwd,
-      });
     }
   },
 
@@ -97,15 +88,12 @@ Page({
       });
       return;
     }
-    api.fetchRequest('/zf/set_account', {
-      num: this.data.num,
-      pwd: this.data.pwd,
+    api.fetchRequest(api.api_urls.updateStudentAccount, {
+      student_number: this.data.num,
+      password: this.data.pwd,
     }).then(res => {
       if (res.data.code == 0) {
-        let data = res.data.data;
-        wx.setStorageSync('token', data.token) // 更新新的token 这个token有最新的num信息
-        app.globalData.user = data.user;
-        wx.setStorageSync('user', data.user);
+        app.globalData.user.student = res.data.data.student;
         wx.showModal({
           title: "设置成功",
           content: '快去查看成绩吧',
@@ -115,9 +103,6 @@ Page({
                 url: '/pages/zcmu/score/index',
               })
             }
-          },
-          fail: function () {
-
           }
         })
       } else {

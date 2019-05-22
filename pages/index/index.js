@@ -27,18 +27,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 检查token的合法性
-    let token = wx.getStorageSync('token')
-    let app = getApp();
-    if (token) {
-      api.fetchRequest('/zf/check_token').then(resp => {
-        if (resp.data.code != 0) {
-          app.login();
-        }
-      });
-    } else {
-      app.login();
-    }
+    getApp().login();
   },
 
   /**
