@@ -1,12 +1,32 @@
 require('./utils/v-request.js');
 const api = require('./utils/api')
 const md5 = require('./utils/md5.js')
+let interstitialAd = null
 App({
   onLaunch: function () {
     // 配置云函数
     wx.cloud.init({
       traceUser: true
     });
+  },
+
+  onLoad: function() {
+    if (wx.createInterstitialAd) {
+      interstitialAd = wx.createInterstitialAd({ adUnitId: 'xxxx' })
+      interstitialAd.onLoad(() => {
+        console.log('onLoad event emit')
+      })
+      interstitialAd.onError((err) => {
+        console.log('onError event emit', err)
+      })
+      interstitialAd.onClose((res) => {
+        console.log('onClose event emit', res)
+      })
+    }
+
+    interstitialAd.show().catch((err) => {
+      console.error(err)
+    })
   },
 
   // 调用服务端的登陆接口拿到用户的Token信息

@@ -1,7 +1,7 @@
 <view class="page">
     <view class="page__hd">
         <view class="page__title">心好，命就好</view>
-        <view class="page__desc">曾经沧海难为水 除却巫山不是云</view>
+        <view class="page__desc">人总是太执着与第一眼看中的东西</view>
     </view>
     <!-- <view style='text-align: center; border-radius: 4px'>
       <image src='../../images/lin.jpg' mode='aspectFill' style='width: 400px; height: 500px;' class="bulr"></image>
