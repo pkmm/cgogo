@@ -17,26 +17,35 @@ Page({
       avg: 0.00,
     },
     currentSemester: '',
-    student: {}
+    student: {},
+    activeNames: ['1'],
+    scoreGroupInfo: {},
+    allSemesters: [], // 所有的学期
   },
 
+  onChange(event) {
+    this.setData({
+      activeNames: event.detail,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      student: app.globalData.user.student || {}
-    })
     this.getScore();
   },
 
   getScore() {
-    if (app.globalData.user == null || app.globalData.user.student == null) {
+    let student = wx.getStorageSync('student');
+    if (!student) {
       wx.navigateTo({
         url: '/pages/zcmu/login/index',
       })
       return;
     }
+    this.setData({
+      student,
+    });
     api.fetchRequest(api.api_urls.scores).then(resp => {
       wx.hideLoading();
       if (resp.data.code == 0) {
@@ -52,56 +61,51 @@ Page({
   },
 
   processScores(scores) {
-    this.calcAllSemesterInfo(scores);
-    this.calcCurrentSemesterInfo(scores);
-    this.setData({
-      scores: scores.reverse()
-    });
-  },
-
-  // 计算在校的总平均绩点， 只计算必修课
-  calcAllSemesterInfo(scores) {
     if (scores.length == 0) {
       return;
     }
     let total = 0,
-      sum = 0;
+      sum = 0, currentSemesterTotal = 0, currentSemeterSum = 0;
+   
+    // 分组信息
+    let groupMap = {};
+    let currentSemester = scores[scores.length - 1].xn;
     scores.forEach(i => {
       if (i.type == '必修课') {
         sum += i.jd;
         total++;
       }
+
+      if (i.type == '必修课' && i.xn == currentSemester) {
+        currentSemesterTotal++;
+        currentSemeterSum + i.jd;
+      }
+      let groupKey = `${i.xn}学年 第${i.xq}学期`
+      if (!groupMap[groupKey]) {
+        groupMap[groupKey] = [];
+      }
+      groupMap[groupKey].push(i);
     });
+
+
+    let allSemesters = Object.keys(groupMap).reverse();
+
     this.setData({
       allSemesterInfo: {
         total: total,
-        avg: (sum / total).toFixed(2)
-      }
-    });
-  },
-
-  calcCurrentSemesterInfo(scores) {
-    if (scores.length == 0) {
-      return;
-    }
-    let total = 0,
-      sum = 0;
-    let currentSemester = scores[scores.length - 1].xn;
-    scores.forEach(i => {
-      if (i.type == '必修课' && currentSemester == i.xn) {
-        total++;
-        sum += i.jd;
-      }
-    })
-    this.setData({
+        avg: total == 0 ? 0 : (sum / total).toFixed(2),
+      },
+      scores: scores.reverse(),
       currentSemesterInfo: {
-        total: total,
-        avg: (sum / total).toFixed(2)
+        total: currentSemesterTotal,
+        avg: currentSemesterTotal == 0 ? 0 : (currentSemeterSum / currentSemesterTotal).toFixed(2),
       },
       currentSemester: currentSemester,
-    })
+      scoreGroupInfo: groupMap,
+      allSemesters: allSemesters,
+      activeNames: allSemesters.length == 0 ? '' : allSemesters[0]
+    });
   },
-
 
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -3,20 +3,23 @@
         <view class="weui-panel weui-panel_access">
             <view class="weui-panel__bd">
                 <view class="weui-media-box weui-media-box_text">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">Cyan</view>
-                    <view>
-                        <!-- <view>没了你的生活，便再也没有了意义</view> -->
-                        <!-- <view>--最幸福的事，莫过于有一个等你回家的人</view>
-                        <view>--思念你</view> -->
-                    </view>
-                </view>
-
-                <view class="weui-media-box weui-media-box_text">
                     <view class="weui-media-box__title weui-media-box__title_in-text">
-                        分享应用
+                        分享小程序
                     </view>
                     <view>
                         <button open-type='share'>分享</button>
+                    </view>
+                </view>
+                
+                <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">Cyan</view>
+                    <view style="text-align: center;" bindlongpress="saveImage">
+                        <view >
+                           如果觉得还不错的话，可以考虑请我喝杯 ‘肥宅快乐水’！
+                        </view>
+                        <view>长按可以保存图片到相册，然后进行扫描支持(^_^)~</view>
+                        <image class="" src="../../images/a-pay.jpg" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+                        <image class="" src="../../images/w-pay.jpg" mode="widthFix" lazy-load="false" binderror="" bindload="" />
                     </view>
                 </view>
             </view>

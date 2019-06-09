@@ -40,20 +40,23 @@ App({
       complete: (resp) => {
         self.globalData.appId = resp.result.appid;
         self.globalData.openId = resp.result.openid;
-        let code = md5.hexMD5("xiaocc_ai_liu_yan_lin" + resp.result.appid + resp.result.openid);
+        let sign = md5.hexMD5("cgogo" + resp.result.appid + resp.result.openid);
         api.fetchRequest(api.api_urls.login, {
-          code: code,
+          sign: sign,
           openid: self.globalData.openId,
-        }).then(resp => {
-          let data = resp.data.data;
-          if (resp.data.code !== 0) {
+        }).then(({data}) => {
+          if (data.code !== 0) {
             // todo 发生了错误
             return 
           }
-          wx.setStorageSync('token', data.token);
-          self.globalData.user = data.user;
+          let respData = data.data;
+          wx.setStorageSync('token', respData.token);
+          wx.setStorageSync('user', respData.user)
+          if (respData.user.student) {
+            wx.setStorageSync('student', respData.user.student)
+          }
           if (cb && typeof cb == 'function') {
-            cb(data.user);
+            cb(respData.user);
           }
         })
       },
@@ -62,9 +65,5 @@ App({
       } 
     });
   },
-  globalData: {
-    user: null,
-    appId: null,
-    openId: null,
-  }
+  globalData: {}
 })

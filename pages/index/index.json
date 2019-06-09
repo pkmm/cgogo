@@ -1,4 +1,9 @@
 {
   "enablePullDownRefresh": false,
-  "navigationBarTitleText": "答应你的我一定做到"
+  "navigationBarTitleText": "答应你的我一定做到",
+  "usingComponents": {
+    "van-notice-bar": "/miniprogram_npm/vant-weapp/notice-bar/index",
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
+    "van-transition": "/miniprogram_npm/vant-weapp/transition/index"
+  }
 }

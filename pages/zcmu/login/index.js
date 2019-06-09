@@ -15,10 +15,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.user && app.globalData.user.student) {
+    let student = wx.getStorageSync('student');
+    if (student) {
       this.setData({
-        num: app.globalData.user.student.num || '',
-        pwd: app.globalData.user.student.pwd || '',
+        num: student.number || '',
+        pwd: student.password || '',
       })
     }
   },
@@ -88,12 +89,14 @@ Page({
       });
       return;
     }
+    wx.showLoading();
     api.fetchRequest(api.api_urls.updateStudentAccount, {
       student_number: this.data.num,
       password: this.data.pwd,
-    }).then(res => {
-      if (res.data.code == 0) {
-        app.globalData.user.student = res.data.data.student;
+    }).then(({data}) => {
+      wx.hideLoading();
+      if (data.code == 0) {
+        wx.setStorageSync('student', data.data.student)
         wx.showModal({
           title: "设置成功",
           content: '快去查看成绩吧',
@@ -108,7 +111,7 @@ Page({
       } else {
         wx.showModal({
           title: "发生错误",
-          content: res.data.msg || "未知错误",
+          content: data.msg || "未知错误",
           showCancel: false,
         })
       }

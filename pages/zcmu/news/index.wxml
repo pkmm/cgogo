@@ -1,6 +1,6 @@
 <view class="" hover-class="none" hover-stop-propagation="false">
     <view wx:for="{{news}}" wx:key="*this">
-        <view class="box" selectable="false" space="false" decode="false" bindtap='showDetail' data-news-url='{{item.link}}'>
+        <view class="card" bindtap='showDetail' data-news-url='{{item.link}}'>
             <view class='title'>{{item.title}} </view>
             <view class='date'>post at {{item.date}}</view>
         </view>

@@ -1,0 +1,23 @@
+{
+  "name": "cgogo",
+  "version": "1.0.0",
+  "description": "一个简单的微信小程序\r -----",
+  "main": "app.js",
+  "dependencies": {
+    "vant-weapp": "^0.5.14"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pkmm/cgogo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pkmm/cgogo/issues"
+  },
+  "homepage": "https://github.com/pkmm/cgogo#readme"
+}

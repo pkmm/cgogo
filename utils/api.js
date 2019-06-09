@@ -2,7 +2,6 @@ const config = require('../config');
 const API_BASE_URL = config.url;
 
 function FetchRequest(url, data = {}, method = "POST", header = {}) {
-  wx.showLoading();
   return new Promise(Request);
 
   function Request(resolve, reject) {
@@ -55,21 +54,21 @@ function FetchRequest(url, data = {}, method = "POST", header = {}) {
     }
 
     function RequestOver() {
-      wx.hideLoading();
     }
   }
 }
-
 
 const API_URLS = {
   login: '/api/auth/login',
   me: '/api/auth/me',
   scores: '/api/student/scores',
-  updateStudentAccount: '/api/student/update_student_account',
-  syncDetail: '/api/student/sync_detail'
+  updateStudentAccount: '/api/student/update_edu_account',
+  syncDetail: '/api/student/sync_detail',
+  getIndexPreference: '/api/mini_program/get_index_preference',
+  getNotification: '/api/mini_program/get_notifications',
 }
 
 module.exports = {
   fetchRequest: FetchRequest,
-  api_urls: API_URLS
+  api_urls: API_URLS,
 }

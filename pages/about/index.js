@@ -74,5 +74,29 @@ Page({
             path: '/pages/zcmu/score/index',
             imageUrl: '/images/score.jpg',
         };
+    },
+    saveImage() {
+        console.log('do save image')
+        wx.showModal({
+            title:"提示",
+            content: "保存图片？",
+            success(res) {
+              if (res.cancel) {
+                return;
+              }
+              wx.saveImageToPhotosAlbum({
+                filePath: "/images/w-pay.jpg",
+                success() {
+                  console.log('save success.')
+                }
+              })
+              wx.saveImageToPhotosAlbum({
+                filePath: "/images/a-pay.jpg",
+                success() {
+                  console.log('save success.')
+                }
+              })
+            }
+        })
     }
 })

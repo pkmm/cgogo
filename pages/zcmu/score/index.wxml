@@ -1,11 +1,11 @@
 <view class='page'>
-  <view class='page__bd'>
-    <view class="weui-panel weui-panel_access">
+  <view class=''>
+    <view class="">
       <view class="weui-panel__hd">
         <view class='jd-des'>
-        <view wx:if="{{student.name}}" style='color: black'>
-          {{student.name}}
-        </view>
+          <view wx:if="{{student.name}}" style='color: black'>
+            {{student.name}}
+          </view>
           <view>
             总平均绩点：【{{allSemesterInfo.avg}}】已修必修课：{{allSemesterInfo.total}}
           </view>
@@ -15,8 +15,24 @@
           <view style='color: green'>提示: 绩点只计算必修课</view>
         </view>
       </view>
-      <view class="weui-panel__bd">
-        <view class="weui-media-box weui-media-box_text" wx:for='{{scores}}' wx:key="{{index}}">
+      <van-collapse
+       value="{{activeNames}}"
+       bind:change="onChange"
+       accordion
+       >
+        <van-collapse-item wx:for="{{allSemesters}}" name="{{semester}}" title="{{semester}}" wx:for-index="i" wx:for-item="semester" wx:key="{{i}}">
+          <view class="cell" wx:for="{{scoreGroupInfo[semester]}}" wx:for-index="j" wx:for-item='score' wx:key="{{score.id}}">
+            <view class="kcmc">{{score.kcmc}}</view>
+            <view class="normal">成绩：{{score.cj}}</view>
+            <view class="normal">绩点：{{score.jd}}</view>
+            <view class="normal">课程性质：{{score.type}}</view>
+            <view class="normal" wx:if="{{score.bkcj}}">补考成绩：{{score.bkcj}}</view>
+            <view class="normal" wx:if="{{score.cxcj}}">重修成绩：{{score.cxcj}}</view>
+          </view>
+        </van-collapse-item>
+      </van-collapse>
+      <!-- <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_text cell" wx:for='{{scores}}' wx:key="{{index}}">
           <view class="weui-media-box__title weui-media-box__title_in-text">{{item.kcmc}} -【{{item.type}}】</view>
           <view class="weui-media-box__desc not-accept" wx:if="{{(item.cj == '不合格' || item.cj < 60)}}">
             <icon type="info_circle" size="20"></icon>
@@ -33,10 +49,10 @@
             <text>补考成绩: {{item.bkcj}}</text>
           </view>
         </view>
-      </view>
+      </view> -->
 
       <view class="weui-footer">
-        <view class="weui-footer__text">Copyright © 2019 Ataraxia-pkm</view>
+        <view class="weui-footer__text">Copyright © 2019 Retain-相顾无言</view>
       </view>
     </view>
   </view>

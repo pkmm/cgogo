@@ -6,7 +6,9 @@
     "pages/zcmu/score/index",
     "pages/zcmu/login/index",
     "pages/zcmu/news/index",
-    "pages/zcmu/news/newsDetail/index"
+    "pages/zcmu/news/newsDetail/index",
+    "pages/daily-s/index",
+    "pages/daily-img/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
