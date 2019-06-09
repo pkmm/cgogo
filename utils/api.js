@@ -66,6 +66,8 @@ const API_URLS = {
   syncDetail: '/api/student/sync_detail',
   getIndexPreference: '/api/mini_program/get_index_preference',
   getNotification: '/api/mini_program/get_notifications',
+  dailyImage: '/api/daily_image',
+  dailySentence: '/api/daily_sentence',
 }
 
 module.exports = {

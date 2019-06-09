@@ -33,6 +33,11 @@ Page({
         title: '教务处新闻',
         action_value: '/pages/zcmu/news/index',
         action_type: menuAction.GotoPage
+      },
+      {
+        title: '每日一图',
+        action_value: '/pages/daily-img/index',
+        action_type: menuAction.GotoPage
       }
     ],
     indexConfig: null,

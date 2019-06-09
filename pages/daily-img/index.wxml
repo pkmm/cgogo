@@ -1,2 +1,4 @@
-<!--pages/daily-img/index.wxml-->
-<text>pages/daily-img/index.wxml</text>
+<view>
+  <image src='http://localhost:8654/api/daily_image' 
+  mode='aspectFill'></image>
+</view>

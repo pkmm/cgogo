@@ -1,4 +1,6 @@
 // pages/daily-img/index.js
+const fetchRequest = require('../../utils/api.js').fetchRequest
+const API = require('../../utils/api.js').api_urls
 Page({
 
   /**
@@ -8,11 +10,17 @@ Page({
 
   },
 
+  loadImage() {
+    fetchRequest(API.dailyImage, {}, "GET").then(({data}) => {
+      // console.error(data)
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.loadImage();
   },
 
   /**
