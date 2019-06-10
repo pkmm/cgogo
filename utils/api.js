@@ -1,7 +1,7 @@
 const config = require('../config');
 const API_BASE_URL = config.url;
 
-function FetchRequest(url, data = {}, method = "POST", header = {}) {
+function FetchRequest(url, data = {}, method = "POST", header = {}, responseType = 'json') {
   return new Promise(Request);
 
   function Request(resolve, reject) {
@@ -21,6 +21,7 @@ function FetchRequest(url, data = {}, method = "POST", header = {}) {
         success: FetchSuccess,
         fail: FetchError,
         complete: RequestOver,
+        responseType: responseType,
       })
     } else {
       wx.request({
@@ -31,6 +32,7 @@ function FetchRequest(url, data = {}, method = "POST", header = {}) {
         success: FetchSuccess,
         fail: FetchError,
         complete: RequestOver,
+        responseType: responseType,
       })
     }
   

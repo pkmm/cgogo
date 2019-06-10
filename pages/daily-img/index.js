@@ -7,12 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    base64Image: '',
   },
 
   loadImage() {
-    fetchRequest(API.dailyImage, {}, "GET").then(({data}) => {
+    fetchRequest(API.dailyImage, {}, "GET", {}, 'arrayBuffer').then(({data}) => {
       // console.error(data)
+      let b64 = wx.arrayBufferToBase64(data);
+      this.setData({
+        base64Image: b64,
+      })
     })
   },
 
