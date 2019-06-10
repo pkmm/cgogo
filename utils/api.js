@@ -1,7 +1,7 @@
 const config = require('../config');
 const API_BASE_URL = config.url;
 
-function FetchRequest(url, data = {}, method = "POST", header = {}, responseType = 'json') {
+function FetchRequest(url, data = {}, method = "POST", header = {}, responseType = 'text') {
   return new Promise(Request);
 
   function Request(resolve, reject) {

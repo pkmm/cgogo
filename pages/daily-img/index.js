@@ -8,14 +8,17 @@ Page({
    */
   data: {
     base64Image: '',
+    createdAt: new Date(),
   },
 
   loadImage() {
-    fetchRequest(API.dailyImage, {}, "GET", {}, 'arrayBuffer').then(({data}) => {
-      // console.error(data)
+    fetchRequest(API.dailyImage, {}, "GET", {}, 'arraybuffer').then(({
+      data
+    }) => {
+      console.error(data)
       let b64 = wx.arrayBufferToBase64(data);
       this.setData({
-        base64Image: b64,
+        base64Image: "data:image/webp;base64," + b64,
       })
     })
   },
@@ -23,56 +26,61 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.loadImage();
+    let tmpDate = new Date();
+    let date = tmpDate.getFullYear() + "-" + tmpDate.getMonth() + "-" + tmpDate.getDay();
+    this.setData({
+      createdAt: date
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

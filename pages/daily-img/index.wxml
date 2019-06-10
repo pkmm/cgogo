@@ -1,4 +1,4 @@
-<view>
-  <image src='{{base64Image}}' 
-  mode='aspectFill'></image>
+<view class='card'>
+  <image src='{{base64Image}}' mode='widthFix'></image>
+  <text class='desc'>日期：{{createdAt}}</text>
 </view>

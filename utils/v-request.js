@@ -1,64 +1,49 @@
 wx.vrequest = function (options) {
   // 默认配置
-  const OPT = Object.assign({
+  let defaultOptions = Object.assign({
     method: 'GET',
     dataType: 'json',
-    responseType: 'json'
+    responseType: 'text', // json, arraybuffer
   }, options);
 
   // 默认header
-  OPT['header'] = Object.assign({
+  defaultOptions['header'] = Object.assign({
     'Content-Type': 'application/json',
-    'UserAgent': 'cc la yun'
+    'UserAgent': 'Retain cgogo miniprogram'
   }, options.header);
 
-  // 发送的数据
-  // 如果data是string,对应request模块的body（buffer、string）
-  // 如果是object，则为json，对应request模块的json
-  let POST_DATA = {
-    body: options.data
-  };
-  const mth = OPT['method'].toLowerCase();
-
-
-  if (typeof options.data === 'object') {
-    POST_DATA['body'] = JSON.stringify(POST_DATA['body']);
-  }
-
+  // if (typeof options.data === 'object') {
+  //   POST_DATA['data'] = JSON.stringify(POST_DATA['data']);
+  // }
 
   // 开始请求
   return new Promise((RES, REJ) => {
+    console.log(defaultOptions);
     wx.cloud.callFunction({
-      name: 'v-request',
+      name: 'proxy',
       data: {
-        options: Object.assign({
-          url: options.url,
-          method: OPT['method'],
-          headers: OPT['header']
-        }, POST_DATA)
+        options: defaultOptions,
       },
       success: res => {
-        const { result } = res;
+        console.error("==", res)
+        const { data } = res;
         // 如果datatype='json'，则解析后
-        let data = null;
-        if (OPT.dataType === 'json') {
+        let respData = data;
+        if (options.responseType && options.responseType == 'arraybuffer') {
+          respData = data.body; // arraybuffer 数据
+        } else if (defaultOptions.dataType === 'json') {
           try {
-            data = JSON.parse(result.body);
+            respData = JSON.parse(data);
           } catch (err) {
             console.error('[!] v-request： 解析返回数据json失败', err);
           }
-        } else {
-          // 否则为text数据
-          data = result.body;
         }
-
         const RETURN_DATA = {
-          data,
+          data: respData,
           errMsg: 'request:ok',
-          statusCode: result.statusCode,
-          header: result.headers
+          statusCode: res.status,
+          header: res.headers
         }
-
         options.success && options.success(RETURN_DATA);
         RES(RETURN_DATA);
       },
