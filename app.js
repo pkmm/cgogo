@@ -6,7 +6,8 @@ App({
   onLaunch: function () {
     // 配置云函数
     wx.cloud.init({
-      traceUser: true
+      traceUser: true,
+      env: "vgog-1b82a8"
     });
   },
 

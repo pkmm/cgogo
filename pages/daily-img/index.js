@@ -15,7 +15,6 @@ Page({
     fetchRequest(API.dailyImage, {}, "GET", {}, 'arraybuffer').then(({
       data
     }) => {
-      console.error(data)
       let b64 = wx.arrayBufferToBase64(data);
       this.setData({
         base64Image: "data:image/webp;base64," + b64,
