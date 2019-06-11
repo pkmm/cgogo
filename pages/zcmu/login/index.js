@@ -28,21 +28,21 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    
   },
 
   /**
@@ -89,7 +89,9 @@ Page({
       });
       return;
     }
-    wx.showLoading();
+    wx.showLoading({
+      title: "保存中"
+    });
     api.fetchRequest(api.api_urls.updateStudentAccount, {
       student_number: this.data.num,
       password: this.data.pwd,

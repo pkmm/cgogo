@@ -46,6 +46,9 @@ Page({
     this.setData({
       student,
     });
+    wx.showLoading({
+      title: '加载中',
+    })
     api.fetchRequest(api.api_urls.scores).then(resp => {
       wx.hideLoading();
       if (resp.data.code == 0) {

@@ -77,7 +77,10 @@ Page({
     });
     // 查询通知
     this.getNotification();
-    
+    // 每4分钟查询一次， 通常来说用户不会停留这么久的时间
+    this.getNotificationId = setInterval(this.getNotification, 1000 * 60 * 4);
+    // 更新显示的通知
+    this.showNotificationId = setInterval(this.updateCurrentNotification, 1000 * 10); // 每10s更新
   },
 
   getNotification() {
@@ -97,26 +100,20 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // 每4分钟查询一次， 通常来说用户不会停留这么久的时间
-    this.getNotificationId = setInterval(this.getNotification, 1000 * 60 * 4);
-
-    // 更新显示的通知
-    this.showNotificationId = setInterval(this.updateCurrentNotification, 1000 * 10); // 每10s更新
+    this.getNotification();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    this.getNotificationId && clearInterval(this.getNotificationId)
-    this.showNotificationId && clearInterval(this.showNotificationId)
   },
 
   /**

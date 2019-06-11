@@ -12,9 +12,13 @@ Page({
   },
 
   loadImage() {
+    wx.showLoading({
+      title: '加载中',
+    })
     fetchRequest(API.dailyImage, {}, "GET", {}, 'arraybuffer').then(({
       data
     }) => {
+      wx.hideLoading();
       let b64 = wx.arrayBufferToBase64(data);
       this.setData({
         base64Image: "data:image/webp;base64," + b64,
