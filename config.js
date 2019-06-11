@@ -1,6 +1,10 @@
 
 const env = 'prod';
-
+/**
+ * prod: 使用云函数代理请求，无log信息
+ * test: 使用云函数代理请求，有log信息
+ * dev:  不使用云函数代理请求，有log信息
+ */
 module.exports = {
   version: "1.0.0",
   env: env, // prod, dev
