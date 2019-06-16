@@ -21,7 +21,7 @@ Page({
       wx.hideLoading();
       let b64 = wx.arrayBufferToBase64(data);
       this.setData({
-        base64Image: "data:image/webp;base64," + b64,
+        base64Image: "data:image/jpeg;base64," + b64,
       })
     })
   },
@@ -32,7 +32,7 @@ Page({
   onLoad: function(options) {
     this.loadImage();
     let tmpDate = new Date();
-    let date = tmpDate.getFullYear() + "-" + tmpDate.getMonth() + "-" + tmpDate.getDay();
+    let date = tmpDate.getFullYear() + "-" + (1 + tmpDate.getMonth()) + "-" + tmpDate.getDate();
     this.setData({
       createdAt: date
     })

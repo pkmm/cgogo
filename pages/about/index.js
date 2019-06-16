@@ -71,12 +71,11 @@ Page({
     onShareAppMessage(obj) {
         return {
             title: "使用Cgogo方便快速查教务系统成绩",
-            path: '/pages/zcmu/score/index',
+            path: '/pages/index/index',
             imageUrl: '/images/score.jpg',
         };
     },
     saveImage() {
-        console.log('do save image')
         wx.showModal({
             title:"提示",
             content: "保存图片？",
