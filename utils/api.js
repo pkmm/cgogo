@@ -46,8 +46,9 @@ function FetchRequest(url, data = {}, method = "POST", header = {}, responseType
     }
     function FetchError(err) {
       if (err) {
+        wx.hideLoading()
         wx.showToast({
-          title: err.Msg,
+          title: "网络请求出现意料之外的事情!",
           icon: 'none',
           duration: 3000,
         })

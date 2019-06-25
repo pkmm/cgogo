@@ -1,4 +1,3 @@
-
 const config = require('../config.js')
 wx.vrequest = function (options) {
   // 默认配置
@@ -35,7 +34,9 @@ wx.vrequest = function (options) {
       },
       success: res => {
         config.env == 'test' && console.info('返回数据：', res);
-        const { result } = res;
+        const {
+          result
+        } = res;
         // 如果datatype='json'，则解析后
         let respData = result.body;
         if (options.responseType && options.responseType == 'arraybuffer') {
@@ -58,10 +59,19 @@ wx.vrequest = function (options) {
       },
       fail: err => {
         // 错误回调
-        options.fail && options.fail({
-          errMsg: 'request:fail',
-          err
-        });
+        if (options.fail) {
+          options.fail({
+            errMsg: 'request:fail',
+            err
+          });
+        } else {
+          wx.hideLoading();
+          wx.showToast({
+            title: "网络请求失败!",
+            icon: "none"
+          })
+        }
+
         REJ(err);
       },
       complete: options.complete
