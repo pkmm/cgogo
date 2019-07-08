@@ -9,6 +9,11 @@ Page({
   data: {
     menus: [
       {
+        title: "LIST背单词",
+        action_type: menuAction.GotoPage,
+        action_value: '/pages/hermann-memorial/index', 
+      },
+      {
         title: '查成绩',
         action_value: '/pages/zcmu/score/index',
         action_type: menuAction.GotoPage
@@ -99,9 +104,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示

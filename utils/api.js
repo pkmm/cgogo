@@ -71,6 +71,8 @@ const API_URLS = {
   getNotification: '/api/mini_program/get_notifications',
   dailyImage: '/api/daily_image',
   dailySentence: '/api/daily_sentence',
+  hermannRememberMemorial: '/api/mini_program/get_hermann_memorial',
+  addHermannRememberMemorial: '/api/mini_program/add_hermann_memorial',
 }
 
 module.exports = {

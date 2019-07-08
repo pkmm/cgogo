@@ -81,7 +81,7 @@ Page({
 
       if (i.type == '必修课' && i.xn == currentSemester) {
         currentSemesterTotal++;
-        currentSemeterSum + i.jd;
+        currentSemeterSum += i.jd;
       }
       let groupKey = `${i.xn}学年 第${i.xq}学期`
       if (!groupMap[groupKey]) {

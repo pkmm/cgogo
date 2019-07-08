@@ -8,7 +8,8 @@
     "pages/zcmu/news/index",
     "pages/zcmu/news/newsDetail/index",
     "pages/daily-s/index",
-    "pages/daily-img/index"
+    "pages/daily-img/index",
+    "pages/hermann-memorial/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

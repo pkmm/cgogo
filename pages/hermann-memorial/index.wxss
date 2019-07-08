@@ -1,0 +1,38 @@
+
+.content {
+  margin: auto 20px;
+  margin-top: 20px
+}
+
+.bold {
+  font-weight: bolder;
+}
+
+/* .content view {
+  margin: 10px auto;
+} */
+
+
+.task-detail {
+  margin: 15px auto;
+  text-align: center;
+  font-size: 20px;
+}
+
+
+.today {
+  font-size: 40px;
+  text-align: center;
+}
+
+.add-task {
+  margin-top: 20px;
+}
+
+.add-task .date-input {
+  margin-top: 10px;
+}
+
+.add-task .btn-i {
+  margin-top: 15px;
+}

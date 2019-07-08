@@ -1,0 +1,41 @@
+<view class="content">
+  <view>这是一个科学的按照
+    <text class="bold">艾宾斯浩的理论</text>记忆曲线进行背单词</view>
+  <view>本功能主要是按照记忆曲线计算出每天的背诵以及复习的任务</view>
+
+  <view wx:if="{{errorType != 0}}" class="add-task">
+    <view>
+      <van-field bind:change="unitChange" value="{{ unit }}" label="每日单元数" type="number" placeholder="请输入每天背诵的单元数量" required/>
+    </view>
+
+    <view>
+     <van-field bind:change="totalUnitChange" value="{{ totalUnit }}" label="总共单元数" type="number" placeholder="请输入全部的单元数量" required/>
+    </view>
+
+    <view class="date-input">
+      <picker mode="date" value="{{date}}" start="{{startAt}}" end="9999-09-01" bindchange="bindDateChange">
+        <view class="picker">
+          设置计划开始的时间: {{date}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="button-sp-area btn-i">
+      <button class="weui-btn" type="primary" plain="true" bindtap='saveTask'>保存</button>
+    </view>
+
+
+
+  </view>
+
+  <view wx:if="{{errorType == 0}}" class="task-detail">
+    <view class="today">第{{currentDay}}天</view>
+    <view wx:if="{{remember != null}}">
+      <text>今天需要背诵的单元： </text>{{remember.start}} - {{remember.end}}
+    </view>
+    <view wx:if="{{reviewList.length != 0}}">
+      <text>今天需要复习的单元：</text>
+      <view wx:for="{{reviewList}}" wx:key="index">{{item.start}} - {{item.end}}</view>
+    </view>
+  </view>
+</view>

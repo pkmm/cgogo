@@ -1,0 +1,9 @@
+{
+  "triggers": [
+    {
+      "name": "load-daily-images",
+      "type": "timer",
+      "config": "3 0 0 * * * *"
+    }
+  ]
+}

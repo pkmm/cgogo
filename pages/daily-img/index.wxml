@@ -1,4 +1,5 @@
 <view class='card'>
-  <image src='{{base64Image}}' mode='widthFix'></image>
+  <!-- <image src='{{base64Image}}' mode='widthFix'></image> -->
+  <image src='{{imageFileId}}' mode='widthFix'></image>
   <text class='desc'>日期：{{createdAt}}</text>
 </view>
