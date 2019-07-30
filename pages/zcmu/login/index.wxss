@@ -14,3 +14,7 @@
   font-size: normal;
   color: orange;
 }
+
+.content {
+  margin: 10px 15px;
+}

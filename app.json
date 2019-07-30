@@ -9,7 +9,8 @@
     "pages/zcmu/news/newsDetail/index",
     "pages/daily-s/index",
     "pages/daily-img/index",
-    "pages/hermann-memorial/index"
+    "pages/hermann-memorial/index",
+    "pages/update-log/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,11 +1,31 @@
-// pages/about/index.js
+const fetchRequest = require('../../utils/api.js').fetchRequest
+const API = require('../../utils/api.js').api_urls
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+      sponsors: [], // 赞助者
+    },
 
+    loadSponsors() {
+      wx.showLoading({
+        title: '加载赞助者信息...',
+      })
+      const self = this;
+      fetchRequest(API.getSponsors, {}).then(({data}) => {
+        console.log(data)
+        wx.hideLoading();
+        if (data.code == 0) {
+          self.setData({
+            sponsors: data.data.sponsors,
+          })
+        } else {
+          // todo.. 
+          
+        }
+      })
     },
 
     /**
@@ -26,7 +46,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+      this.loadSponsors();
     },
 
     /**

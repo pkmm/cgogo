@@ -1,13 +1,12 @@
 <view class="" hover-class="none" hover-stop-propagation="false">
     <view wx:for="{{news}}" wx:key="*this">
-        <view class="card" bindtap='showDetail' data-news-url='{{item.link}}'>
+        <view class="box" bindtap='showDetail' data-news-url='{{item.link}}'>
             <view class='title'>{{item.title}} </view>
             <view class='date'>post at {{item.date}}</view>
         </view>
     </view>
     <view class="button-wrapper">
-      <button bindtap='indexPage'>首页</button>
-      <button bindtap='nextPage'>下一页</button>
+      <view class="back-top" bindtap="returnTop">TOP</view>
     </view>
 
 </view>

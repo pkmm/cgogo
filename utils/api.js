@@ -73,6 +73,7 @@ const API_URLS = {
   dailySentence: '/api/daily_sentence',
   hermannRememberMemorial: '/api/mini_program/get_hermann_memorial',
   addHermannRememberMemorial: '/api/mini_program/add_hermann_memorial',
+  getSponsors: '/api/mini_program/get_sponsors',
 }
 
 module.exports = {

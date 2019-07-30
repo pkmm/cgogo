@@ -48,7 +48,7 @@ class Crawl {
     }
     let url = this.newsUrl;
     if (pageNumber > 0) {
-      url = url.substring(0, url.indexOf(".htm")) + "/" + pageNumber + '.htm';
+      url = url.substring(0, url.indexOf(".htm")) + "/" + (this.maxPageNumber - pageNumber + 1) + '.htm';
     }
     return url;
   }

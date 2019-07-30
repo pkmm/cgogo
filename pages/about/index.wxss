@@ -1,7 +1,15 @@
 /* pages/about/index.wxss */
 
 .list-style {
-    line-height: 1.2;
-    font-size: 13px;
-    color: #999;
+  line-height: 1.2;
+  font-size: 13px;
+  color: #999;
+}
+
+.thx-sponsors {
+  background-color: #fff;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  padding: 5px;
+  margin-bottom: 20px;
 }

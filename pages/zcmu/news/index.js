@@ -12,58 +12,65 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.loadNews();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this.loadNews();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
+  onReachBottom: function() {
+    this.nextPage();
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
+
+  returnTop() {
+    wx.pageScrollTo({
+      scrollTop: 0,
+    })
+  },
+
   showDetail(evt) {
     let newsUrl = evt.currentTarget.dataset.newsUrl;
     wx.navigateTo({
@@ -72,6 +79,7 @@ Page({
   },
 
   loadNews(pageNumber = 0) {
+    console.log(pageNumber);
     wx.showLoading();
     const self = this;
     wx.cloud.callFunction({
@@ -81,7 +89,7 @@ Page({
       }
     }).then((res) => {
       wx.hideLoading();
-      let news = res.result.news || [];
+      let news = this.data.news.concat(res.result.news || []);
       if (news.length == 0) {
         wx.showModal({
           title: '提示',
@@ -94,12 +102,12 @@ Page({
       });
     })
   },
-  
+
   nextPage() {
+    this.loadNews(this.data.currentPageNumber + 1);
     this.setData({
       currentPageNumber: this.data.currentPageNumber + 1,
     })
-    this.loadNews(this.data.currentPageNumber + 1);
   },
 
   indexPage() {

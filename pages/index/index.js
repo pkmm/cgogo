@@ -12,37 +12,43 @@ Page({
         title: "LIST背单词",
         action_type: menuAction.GotoPage,
         action_value: '/pages/hermann-memorial/index', 
+        icon: '/images/remember.png'
       },
       {
         title: '查成绩',
         action_value: '/pages/zcmu/score/index',
-        action_type: menuAction.GotoPage
+        action_type: menuAction.GotoPage,
+        icon: '/images/lesson.png'
       },
       // { name: '挂科TOP10', url: '/pages/zcmu/failed_lessons/index' },
       // { name: '我的贴吧', url: "/pages/tieba/index" },
       {
         title: '设置教务账号',
         action_value: '/pages/zcmu/login/index',
-        action_type: menuAction.GotoPage
+        action_type: menuAction.GotoPage,
+        icon: '/images/setup.png'
       },
       // {
       // name: "2018节假日",
       // url: "/pages/holiday/index"
       // },
       {
-        title: '嘿嘿',
+        title: '支持一下',
         action_value: '/pages/about/index',
-        action_type: menuAction.GotoPage
+        action_type: menuAction.GotoPage,
+        icon: '/images/sponsor.png'
       },
       {
         title: '教务处新闻',
         action_value: '/pages/zcmu/news/index',
-        action_type: menuAction.GotoPage
+        action_type: menuAction.GotoPage,
+        icon: '/images/news.png'
       },
       {
         title: '每日一图',
         action_value: '/pages/daily-img/index',
-        action_type: menuAction.GotoPage
+        action_type: menuAction.GotoPage,
+        icon: '/images/img.png'
       }
     ],
     indexConfig: null,

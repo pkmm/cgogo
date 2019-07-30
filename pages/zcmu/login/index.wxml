@@ -1,4 +1,4 @@
-<view class='page' xmlns:wx="http://www.w3.org/1999/xhtml">
+<view class='page content' xmlns:wx="http://www.w3.org/1999/xhtml">
     <view class='page__hd'>
         <view class='page__title' style='text-align: center'>输入正方系统的学号密码</view>
     </view>

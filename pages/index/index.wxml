@@ -15,7 +15,7 @@
             <block wx:for="{{menus}}" wx:key="{{index}}">
                 <navigator url="{{item.action_value}}" open-type='navigate' class="weui-grid"
                     hover-class="weui-grid_active">
-                    <image class="weui-grid__icon" src="../../images/tieba.png" />
+                    <image class="weui-grid__icon" src="{{item.icon}}" />
                     <view class="weui-grid__label">{{item.title}}</view>
                 </navigator>
             </block>

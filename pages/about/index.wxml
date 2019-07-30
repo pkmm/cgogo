@@ -1,28 +1,44 @@
 <view class="page">
-    <view class="page__bd">
-        <view class="weui-panel weui-panel_access">
-            <view class="weui-panel__bd">
-                <view class="weui-media-box weui-media-box_text">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">
-                        分享小程序
-                    </view>
-                    <view>
-                        <button open-type='share'>分享</button>
-                    </view>
-                </view>
-                
-                <view class="weui-media-box weui-media-box_text">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">Cyan</view>
-                    <view style="text-align: center;" bindlongpress="saveImage">
-                        <view >
-                           如果觉得还不错的话，可以考虑请我喝杯 ‘肥宅快乐水’！
-                        </view>
-                        <view>长按可以保存图片到相册，然后进行扫描支持(^_^)~</view>
-                        <image class="" src="../../images/a-pay.jpg" mode="widthFix" lazy-load="false" binderror="" bindload="" />
-                        <image class="" src="../../images/w-pay.jpg" mode="widthFix" lazy-load="false" binderror="" bindload="" />
-                    </view>
-                </view>
-            </view>
+  <view class="page__bd">
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text">
+            分享小程序
+          </view>
+          <view>
+            <button open-type='share'>分享</button>
+          </view>
         </view>
+
+        <view class="weui-media-box weui-media-box_text">
+
+          <view class="thx-sponsors" wx:if="{{sponsors.length > 0}}">
+            感谢以下支持的用户：
+            <view wx:for="{{sponsors}}" wx:key="*this">
+              <view>{{item.open_id}} 赞助了 {{item.money / 100}} 元</view>
+            </view>
+          </view>
+
+          <!-- <view class="weui-media-box__title weui-media-box__title_in-text">Cyan</view> -->
+          <view style="text-align: center;" bindlongpress="saveImage">
+            <view>
+              <view>
+                因为是个人开发者，所以不能直接使用系统的支付，愿意支持的朋友，可以按照下面提示支持，备注 cgogo或者小程序
+              </view>
+              如果觉得还不错的话，可以考虑请我
+              <view>
+                喝杯 ‘肥宅快乐水’！
+              </view>
+            </view>
+            <view>长按可以保存图片到相册，然后进行扫描支持(^_^)~</view>
+            <image class="" src="../../images/a-pay.jpg" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+            <image class="" src="../../images/w-pay.jpg" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+          </view>
+        </view>
+
+
+      </view>
     </view>
+  </view>
 </view>
