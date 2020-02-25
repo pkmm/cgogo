@@ -1,6 +1,6 @@
 // pages/index/index.js
-const api = require('../../utils/api');
-const menuAction = require('../constant/enums').menuAction
+import { fetchRequest, api_urls } from '../../utils/api';
+import { menuAction } from '../constant/enums';
 Page({
 
   /**
@@ -8,12 +8,12 @@ Page({
    */
   data: {
     menus: [
-      {
-        title: "LIST背单词",
-        action_type: menuAction.GotoPage,
-        action_value: '/pages/hermann-memorial/index', 
-        icon: '/images/remember.png'
-      },
+      // {
+      //   title: "LIST背单词",
+      //   action_type: menuAction.GotoPage,
+      //   action_value: '/pages/hermann-memorial/index', 
+      //   icon: '/images/remember.png'
+      // },
       {
         title: '查成绩',
         action_value: '/pages/zcmu/score/index',
@@ -33,7 +33,7 @@ Page({
       // url: "/pages/holiday/index"
       // },
       {
-        title: '支持一下',
+        title: '赞助作者',
         action_value: '/pages/about/index',
         action_type: menuAction.GotoPage,
         icon: '/images/sponsor.png'
@@ -44,12 +44,12 @@ Page({
         action_type: menuAction.GotoPage,
         icon: '/images/news.png'
       },
-      {
-        title: '每日一图',
-        action_value: '/pages/daily-img/index',
-        action_type: menuAction.GotoPage,
-        icon: '/images/img.png'
-      }
+      // {
+      //   title: '每日一图',
+      //   action_value: '/pages/daily-img/index',
+      //   action_type: menuAction.GotoPage,
+      //   icon: '/images/img.png'
+      // }
     ],
     indexConfig: null,
     notifications: [],
@@ -58,7 +58,10 @@ Page({
 
   // 更新当前的通知函数
   updateCurrentNotification() {
-     this.setData({
+    if (this.data.notifications.length == 0) {
+      return;
+    }
+     this.setData({ 
        currentNotificationId: (this.data.currentNotificationId + 1) % this.data.notifications.length,
      }) 
   },
@@ -68,7 +71,7 @@ Page({
    */
   onLoad: function (options) {
     getApp().login();
-    api.fetchRequest(api.api_urls.getIndexPreference).then((resp) => {
+    fetchRequest(api_urls.getIndexPreference).then((resp) => {
       let data = resp.data;
       if (data.code == 0) {
         let menus = data.data.menus;
@@ -92,10 +95,25 @@ Page({
     this.getNotificationId = setInterval(this.getNotification, 1000 * 60 * 4);
     // 更新显示的通知
     this.showNotificationId = setInterval(this.updateCurrentNotification, 1000 * 10); // 每10s更新
+
+    // 实时的数据推送 demo代码。以后可以完善实现响应的功能
+    const db = wx.cloud.database();
+    const watcher = db.collection('todos').where({
+      cc: 'cc',
+    }).watch({
+      onChange: function (snapshot) {
+        console.log('docs\'s changed events', snapshot.docChanges)
+      },
+      onError: function (err) {
+        console.error('the watcher closed beacuse of error', err)
+      }
+    })
+
+
   },
 
   getNotification() {
-    api.fetchRequest(api.api_urls.getNotification).then(({data}) => {
+    fetchRequest(api_urls.getNotification).then(({data}) => {
       let respData = data;
       if (respData.code == 0) {
           this.setData({
@@ -155,7 +173,7 @@ Page({
   },
   onScoreUpdateInformMe(evt) {
     let user = wx.getStorageSync("user")
-    api.fetchRequest('/zf/send_template_msg', {
+    fetchRequest('/zf/send_template_msg', {
       form_id: evt.detail.formId,
       open_id: user.open_id,
     }

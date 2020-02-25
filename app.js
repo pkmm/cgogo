@@ -1,6 +1,6 @@
-require('./utils/v-request.js');
-const api = require('./utils/api')
-const md5 = require('./utils/md5.js')
+import './utils/v-request.js';
+import { fetchRequest, api_urls } from './utils/api';
+import { hexMD5 } from './utils/md5.js';
 let interstitialAd = null
 App({
   onLaunch: function () {
@@ -62,8 +62,8 @@ App({
       complete: (resp) => {
         self.globalData.appId = resp.result.appid;
         self.globalData.openId = resp.result.openid;
-        let sign = md5.hexMD5("cgogo" + resp.result.appid + resp.result.openid);
-        api.fetchRequest(api.api_urls.login, {
+        let sign = hexMD5("cgogo" + resp.result.appid + resp.result.openid);
+        fetchRequest(api_urls.login, {
           sign: sign,
           openid: self.globalData.openId,
         }).then(({data}) => {

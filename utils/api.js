@@ -1,5 +1,5 @@
-const config = require('../config');
-const API_BASE_URL = config.url;
+import { url as __url, env } from '../config';
+const API_BASE_URL = __url;
 
 function FetchRequest(url, data = {}, method = "POST", header = {}, responseType = 'text') {
   return new Promise(Request);
@@ -11,7 +11,7 @@ function FetchRequest(url, data = {}, method = "POST", header = {}, responseType
     data['token'] = wx.getStorageSync('token');
     data['device_type'] = 1;
 
-    if (config.env == 'prod') {
+    if (env == 'prod') {
       // 使用云函数 v-request 代理
       wx.vrequest({
         url: _url,
@@ -48,7 +48,7 @@ function FetchRequest(url, data = {}, method = "POST", header = {}, responseType
       if (err) {
         wx.hideLoading()
         wx.showToast({
-          title: "网络请求出现意料之外的事情!",
+          title: "服务不可用!",
           icon: 'none',
           duration: 3000,
         })
@@ -76,7 +76,5 @@ const API_URLS = {
   getSponsors: '/api/mini_program/get_sponsors',
 }
 
-module.exports = {
-  fetchRequest: FetchRequest,
-  api_urls: API_URLS,
-}
+export const fetchRequest = FetchRequest;
+export const api_urls = API_URLS;

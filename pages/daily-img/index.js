@@ -1,6 +1,6 @@
 // pages/daily-img/index.js
-const fetchRequest = require('../../utils/api.js').fetchRequest
-const API = require('../../utils/api.js').api_urls
+import { fetchRequest } from '../../utils/api.js';
+import { api_urls as API } from '../../utils/api.js';
 Page({
   //TODO 做成可以配置的，可以使用CDN 也可以直接从服务器获取数据
   /**

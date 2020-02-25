@@ -1,5 +1,5 @@
 // pages/zcmu/login/index.js
-const api = require('../../../utils/api');
+import { fetchRequest, api_urls } from '../../../utils/api';
 var app = getApp();
 Page({
 
@@ -92,7 +92,7 @@ Page({
     wx.showLoading({
       title: "保存中"
     });
-    api.fetchRequest(api.api_urls.updateStudentAccount, {
+    fetchRequest(api_urls.updateStudentAccount, {
       student_number: this.data.num,
       password: this.data.pwd,
     }).then(({data}) => {

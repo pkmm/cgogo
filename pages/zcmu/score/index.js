@@ -1,5 +1,5 @@
 // pages/zcmu/score/index.js
-const api = require('../../../utils/api');
+import { fetchRequest, api_urls } from '../../../utils/api';
 var app = getApp();
 Page({
 
@@ -49,7 +49,7 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    api.fetchRequest(api.api_urls.scores).then(resp => {
+    fetchRequest(api_urls.scores).then(resp => {
       wx.hideLoading();
       if (resp.data.code == 0) {
         this.processScores(resp.data.data.scores);

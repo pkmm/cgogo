@@ -1,5 +1,5 @@
-const fetchRequest = require('../../utils/api.js').fetchRequest
-const API = require('../../utils/api.js').api_urls
+import { fetchRequest } from '../../utils/api.js';
+import { api_urls as API } from '../../utils/api.js';
 Page({
 
     /**
