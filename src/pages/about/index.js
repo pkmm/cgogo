@@ -1,5 +1,6 @@
-import { fetchRequest } from '../../utils/api.js';
-import { api_urls as API } from '../../utils/api.js';
+import { getSponsors } from "../../providers/dataProvider";
+import { Success } from "../../constant/responeCode";
+
 Page({
 
     /**
@@ -14,18 +15,32 @@ Page({
         title: '加载赞助者信息...',
       })
       const self = this;
-      fetchRequest(API.getSponsors, {}).then(({data}) => {
-        console.log(data)
-        wx.hideLoading();
-        if (data.code == 0) {
-          self.setData({
-            sponsors: data.data.sponsors,
-          })
+
+      getSponsors().then(({code, data, msg}) => {
+        wx.hideLoading({
+          complete: (res) => {},
+        });
+        if (code == Success) {
+            self.setData({
+              sponsors: data.sponsors,
+            })
         } else {
-          // todo.. 
-          
+          wx.showToast({
+            title: msg,
+            icon: 'none',
+            duration: 2000.
+          })
         }
-      })
+      }).catch((res) => {
+        wx.hideLoading({
+          complete: (res) => {},
+        });
+        wx.showToast({
+          title: msg,
+          icon : 'none',
+          duration: 2000.
+        });
+      });
     },
 
     /**

@@ -1,6 +1,6 @@
 // pages/index/index.js
 import { fetchRequest, api_urls } from '../../utils/api';
-import { menuAction } from '../constant/enums';
+import { menuAction } from '../../constant/enums';
 Page({
 
   /**
@@ -70,7 +70,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    getApp().login();
+    // getApp().login();
     fetchRequest(api_urls.getIndexPreference).then((resp) => {
       let data = resp.data;
       if (data.code == 0) {

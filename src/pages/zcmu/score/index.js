@@ -1,5 +1,8 @@
 // pages/zcmu/score/index.js
 import { fetchRequest, api_urls } from '../../../utils/api';
+import { CacheData } from '../../../providers/dataCacheProvider';
+import { scores } from '../../../providers/dataProvider';
+import { Success } from '../../../constant/responeCode';
 var app = getApp();
 Page({
 
@@ -36,7 +39,8 @@ Page({
   },
 
   getScore() {
-    let student = wx.getStorageSync('student');
+    let {student} = CacheData.getUserInfo();
+    
     if (!student) {
       wx.navigateTo({
         url: '/pages/zcmu/login/index',
@@ -48,19 +52,44 @@ Page({
     });
     wx.showLoading({
       title: '加载中',
-    })
-    fetchRequest(api_urls.scores).then(resp => {
-      wx.hideLoading();
-      if (resp.data.code == 0) {
-        this.processScores(resp.data.data.scores);
+    });
+
+    scores().then(({code, data, msg}) => {
+      wx.hideLoading({
+        complete: (res) => {},
+      });
+      if (code == Success) {
+          this.processScores(data.scores);
       } else {
-        wx.showModal({
-          title: '发生错误',
-          content: resp.data.msg || '未知错误',
-          showCancel: false,
+        wx.showToast({
+          title: msg,
+          icon: 'none',
+          duration: 2000,
         })
       }
-    })
+    }).catch(({mag}) => {
+      wx.hideLoading({
+        complete: (res) => {},
+      });
+      wx.showToast({
+        title: msg,
+        icon: 'none',
+        duration: 2000,
+      });
+    });
+
+    // fetchRequest(api_urls.scores).then(resp => {
+    //   wx.hideLoading();
+    //   if (resp.data.code == 0) {
+    //     this.processScores(resp.data.data.scores);
+    //   } else {
+    //     wx.showModal({
+    //       title: '发生错误',
+    //       content: resp.data.msg || '未知错误',
+    //       showCancel: false,
+    //     })
+    //   }
+    // })
   },
 
   processScores(scores) {

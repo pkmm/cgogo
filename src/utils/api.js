@@ -1,5 +1,5 @@
-import { url as __url, env } from '../config';
-const API_BASE_URL = __url;
+import { BASE_API_URL, env } from '../config';
+const API_BASE_URL = BASE_API_URL;
 
 function FetchRequest(url, data = {}, method = "POST", header = {}, responseType = 'text') {
   return new Promise(Request);
@@ -13,7 +13,7 @@ function FetchRequest(url, data = {}, method = "POST", header = {}, responseType
 
     if (env == 'prod') {
       // 使用云函数 v-request 代理
-      wx.vrequest({
+      wx.customRequest({
         url: _url,
         method: method.toUpperCase(),
         data: data,

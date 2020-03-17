@@ -1,5 +1,11 @@
 // pages/zcmu/login/index.js
-import { fetchRequest, api_urls } from '../../../utils/api';
+import {
+  updateStudentAccount
+} from '../../../providers/dataProvider';
+import {
+  CacheData
+} from '../../../providers/dataCacheProvider'
+import { Success } from '../../../constant/responeCode';
 var app = getApp();
 Page({
 
@@ -15,7 +21,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let student = wx.getStorageSync('student');
+    let {
+      student
+    } = CacheData.getUserInfo();
     if (student) {
       this.setData({
         num: student.number || '',
@@ -28,21 +36,21 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+
   },
 
   /**
@@ -79,8 +87,15 @@ Page({
       [key]: value,
     });
   },
-  
+
   setAccount() {
+    wx.requestSubscribeMessage({
+      tmplIds: ['t0PoxJslZasFu6ZlhZgjmSREPpMuTC88nQzYIeg4Jfw'],
+      success(res) {
+        console.error("RES: ", res)
+      }
+    });
+
     if (!this.data.num || !this.data.pwd) {
       wx.showModal({
         title: "错误",
@@ -92,13 +107,13 @@ Page({
     wx.showLoading({
       title: "保存中"
     });
-    fetchRequest(api_urls.updateStudentAccount, {
+
+    updateStudentAccount({
       student_number: this.data.num,
       password: this.data.pwd,
-    }).then(({data}) => {
+    }).then(({code, data, msg}) => {
       wx.hideLoading();
-      if (data.code == 0) {
-        wx.setStorageSync('student', data.data.student)
+      if (code == Success) {
         wx.showModal({
           title: "设置成功",
           content: '快去查看成绩吧',
@@ -109,14 +124,22 @@ Page({
               })
             }
           }
-        })
+        });
+        CacheData.setUserInfo(data);
       } else {
-        wx.showModal({
-          title: "发生错误",
-          content: data.msg || "未知错误",
-          showCancel: false,
-        })
+        wx.showToast({
+          icon: 'none',
+          title: msg,
+          duration: 2000,
+        });
       }
-    })
-  },
-});
+    }).catch(({msg}) => {
+      wx.hideLoading();
+      wx.showToast({
+        icon: 'none',
+        title: msg,
+        duration: 2000,
+      });
+    });
+  }
+})

@@ -5,12 +5,12 @@
     </view>
     <view wx:else='{{notifications.length == 0}}'>
         <van-notice-bar backgroundColor="#f3f9f1"
-        text="这就是一个假的广播消息，努力工作，努力学习，追梦，只有奋斗的人生才是幸福的人生" />
+        text="努力工作，努力学习，追梦，奋斗的人生是幸福的人生" />
     
     </view>
     <view class="page__hd">
-        <view class="page__title">{{indexConfig.slogan || "每个人心里都有一座伤城"}}</view>
-        <view class="page__desc">{{indexConfig.motto || "我们也有过美好的回忆，只是让泪水模糊了"}}</view>
+        <view class="page__title">{{indexConfig.slogan || "努力成为心里的那个自己"}}</view>
+        <view class="page__desc">{{indexConfig.motto || "好好学习，天天向上"}}</view>
     </view>
     <view style='text-align: center; border-radius: 4px' wx:if="{{indexConfig && indexConfig.image_url != ''}}">
       <image src='{{indexConfig.image_url}}' mode='aspectFill' style='width: 400px; height: 500px;' class="bulr"></image>
