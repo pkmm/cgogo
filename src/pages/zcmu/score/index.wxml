@@ -20,7 +20,7 @@
        bind:change="onChange"
        accordion
        >
-        <van-collapse-item wx:for="{{allSemesters}}" name="{{semester}}" title="{{semester}}" wx:for-index="i" wx:for-item="semester" wx:key="{{i}}">
+        <van-collapse-item wx:for="{{allSemesters}}" name="{{semester}}" title="{{semester}}" wx:for-index="i" wx:for-item="semester" wx:key="i">
           <view class="cell" wx:for="{{scoreGroupInfo[semester]}}" wx:for-index="j" wx:for-item='score' wx:key="{{score.id}}">
             <view class="kcmc">{{score.kcmc}}</view>
             <view class="normal">成绩：{{score.cj}}</view>

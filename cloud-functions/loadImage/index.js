@@ -5,14 +5,12 @@ cloud.init()
 const db = cloud.database()
 _loadImage = async () => {
   let {result} = await cloud.callFunction({
-    name: 'vRequest',
+    name: 'requestProxy',
     data: {
       options: {
         method: 'GET',
         url: 'http://47.101.58.36:8189/api/daily_image',
         encoding: null,
-        'Content-Type': 'application/json',
-        'UserAgent': 'Retain cgogo miniprogram'
       }
     },
   })

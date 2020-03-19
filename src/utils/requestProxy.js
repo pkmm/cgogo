@@ -24,6 +24,8 @@ function convertOptions(wx_options) {
     'User-Agent': 'Retain cgogo miniprogram'
   }, wx_options.header);
 
+  delete defaultOptions['header'];
+
   // 转换请求的数据 
   if (defaultOptions.data) {
     const METHOD = wx_options.method.toUpperCase();
