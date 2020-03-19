@@ -16,7 +16,9 @@ Page({
       })
       const self = this;
 
-      getSponsors().then(({code, data, msg}) => {
+      getSponsors({
+        page: 1, size: 10,
+      }).then(({code, data, msg}) => {
         wx.hideLoading({
           complete: (res) => {},
         });

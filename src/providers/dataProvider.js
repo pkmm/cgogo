@@ -87,11 +87,21 @@ export const getIndexPreference = () => {
     })
 }
 
-export const getNotification = () => {
+/**
+ * 
+ * @param {object} data
+ * @example
+ * {
+ *  page: 1,
+ *  size: 10
+ * } 
+ */
+export const getNotification = (data) => {
     return service({
         method: 'get',
         url: BASE_API_URL + '/mini_program/get_notifications',
         header,
+        data,
     })
 }
 
@@ -129,10 +139,20 @@ export const addHermannRemeberMemorial = (data) => {
     })
 }
 
-export const getSponsors = () => {
+/**
+ * 
+ * @param {object} data
+ * @example
+ * {
+ *  page: 1,
+ *  size: 10
+ * } 
+ */
+export const getSponsors = (data) => {
     return service({
         method: 'get',
         url: BASE_API_URL + '/mini_program/get_sponsors',
-        header
+        header,
+        data,
     })
 }
