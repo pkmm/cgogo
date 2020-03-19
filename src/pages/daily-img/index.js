@@ -1,6 +1,4 @@
 // pages/daily-img/index.js
-import { fetchRequest } from '../../utils/api.js';
-import { api_urls as API } from '../../utils/api.js';
 Page({
   //TODO 做成可以配置的，可以使用CDN 也可以直接从服务器获取数据
   /**

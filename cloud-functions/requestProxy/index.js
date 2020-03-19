@@ -1,6 +1,6 @@
 
 const cloud = require('wx-server-sdk');
-const request =  require('request');
+const request = require('request');
 cloud.init();
 /**
  * @summary 使用request代理请求
@@ -28,9 +28,11 @@ exports.main = async (evt, ctx) => {
 
     // inject env params
     let wxContext = cloud.getWXContext();
-    let {OPENID, APPID} = wxContext;
-    OPENID && (options.body.openid = OPENID);
-    APPID && (options.body.appid = APPID);
+    let {OPENID, APPID, SOURCE, ENV} = wxContext;
+    if (!options.headers) {
+      options.headers = {}
+    }
+    options.headers = {...options.headers, OPENID, APPID, SOURCE, ENV}
     // end of inject
     request(options, (err, response, body) => {
       if (err) return reject(err);

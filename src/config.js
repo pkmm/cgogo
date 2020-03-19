@@ -11,6 +11,6 @@ export const envType = {
   dev: 'env',
   test: 'test'
 }
-export const env = envType.test;
+export const env = envType.prod;
 
-export const BASE_API_URL = (env != envType.prod) ? 'http://192.168.31.191:8654/api/v1' : 'http://47.101.58.36:8189/api/v1';
+export const BASE_API_URL = (env != envType.prod) ? 'http://192.168.31.191:8654/api/v1' : 'https://qwesde.com/api/v1';

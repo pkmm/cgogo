@@ -1,5 +1,4 @@
-import { fetchRequest } from '../../utils/api.js';
-import { api_urls as API } from '../../utils/api.js';
+
 const OK = 0;
 const errorNotBegin = 1;
 const errorTypeHasDone = 2;
@@ -78,49 +77,49 @@ Page({
     this.loadData();
   },
   loadData(cb) {
-    wx.showLoading({
-      title: '正在加载...'
-    })
-    fetchRequest(API.hermannRememberMemorial).then(resp => {
-      if (cb && typeof cd == 'function') {
-        cb();
-      }
-      wx.hideLoading();
-      let {data, code, msg} = resp.data;
-      if (code != 0) {
-        if (code == 3002) {
-          this.setData({
-            errorType: errorTypeHasDone,
-          })
-        } else if (code == 3001) {
-          this.setData({
-            errorType: errorNotBegin,
-          })
-        } else if (code == 3003) {
-            this.setData({
-              errorType: errorNotfound,
-            })
-        }
-        wx.showModal({
-          title: '提示!',
-          content: msg,
-        })
-        return;
-      }
-      if (data.tasks) {
-        this.setData({
-          errorType: 0,
-          remember: data.tasks.remember,
-          reviewList: data.tasks.review_list.reverse(),
-          currentDay: data.tasks.current_day,
-        })
-      } else {
-        this.setData({
-          errorType: errorNotfound,
-        })
-      }
+    // wx.showLoading({
+    //   title: '正在加载...'
+    // })
+    // fetchRequest(API.hermannRememberMemorial).then(resp => {
+    //   if (cb && typeof cd == 'function') {
+    //     cb();
+    //   }
+    //   wx.hideLoading();
+    //   let {data, code, msg} = resp.data;
+    //   if (code != 0) {
+    //     if (code == 3002) {
+    //       this.setData({
+    //         errorType: errorTypeHasDone,
+    //       })
+    //     } else if (code == 3001) {
+    //       this.setData({
+    //         errorType: errorNotBegin,
+    //       })
+    //     } else if (code == 3003) {
+    //         this.setData({
+    //           errorType: errorNotfound,
+    //         })
+    //     }
+    //     wx.showModal({
+    //       title: '提示!',
+    //       content: msg,
+    //     })
+    //     return;
+    //   }
+    //   if (data.tasks) {
+    //     this.setData({
+    //       errorType: 0,
+    //       remember: data.tasks.remember,
+    //       reviewList: data.tasks.review_list.reverse(),
+    //       currentDay: data.tasks.current_day,
+    //     })
+    //   } else {
+    //     this.setData({
+    //       errorType: errorNotfound,
+    //     })
+    //   }
       
-    })
+    // })
   },
 
   /**

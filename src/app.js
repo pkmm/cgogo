@@ -85,12 +85,10 @@ App({
                 duration: 2000,
               })
             }
-          }).catch(({
-            msg
-          }) => {
+          }).catch((res) => {
             wx.showToast({
               icon: 'none',
-              title: msg,
+              title: res,
               duration: 2000,
             })
           })

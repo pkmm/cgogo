@@ -137,18 +137,6 @@ Page({
         notifications: data.notifications,
       })
     })
-    // fetchRequest(api_urls.getNotification).then(({
-    //   data
-    // }) => {
-    //   let respData = data;
-    //   if (respData.code == 0) {
-    //     this.setData({
-    //       notifications: respData.data.notifications,
-    //     })
-    //   } else {
-    //     //TODO: handle error
-    //   }
-    // })
   },
 
   /**

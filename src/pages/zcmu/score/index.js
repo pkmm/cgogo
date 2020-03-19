@@ -1,5 +1,4 @@
 // pages/zcmu/score/index.js
-import { fetchRequest, api_urls } from '../../../utils/api';
 import { CacheData } from '../../../providers/dataCacheProvider';
 import { scores } from '../../../providers/dataProvider';
 import { Success } from '../../../constant/responeCode';
@@ -77,19 +76,6 @@ Page({
         duration: 2000,
       });
     });
-
-    // fetchRequest(api_urls.scores).then(resp => {
-    //   wx.hideLoading();
-    //   if (resp.data.code == 0) {
-    //     this.processScores(resp.data.data.scores);
-    //   } else {
-    //     wx.showModal({
-    //       title: '发生错误',
-    //       content: resp.data.msg || '未知错误',
-    //       showCancel: false,
-    //     })
-    //   }
-    // })
   },
 
   processScores(scores) {

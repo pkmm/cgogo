@@ -18,8 +18,8 @@ function convertOptions(wx_options) {
     defaultOptions['encoding'] = null; // null会使request返回二进制buffer数据
   }
 
-  // 默认header
-  defaultOptions['header'] = Object.assign({
+  // 默认headers
+  defaultOptions['headers'] = Object.assign({
     'Content-Type': 'application/json',
     'User-Agent': 'Retain cgogo miniprogram'
   }, wx_options.header);
@@ -78,21 +78,21 @@ export const customRequest = (options) => {
         let respData = result.body;
         if (requestOptions.responseType && requestOptions.responseType == 'arraybuffer') {
           respData = result.body; // arraybuffer 数据
-        } else if (defaultOptions.dataType === 'json') {
+        } else if (requestOptions.dataType === 'json') {
           try {
             respData = JSON.parse(respData);
           } catch (err) {
             console.error('[!!!] request-proxy： 解析返回数据json失败', err);
           }
         }
-        const RETURN_DATA = {
-          data: respData,
-          errMsg: 'request:ok',
-          statusCode: result.statusCode,
-          header: result.headers
-        }
-        requestOptions.success && requestOptions.success(RETURN_DATA);
-        resolve(RETURN_DATA);
+        // const RETURN_DATA = {
+        //   data: respData,
+        //   errMsg: 'request:ok',
+        //   statusCode: result.statusCode,
+        //   header: result.headers
+        // }
+        requestOptions.success && requestOptions.success(respData);
+        resolve(respData);
       },
       fail: err => {
         // 错误回调
