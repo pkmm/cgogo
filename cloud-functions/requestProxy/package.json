@@ -4,7 +4,7 @@
   "description": "The proxy applet requests external resources",
   "main": "index.js",
   "dependencies": {
-    "request": "latest",
-    "wx-server-sdk": "^0.6.0"
+    "request": "^2.88.0",
+    "wx-server-sdk": "latest"
   }
 }

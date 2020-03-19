@@ -1,6 +1,7 @@
-import { init , getWXContext} from 'wx-server-sdk';
-init();
-import request from 'request';
+
+const cloud = require('wx-server-sdk');
+const request =  require('request');
+cloud.init();
 /**
  * @summary 使用request代理请求
  * @param {object} evt 
@@ -21,22 +22,19 @@ import request from 'request';
       //useQuerystring：true, // 格式化qs为string的形式
     };
  */
-export function main(evt, ctx) {
+exports.main = async (evt, ctx) => {
   return new Promise((resolve, reject) => {
     let options = evt.options;
 
     // inject env params
-    let wxContext = getWXContext();
-    options.body.openid = wxContext.OPENID;
-    options.body.appid = wxContext.APPID;
-    options.body.unionid = wxContext.UNIONID;
-    options.body.env = wxContext.ENV;
-    options.body.source = wxContext.SOURCE;
-    
+    let wxContext = cloud.getWXContext();
+    let {OPENID, APPID} = wxContext;
+    OPENID && (options.body.openid = OPENID);
+    APPID && (options.body.appid = APPID);
     // end of inject
     request(options, (err, response, body) => {
       if (err) return reject(err);
-      resolve(response);
+      return resolve(response);
     });
   });
 }
