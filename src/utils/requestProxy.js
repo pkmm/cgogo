@@ -1,3 +1,12 @@
+/*
+ * @Author: Retain
+ * @Date: 2019-01-11 01:05:50
+ * @LastEditTime: 2020-03-23 00:17:42
+ * @LastEditors: Please set LastEditors
+ * @Description: 请求代理
+ * @FilePath: \cgogo\src\utils\requestProxy.js
+ */
+
 import {
   isTest
 } from '../config.js';
@@ -15,32 +24,32 @@ function convertOptions(wx_options) {
 
   //js request: encoding is null then response type is buffer.
   if (defaultOptions.responseType == 'arraybuffer') {
-    defaultOptions['encoding'] = null; // null会使request返回二进制buffer数据
+    defaultOptions.encoding = null; // null会使request返回二进制buffer数据
   }
 
   // 默认headers
-  defaultOptions['headers'] = Object.assign({
+  defaultOptions.headers = Object.assign({
     'Content-Type': 'application/json',
     'User-Agent': 'Retain cgogo miniprogram'
   }, wx_options.header);
 
-  delete defaultOptions['header'];
+  delete defaultOptions.header;
 
   // 转换请求的数据 
   if (defaultOptions.data) {
     const METHOD = wx_options.method.toUpperCase();
     // 如果是GET请求，参数转换到qs
     if (METHOD == 'GET') {
-      defaultOptions['qs'] = defaultOptions['data'];
+      defaultOptions.qs = defaultOptions.data;
     } else {
       // post delete ... 等其他的请求方式
       if (typeof defaultOptions.data === 'object') {
-        defaultOptions['body'] = JSON.stringify(defaultOptions['data']);
+        defaultOptions.body = JSON.stringify(defaultOptions.data);
       } else { // string or arrayBuffer
-        defaultOptions['body'] = defaultOptions['data'];
+        defaultOptions.body = defaultOptions.data;
       }
     }
-    delete defaultOptions['data'];
+    delete defaultOptions.data;
   }
   return defaultOptions;
 }
@@ -87,6 +96,7 @@ export const customRequest = (options) => {
             console.error('[!!!] request-proxy： 解析返回数据json失败', err);
           }
         }
+        // 
         // const RETURN_DATA = {
         //   data: respData,
         //   errMsg: 'request:ok',
@@ -107,7 +117,7 @@ export const customRequest = (options) => {
           wx.showToast({
             title: "服务异常，请求失败!",
             icon: "none"
-          })
+          });
         }
         reject(err);
       },
