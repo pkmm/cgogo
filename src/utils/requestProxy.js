@@ -1,5 +1,5 @@
 import {
-  env,envType
+  isTest
 } from '../config.js';
 
 // 转换wx的options到request库的options
@@ -65,14 +65,14 @@ export const customRequest = (options) => {
   let requestOptions = convertOptions(options);
   // 开始请求
   return new Promise((resolve, reject) => {
-    env == envType.test && console.log('INFO: request proxy options: ', requestOptions);
+    isTest && console.log('INFO: request proxy options: ', requestOptions);
     wx.cloud.callFunction({
       name: 'requestProxy',
       data: {
         options: requestOptions,
       },
       success: res => {
-        env == envType.test && console.info('request proxy response：', res);
+        isTest && console.info('request proxy response：', res);
         const {
           result
         } = res;

@@ -25,19 +25,19 @@ Page({
 
   load: function(){
     let self = this;
-    wx.request({
-      url: "https://api.52pkm.cn",
-      success(rep) {
-        let sy = [];
-        for (let x in rep.data.forums) {
-          sy.push(self.getCls());
-        }
-        self.setData({
-          tiebaList: rep.data.forums,
-          styles: sy
-        });
-      }
-    });
+    // wx.request({
+    //   url: "https://api.52pkm.cn",
+    //   success(rep) {
+    //     let sy = [];
+    //     for (let x in rep.data.forums) {
+    //       sy.push(self.getCls());
+    //     }
+    //     self.setData({
+    //       tiebaList: rep.data.forums,
+    //       styles: sy
+    //     });
+    //   }
+    // });
   },
 
   randomInteger:function(basic, min = 100){
@@ -75,21 +75,21 @@ Page({
   onPullDownRefresh: function () {
       wx.showNavigationBarLoading()
       let self = this;
-      wx.request({
-          url: "https://api.52pkm.cn",
-          success(rep) {
-              let sy = [];
-              for (let x in rep.data.forums) {
-                  sy.push(self.getCls());
-              }
-              self.setData({
-                  tiebaList: rep.data.forums,
-                  styles: sy
-              });
-              wx.hideNavigationBarLoading()
-              wx.stopPullDownRefresh() 
-          }
-      });
+    //   wx.request({
+    //       url: "https://api.52pkm.cn",
+    //       success(rep) {
+    //           let sy = [];
+    //           for (let x in rep.data.forums) {
+    //               sy.push(self.getCls());
+    //           }
+    //           self.setData({
+    //               tiebaList: rep.data.forums,
+    //               styles: sy
+    //           });
+    //           wx.hideNavigationBarLoading()
+    //           wx.stopPullDownRefresh() 
+    //       }
+    //   });
   },
 
   /**

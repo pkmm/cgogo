@@ -1,6 +1,13 @@
+/*
+ * @Author: retain
+ * @Date: 2020-03-17 12:12:28
+ * @LastEditTime: 2020-03-22 23:08:58
+ * @LastEditors: Please set LastEditors
+ * @Description: API provider for mini program
+ * @FilePath: \cgogo\src\providers\dataProvider.js
+ */
 import {
-    env,
-    envType,
+    isProd,
     BASE_API_URL
 } from '../config';
 import {CacheData} from './dataCacheProvider';
@@ -24,8 +31,11 @@ function wxRequestWrapper(options) {
 }
 
 //woker to do request
-const service = (env == envType.prod) ? customRequest : wxRequestWrapper;
+const service = isProd ? customRequest : wxRequestWrapper;
 
+/**
+ * 需要认证的api都要加上这个头
+ */
 const header = {
     'Authorization': CacheData.getToken(),
 };
@@ -42,10 +52,20 @@ export const login = (data)  => {
     })
 }
 
+/**
+ * @description: 退出登录
+ * @param {null} 
+ * @return: 
+ */
 export const logout = () => {
 
 }
 
+/**
+ * @description: 获取登录的我 
+ * @param {null} 
+ * @return: 
+ */
 export const me = () => {
     return service({
         method: 'get',
@@ -54,6 +74,11 @@ export const me = () => {
     })
 }
 
+/**
+ * @description: 查询成绩 
+ * @param {null} 
+ * @return: 
+ */
 export const scores = () => {
     return service({
         method: 'get',
@@ -61,7 +86,11 @@ export const scores = () => {
         header,
     })
 }
-
+/**
+ * @description: 
+ * @param {object} data 
+ * @return: 
+ */
 export const updateStudentAccount = (data) => {
     return service({
         method: 'post',
@@ -70,7 +99,11 @@ export const updateStudentAccount = (data) => {
         data
     })
 }
-
+/**
+ * @description: 学生成绩同步信息详情
+ * @param {null} 
+ * @return: 
+ */
 export const syncDetail = () => {
     return service({
         method: 'get',
@@ -79,6 +112,11 @@ export const syncDetail = () => {
     })
 }
 
+/**
+ * @description:获取首页的配置信息 
+ * @param {null} 
+ * @return: 
+ */
 export const getIndexPreference = () => {
     return service({
         method: 'get',
@@ -88,9 +126,9 @@ export const getIndexPreference = () => {
 }
 
 /**
- * 
+ * @description 获取首页顶部的通知信息
  * @param {object} data
- * @example
+ * @example 分页信息
  * {
  *  page: 1,
  *  size: 10
@@ -104,7 +142,11 @@ export const getNotification = (data) => {
         data,
     })
 }
-
+/**
+ * @description:获取每日一图 
+ * @param {null} 
+ * @return: 
+ */
 export const dailyImage = () => {
     return service({
         method: 'get',
@@ -113,7 +155,11 @@ export const dailyImage = () => {
         responsType: 'arraybuff',
     })
 }
-
+/**
+ * @description: 每日一句
+ * @param {null} 
+ * @return: 
+ */
 export const dailySentence = () => {
     return service({
         method: 'get',
@@ -122,6 +168,11 @@ export const dailySentence = () => {
     })
 }
 
+/**
+ * @description:背单词的任务 
+ * @param {null} 
+ * @return: 
+ */
 export const getHermannRemeberMemorial = () => {
     return service({
         method: 'get',
@@ -129,7 +180,10 @@ export const getHermannRemeberMemorial = () => {
         header,
     })
 }
-
+/**
+ * @description 添加背单词任务
+ * @param {object} data 
+ */
 export const addHermannRemeberMemorial = (data) => {
     return service({
         method: 'post',
