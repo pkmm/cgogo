@@ -1,3 +1,11 @@
+/*
+ * @Author: Retain
+ * @Date: 2019-01-17 23:12:16
+ * @LastEditTime: 2020-03-23 16:46:04
+ * @LastEditors: Retain
+ * @Description: no description
+ * @FilePath: \cgogo\src\pages\zcmu\login\index.js
+ */
 // pages/zcmu/login/index.js
 import {
   updateStudentAccount
@@ -80,6 +88,12 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  /**
+   * @description: 更新数据
+   * @param {Event} 
+   * @return: 
+   */
   updateData(e) {
     const value = e.detail.value;
     const key = e.currentTarget.dataset.name;
@@ -88,6 +102,11 @@ Page({
     });
   },
 
+  /**
+   * @description: 设置账号信息
+   * @param {null} 
+   * @return: 
+   */
   setAccount() {
     wx.requestSubscribeMessage({
       tmplIds: ['t0PoxJslZasFu6ZlhZgjmSREPpMuTC88nQzYIeg4Jfw'],

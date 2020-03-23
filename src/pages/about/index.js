@@ -1,3 +1,11 @@
+/*
+ * @Author: Retain
+ * @Date: 2018-01-28 01:03:16
+ * @LastEditTime: 2020-03-23 16:43:47
+ * @LastEditors: Retain
+ * @Description: no description
+ * @FilePath: \cgogo\src\pages\about\index.js
+ */
 import { getSponsors } from "../../providers/dataProvider";
 import { Success } from "../../constant/responeCode";
 
@@ -100,11 +108,15 @@ Page({
     onShareAppMessage: function () {
 
     },
+    /**
+     * @description: 更新学生的信息
+     */
     updateStuInfo: function () {
         wx.navigateTo({
             url: '../zcmu_login/index',
         });
     },
+    
     onShareAppMessage(obj) {
         return {
             title: "使用Cgogo方便快速查教务系统成绩",
@@ -112,6 +124,9 @@ Page({
             imageUrl: '/images/score.jpg',
         };
     },
+    /**
+     * @description: 保存图片
+     */
     saveImage() {
         wx.showModal({
             title:"提示",

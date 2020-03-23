@@ -1,9 +1,11 @@
-
-const OK = 0;
-const errorNotBegin = 1;
-const errorTypeHasDone = 2;
-const errorNotfound = 4;
-
+/*
+ * @Author: Retain
+ * @Date: 2019-07-05 01:25:04
+ * @LastEditTime: 2020-03-23 16:48:45
+ * @LastEditors: Retain
+ * @Description: no description
+ * @FilePath: \cgogo\src\pages\hermann-memorial\index.js
+ */
 Page({
 
   /**
@@ -13,7 +15,6 @@ Page({
     remember: null, // (start, end)
     reviewList: [], // [(start, end) ...]
     currentDay: 1, // 当前复习的天数， 默认是第一天
-    errorType: OK,  
     unit: 2, // 默认的背诵的单元
     startAt: new Date(),
     date: new Date(),
@@ -21,43 +22,49 @@ Page({
   },
 
 
-  bindDateChange({detail}) {
-      this.setData({
-        date: detail.value
-      })
+  bindDateChange({
+    detail
+  }) {
+    this.setData({
+      date: detail.value
+    })
   },
 
-  unitChange({detail}) {
+  unitChange({
+    detail
+  }) {
     this.setData({
       unit: detail
     })
   },
-  totalUnitChange({detail}) {
+  totalUnitChange({
+    detail
+  }) {
     this.setData({
       totalUnit: detail,
     })
   },
 
   saveTask() {
-   // todo 保存数据到db
-   const self = this;
-   wx.showModal({
-     title: '提示',
-     content: '当前版本，设置后无法修改，确定设置任务？',
-     success(res) {
-       if (res.confirm) {
-         fetchRequest(API.addHermannRememberMemorial, {
-           unit: self.data.unit,
-           total_unit: self.data.totalUnit,
-           start_at: new Date(self.data.date),
-         }).then(resp => {
-           console.log(resp)
-           self.loadData();
-         })
-       }
+    // todo 保存数据到db
+    const self = this;
+    wx.showModal({
+      title: '提示',
+      content: '当前版本，设置后无法修改，确定设置任务？',
+      success(res) {
+        if (res.confirm) {
+          fetchRequest(API.addHermannRememberMemorial, {
+            unit: self.data.unit,
+            total_unit: self.data.totalUnit,
+            start_at: new Date(self.data.date),
+          }).then(resp => {
+            console.log(resp)
+            self.loadData();
+          })
+        }
 
-     },
-   })
+      },
+    })
   },
 
   /**
@@ -72,7 +79,7 @@ Page({
       date: d,
     })
   },
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     wx.stopPullDownRefresh();
     this.loadData();
   },
@@ -118,7 +125,6 @@ Page({
     //       errorType: errorNotfound,
     //     })
     //   }
-      
     // })
   },
 

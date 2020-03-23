@@ -1,3 +1,11 @@
+/*
+ * @Author: Retain
+ * @Date: 2018-05-03 22:41:13
+ * @LastEditTime: 2020-03-23 16:44:21
+ * @LastEditors: Retain
+ * @Description: no description
+ * @FilePath: \cgogo\src\pages\holiday\index.js
+ */
 // pages/holiday/index.js
 Page({
 
