@@ -1,7 +1,7 @@
 /*
  * @Author: Retain
  * @Date: 2019-01-17 23:12:16
- * @LastEditTime: 2020-03-23 16:46:04
+ * @LastEditTime: 2020-03-23 20:19:38
  * @LastEditors: Retain
  * @Description: no description
  * @FilePath: \cgogo\src\pages\zcmu\login\index.js
@@ -12,9 +12,10 @@ import {
 } from '../../../providers/dataProvider';
 import {
   CacheData
-} from '../../../providers/dataCacheProvider'
-import { Success } from '../../../constant/responeCode';
-var app = getApp();
+} from '../../../providers/dataCacheProvider';
+import {
+  Success
+} from '../../../constant/responeCode';
 Page({
 
   /**
@@ -36,7 +37,7 @@ Page({
       this.setData({
         num: student.number || '',
         pwd: student.password || '',
-      })
+      });
     }
   },
 
@@ -91,8 +92,8 @@ Page({
 
   /**
    * @description: 更新数据
-   * @param {Event} 
-   * @return: 
+   * @return:
+   * @param e
    */
   updateData(e) {
     const value = e.detail.value;
@@ -104,14 +105,12 @@ Page({
 
   /**
    * @description: 设置账号信息
-   * @param {null} 
-   * @return: 
    */
   setAccount() {
     wx.requestSubscribeMessage({
       tmplIds: ['t0PoxJslZasFu6ZlhZgjmSREPpMuTC88nQzYIeg4Jfw'],
       success(res) {
-        console.error("RES: ", res)
+        console.error("允许接收通知: ", res);
       }
     });
 
@@ -126,13 +125,28 @@ Page({
     wx.showLoading({
       title: "保存中"
     });
+    // 用户第一次登陆，点击按钮的时候会显示授权，授权之后调用loadUserInfo才能成功
+    if (!CacheData.getToken()) {
+      getApp().loadUserInfo(this.doPostData);
+    }
+    // 否者是已经登陆的用户，可以直接提交数据到服务端
+    this.doPostData();
+  },
 
+  /**
+   * 提交数据信息
+   */
+  doPostData() {
     updateStudentAccount({
       student_number: this.data.num,
       password: this.data.pwd,
-    }).then(({code, data, msg}) => {
+    }).then(({
+      code,
+      data,
+      msg
+    }) => {
       wx.hideLoading();
-      if (code == Success) {
+      if (code === Success) {
         wx.showModal({
           title: "设置成功",
           content: '快去查看成绩吧',
@@ -140,7 +154,7 @@ Page({
             if (res.confirm) {
               wx.redirectTo({
                 url: '/pages/zcmu/score/index',
-              })
+              });
             }
           }
         });
@@ -152,13 +166,13 @@ Page({
           duration: 2000,
         });
       }
-    }).catch(({msg}) => {
+    }).catch(res => {
       wx.hideLoading();
       wx.showToast({
         icon: 'none',
-        title: msg,
+        title: res,
         duration: 2000,
       });
     });
   }
-})
+});

@@ -1,10 +1,8 @@
-export const menuAction = {
-    Unknow: 0,
+export const MenuAction = {
     AlertModal: 1,
     GotoPage: 2,
 };
 
 export const DeviceType = {
-    Miniprogram: 2,
-    Unknow: -1
-}
+    MiniProgram: 2,
+};

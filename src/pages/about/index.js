@@ -21,16 +21,14 @@ Page({
     loadSponsors() {
       wx.showLoading({
         title: '加载赞助者信息...',
-      })
+      });
       const self = this;
 
       getSponsors({
         page: 1, size: 10,
       }).then(({code, data, msg}) => {
-        wx.hideLoading({
-          complete: (res) => {},
-        });
-        if (code == Success) {
+        wx.hideLoading();
+        if (code === Success) {
             self.setData({
               sponsors: data.sponsors,
             })
@@ -38,17 +36,15 @@ Page({
           wx.showToast({
             title: msg,
             icon: 'none',
-            duration: 2000.
+            duration: 2000,
           })
         }
       }).catch((res) => {
-        wx.hideLoading({
-          complete: (res) => {},
-        });
+        wx.hideLoading();
         wx.showToast({
-          title: msg,
+          title: res,
           icon : 'none',
-          duration: 2000.
+          duration: 2000,
         });
       });
     },
@@ -103,12 +99,6 @@ Page({
     },
 
     /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    },
-    /**
      * @description: 更新学生的信息
      */
     updateStuInfo: function () {
@@ -140,7 +130,7 @@ Page({
                 success() {
                   console.log('save success.')
                 }
-              })
+              });
               wx.saveImageToPhotosAlbum({
                 filePath: "/images/a-pay.jpg",
                 success() {
@@ -150,4 +140,4 @@ Page({
             }
         })
     }
-})
+});

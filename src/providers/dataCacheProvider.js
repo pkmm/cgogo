@@ -1,15 +1,13 @@
 /*
  * @Author: Retain
  * @Date: 2020-03-17 12:59:14
- * @LastEditTime: 2020-03-23 16:56:48
+ * @LastEditTime: 2020-03-23 20:24:50
  * @LastEditors: Retain
  * @Description: 程序使用期间的共享数据存取快捷方法 
  * @FilePath: \cgogo\src\providers\dataCacheProvider.js
  */
-import {
-    KEY_AUTHORIZATION,
-    KEY_USERINFO
-} from './cacheKeys'
+import {KEY_AUTHORIZATION, KEY_USERINFO} from './cacheKeys';
+
 /**
  * @description 本地缓存，没有缓存数据应通过http去取数据
  */
@@ -18,48 +16,40 @@ export const CacheData = {
 
     /**
      * @description: 同步获取用户的信息
-     * @param {null} 
      * @return: object | null
      */
     getUserInfo() {
-        let userInfo = wx.getStorageSync(KEY_USERINFO);
-        return userInfo;
+        return wx.getStorageSync(KEY_USERINFO);
     },
 
     /**
      * @description: 同步获取认证的token信息
-     * @param {null} 
      * @return: object | null
      */
-    getToken() {
+    getToken: function () {
         let token = wx.getStorageSync(KEY_AUTHORIZATION);
         if (!token) {
             // todo login.
+            console.error("Get authorization token but get null");
         }
         return token;
     },
 
     /**
      * @description: 异步保存用户的信息到storage
-     * @param {object} 
      * @return: object | null
+     * @param userInfo
      */    
     setUserInfo(userInfo) {
-        wx.setStorage({
-            data: userInfo,
-            key: KEY_USERINFO,
-        })
+        wx.setStorageSync(KEY_USERINFO, userInfo);
     },
 
     /**
-     * @description: 异步保存认证的token信息
-     * @param {string} 
+     * @description: 保存认证的token信息
      * @return: string | null
+     * @param token
      */
-    setToken(token) {
-        wx.setStorage({
-            data: token,
-            key: KEY_AUTHORIZATION,
-        })
+    setToken: function (token) {
+        wx.setStorageSync(KEY_AUTHORIZATION, token);
     }
 };

@@ -2,7 +2,6 @@
 import { CacheData } from '../../../providers/dataCacheProvider';
 import { scores } from '../../../providers/dataProvider';
 import { Success } from '../../../constant/responeCode';
-var app = getApp();
 Page({
 
   /**
@@ -28,7 +27,7 @@ Page({
   onChange(event) {
     this.setData({
       activeNames: event.detail,
-    })
+    });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -39,11 +38,11 @@ Page({
 
   getScore() {
     let {student} = CacheData.getUserInfo();
-    
+
     if (!student) {
       wx.navigateTo({
         url: '/pages/zcmu/login/index',
-      })
+      });
       return;
     }
     this.setData({
@@ -54,10 +53,8 @@ Page({
     });
 
     scores().then(({code, data, msg}) => {
-      wx.hideLoading({
-        complete: (res) => {},
-      });
-      if (code == Success) {
+      wx.hideLoading();
+      if (code === Success) {
           this.processScores(data.scores);
       } else {
         wx.showToast({
@@ -66,12 +63,10 @@ Page({
           duration: 2000,
         })
       }
-    }).catch(({mag}) => {
-      wx.hideLoading({
-        complete: (res) => {},
-      });
+    }).catch((res) => {
+      wx.hideLoading();
       wx.showToast({
-        title: msg,
+        title: res,
         icon: 'none',
         duration: 2000,
       });
@@ -79,24 +74,24 @@ Page({
   },
 
   processScores(scores) {
-    if (scores.length == 0) {
+    if (scores.length === 0) {
       return;
     }
     let total = 0,
-      sum = 0, currentSemesterTotal = 0, currentSemeterSum = 0;
+      sum = 0, currentSemesterTotal = 0, currentSemesterSum = 0;
    
     // 分组信息
     let groupMap = {};
     let currentSemester = scores[scores.length - 1].xn;
     scores.forEach(i => {
-      if (i.type == '必修课') {
+      if (i.type === '必修课') {
         sum += i.jd;
         total++;
       }
 
-      if (i.type == '必修课' && i.xn == currentSemester) {
+      if (i.type === '必修课' && i.xn === currentSemester) {
         currentSemesterTotal++;
-        currentSemeterSum += i.jd;
+        currentSemesterSum += i.jd;
       }
       let groupKey = `${i.xn}学年 第${i.xq}学期`
       if (!groupMap[groupKey]) {
@@ -111,17 +106,17 @@ Page({
     this.setData({
       allSemesterInfo: {
         total: total,
-        avg: total == 0 ? 0 : (sum / total).toFixed(2),
+        avg: total === 0 ? 0 : (sum / total).toFixed(2),
       },
       scores: scores.reverse(),
       currentSemesterInfo: {
         total: currentSemesterTotal,
-        avg: currentSemesterTotal == 0 ? 0 : (currentSemeterSum / currentSemesterTotal).toFixed(2),
+        avg: currentSemesterTotal === 0 ? 0 : (currentSemesterSum / currentSemesterTotal).toFixed(2),
       },
       currentSemester: currentSemester,
       scoreGroupInfo: groupMap,
       allSemesters: allSemesters,
-      activeNames: allSemesters.length == 0 ? '' : allSemesters[0]
+      activeNames: allSemesters.length === 0 ? '' : allSemesters[0]
     });
   },
 
@@ -157,7 +152,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    wx.showLoading();
+
     this.getScore();
   },
 
@@ -174,4 +169,4 @@ Page({
   onShareAppMessage: function () {
 
   }
-})
+});

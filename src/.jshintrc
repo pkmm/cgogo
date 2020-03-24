@@ -1,3 +1,11 @@
 {
-  "esversion": 6
+  "esversion": 9,
+  "unused": true,
+  "eqnull": true,
+  "freeze": true,
+  "immed": true,
+  "indent": 4,
+  "latedef":true,
+  "lastsemic": false,
+  "asi": true
 }

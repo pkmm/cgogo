@@ -23,7 +23,7 @@ function convertOptions(wx_options) {
   }, wx_options);
 
   //js request: encoding is null then response type is buffer.
-  if (defaultOptions.responseType == 'arraybuffer') {
+  if (defaultOptions.responseType === 'arraybuffer') {
     defaultOptions.encoding = null; // null会使request返回二进制buffer数据
   }
 
@@ -39,7 +39,7 @@ function convertOptions(wx_options) {
   if (defaultOptions.data) {
     const METHOD = wx_options.method.toUpperCase();
     // 如果是GET请求，参数转换到qs
-    if (METHOD == 'GET') {
+    if (METHOD === 'GET') {
       defaultOptions.qs = defaultOptions.data;
     } else {
       // post delete ... 等其他的请求方式
@@ -87,7 +87,7 @@ export const customRequest = (options) => {
         } = res;
         // 如果datatype='json'，则解析后
         let respData = result.body;
-        if (requestOptions.responseType && requestOptions.responseType == 'arraybuffer') {
+        if (requestOptions.responseType && requestOptions.responseType === 'arraybuffer') {
           respData = result.body; // arraybuffer 数据
         } else if (requestOptions.dataType === 'json') {
           try {
@@ -122,6 +122,6 @@ export const customRequest = (options) => {
         reject(err);
       },
       complete: requestOptions.complete 
-    })
-  })
-}
+    });
+  });
+};

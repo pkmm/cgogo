@@ -1,10 +1,18 @@
+/*
+ * @Author: Retain
+ * @Date: 2017-12-16 00:02:04
+ * @LastEditTime: 2020-03-23 19:58:21
+ * @LastEditors: Retain
+ * @Description: no description
+ * @FilePath: \cgogo\src\app.js
+ */
 import {
   hexMD5
 } from './utils/md5.js';
 
 import {
   login
-} from './providers/dataProvider'
+} from './providers/dataProvider';
 import {
   CacheData
 } from './providers/dataCacheProvider';
@@ -13,7 +21,7 @@ import {
 } from "./constant/enums";
 import {
   Success
-} from "./constant/responeCode"
+} from "./constant/responeCode";
 
 App({
   onLaunch: function () {
@@ -51,7 +59,7 @@ App({
    * 1) 新用户获取会失败，需要特定的时候点击授权才能获取
    * 2) 老用户直接可以获取用户的信息
    */
-  loadUserInfo() {
+  loadUserInfo(cb) {
     let userInfo = CacheData.getUserInfo();
     if (!userInfo) {
       wx.cloud.callFunction({
@@ -66,7 +74,7 @@ App({
           } = result;
           let sign = hexMD5("cgogo" + appid + openid);
           login({
-            device_type: DeviceType.Miniprogram,
+            device_type: DeviceType.MiniProgram,
             sign: sign.toUpperCase(),
             openid,
           }).then(({
@@ -77,6 +85,10 @@ App({
             if (code == Success) {
               CacheData.setToken(data.token);
               CacheData.setUserInfo(data.user);
+              // 回调函数
+              if (cb && typeof cb == 'function') {
+                cb();
+              }
             } else {
               wx.showToast({
                 icon: 'none',
@@ -94,5 +106,6 @@ App({
         }
       })
     }
-  }
+  },
+  
 })

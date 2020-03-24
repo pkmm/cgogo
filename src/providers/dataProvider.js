@@ -11,7 +11,7 @@ import {
     BASE_API_URL
 } from '../config';
 import {CacheData} from './dataCacheProvider';
-import {customRequest} from '../utils/requestProxy'
+import {customRequest} from '../utils/requestProxy';
 
 /**
  * 把wx.request包装为promise
@@ -26,11 +26,11 @@ function wxRequestWrapper(options) {
             fail: (res) => {
                 reject(res);
             }
-        })
-    })
+        });
+    });
 }
 
-//woker to do request
+//worker to do request
 const service = isProd ? customRequest : wxRequestWrapper;
 
 /**
@@ -49,43 +49,40 @@ export const login = (data)  => {
         url: BASE_API_URL + '/auth/login',
         header,
         data,
-    })
-}
+    });
+};
 
 /**
  * @description: 退出登录
- * @param {null} 
- * @return: 
+ * @return:
  */
 export const logout = () => {
 
-}
+};
 
 /**
- * @description: 获取登录的我 
- * @param {null} 
- * @return: 
+ * @description: 获取登录的我
+ * @return:
  */
 export const me = () => {
     return service({
         method: 'get',
         url: BASE_API_URL + '/auth/me',
         header,
-    })
-}
+    });
+};
 
 /**
- * @description: 查询成绩 
- * @param {null} 
- * @return: 
+ * @description: 查询成绩
+ * @return:
  */
 export const scores = () => {
     return service({
         method: 'get',
         url: BASE_API_URL + '/scores',
         header,
-    })
-}
+    });
+};
 /**
  * @description: 
  * @param {object} data 
@@ -97,33 +94,31 @@ export const updateStudentAccount = (data) => {
         url: BASE_API_URL + '/students/update_edu_account',
         header,
         data
-    })
-}
+    });
+};
 /**
  * @description: 学生成绩同步信息详情
- * @param {null} 
- * @return: 
+ * @return:
  */
 export const syncDetail = () => {
     return service({
         method: 'get',
         url: BASE_API_URL + '/students/sync_detail',
         header,
-    })
-}
+    });
+};
 
 /**
- * @description:获取首页的配置信息 
- * @param {null} 
- * @return: 
+ * @description:获取首页的配置信息
+ * @return:
  */
 export const getIndexPreference = () => {
     return service({
         method: 'get',
         url: BASE_API_URL + '/mini_program/get_index_preference',
         header,
-    })
-}
+    });
+};
 
 /**
  * @description 获取首页顶部的通知信息
@@ -140,12 +135,11 @@ export const getNotification = (data) => {
         url: BASE_API_URL + '/mini_program/get_notifications',
         header,
         data,
-    })
-}
+    });
+};
 /**
- * @description:获取每日一图 
- * @param {null} 
- * @return: 
+ * @description:获取每日一图
+ * @return:
  */
 export const dailyImage = () => {
     return service({
@@ -153,33 +147,31 @@ export const dailyImage = () => {
         header,
         url: BASE_API_URL + '/daily/image',
         responsType: 'arraybuff',
-    })
-}
+    });
+};
 /**
  * @description: 每日一句
- * @param {null} 
- * @return: 
+ * @return:
  */
 export const dailySentence = () => {
     return service({
         method: 'get',
         url: BASE_API_URL +  '/daily/sentence',
         header,
-    })
-}
+    });
+};
 
 /**
- * @description:背单词的任务 
- * @param {null} 
- * @return: 
+ * @description:背单词的任务
+ * @return:
  */
 export const getHermannRemeberMemorial = () => {
     return service({
         method: 'get',
         url: BASE_API_URL + '/mini_program/get_hermann_memorial',
         header,
-    })
-}
+    });
+};
 /**
  * @description 添加背单词任务
  * @param {object} data 
@@ -190,8 +182,8 @@ export const addHermannRemeberMemorial = (data) => {
         url: BASE_API_URL + '/mini_program/add_hermann_memorial',
         header,
         data
-    })
-}
+    });
+};
 
 /**
  * 
@@ -208,5 +200,5 @@ export const getSponsors = (data) => {
         url: BASE_API_URL + '/mini_program/get_sponsors',
         header,
         data,
-    })
-}
+    });
+};
