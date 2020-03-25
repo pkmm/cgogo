@@ -2,11 +2,39 @@
 const cloud = require('wx-server-sdk');
 const request = require('request');
 cloud.init();
+
+/**
+ * @description 用于在云端修改请求的api地址，小程序端的代码不需要做改变
+ * @type {string}
+ */
+const hookHost = '';
+
+/**
+ * @description 注入环境参数到header中
+ * @param options
+ */
+function injectEnvParams(options) {
+  let wxContext = cloud.getWXContext();
+  let {OPENID, APPID, SOURCE, ENV} = wxContext;
+  if (!options.headers) {
+    options.headers = {}
+  }
+  options.headers = {...options.headers, OPENID, APPID, SOURCE, ENV};
+}
+
+/**
+ * @description 修改请求的主机地址
+ */
+function modifyHost(options) {
+  if (!hookHost) return; // do not modify.
+  options.url = hookHost + options.url.substring(options.url.indexOf("/api"));
+}
+
 /**
  * @summary 使用request代理请求
- * @param {object} evt 
- * @param {*} ctx 
- * 
+ * @param {object} evt
+ * @param {*} ctx
+ *
  * @example
  * 参数options
  * const options = {
@@ -25,18 +53,12 @@ cloud.init();
 exports.main = async (evt, ctx) => {
   return new Promise((resolve, reject) => {
     let options = evt.options;
-
-    // inject env params
-    let wxContext = cloud.getWXContext();
-    let {OPENID, APPID, SOURCE, ENV} = wxContext;
-    if (!options.headers) {
-      options.headers = {}
-    }
-    options.headers = {...options.headers, OPENID, APPID, SOURCE, ENV}
-    // end of inject
+    modifyHost(options);
+    injectEnvParams(options);
     request(options, (err, response, body) => {
       if (err) return reject(err);
       return resolve(response);
     });
   });
-}
+};
+

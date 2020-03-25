@@ -15,38 +15,38 @@ Page({
      * 页面的初始数据
      */
     data: {
-      sponsors: [], // 赞助者
+        sponsors: [], // 赞助者
     },
 
     loadSponsors() {
-      wx.showLoading({
-        title: '加载赞助者信息...',
-      });
-      const self = this;
-
-      getSponsors({
-        page: 1, size: 10,
-      }).then(({code, data, msg}) => {
-        wx.hideLoading();
-        if (code === Success) {
-            self.setData({
-              sponsors: data.sponsors,
-            })
-        } else {
-          wx.showToast({
-            title: msg,
-            icon: 'none',
-            duration: 2000,
-          })
-        }
-      }).catch((res) => {
-        wx.hideLoading();
-        wx.showToast({
-          title: res,
-          icon : 'none',
-          duration: 2000,
+        wx.showLoading({
+            title: '加载赞助者信息...',
         });
-      });
+        const self = this;
+
+        getSponsors({
+            page: 1, size: 10,
+        }).then(({code, data, msg}) => {
+            wx.hideLoading();
+            if (code === Success) {
+                self.setData({
+                    sponsors: data.sponsors,
+                })
+            } else {
+                wx.showToast({
+                    title: msg,
+                    icon: 'none',
+                    duration: 2000,
+                })
+            }
+        }).catch((res) => {
+            wx.hideLoading();
+            wx.showToast({
+                title: res,
+                icon : 'none',
+                duration: 2000,
+            });
+        });
     },
 
     /**
@@ -67,7 +67,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-      this.loadSponsors();
+        this.loadSponsors();
     },
 
     /**
@@ -106,7 +106,7 @@ Page({
             url: '../zcmu_login/index',
         });
     },
-    
+
     onShareAppMessage(obj) {
         return {
             title: "使用Cgogo方便快速查教务系统成绩",
@@ -117,26 +117,21 @@ Page({
     /**
      * @description: 保存图片
      */
-    saveImage() {
+    saveImage(evt) {
         wx.showModal({
             title:"提示",
             content: "保存图片？",
             success(res) {
-              if (res.cancel) {
-                return;
-              }
-              wx.saveImageToPhotosAlbum({
-                filePath: "/images/w-pay.jpg",
-                success() {
-                  console.log('save success.')
+                if (res.cancel) {
+                    return;
                 }
-              });
-              wx.saveImageToPhotosAlbum({
-                filePath: "/images/a-pay.jpg",
-                success() {
-                  console.log('save success.')
-                }
-              })
+                let imagePath = (evt.target.dataset.type === 'wechat' ? "/images/w-pay.jpg" : "/images/a-pay.jpg");
+                wx.saveImageToPhotosAlbum({
+                    filePath: imagePath,
+                    success() {
+                        console.log('save success.')
+                    }
+                });
             }
         })
     }

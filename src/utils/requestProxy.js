@@ -103,7 +103,9 @@ export const customRequest = (options) => {
         //   statusCode: result.statusCode,
         //   header: result.headers
         // }
-        requestOptions.success && requestOptions.success(respData);
+        if (typeof requestOptions.success === 'function') {
+          requestOptions.success(respData);
+        }
         resolve(respData);
       },
       fail: err => {
