@@ -52,7 +52,7 @@ const header = {
  * @param defaultHeader object
  * @param responseType string
  */
-const apiHelper = (url, data = {}, method = METHOD_POST, defaultHeader = {}, responseType = 'json') => {
+const apiHelper = (url, data = {}, method = METHOD_POST, defaultHeader = {}, responseType = 'text') => {
     let newHeader = {...defaultHeader, ...header};
     let v =  {
         method: method,
@@ -110,7 +110,7 @@ export const updateStudentAccount = (data) => {
  * @return:
  */
 export const syncDetail = () => {
-    return apiHelper('/students/sync_detail', null, METHOD_GET)
+    return apiHelper('/students/sync_details', null, METHOD_GET)
 };
 
 /**
@@ -118,7 +118,7 @@ export const syncDetail = () => {
  * @return:
  */
 export const getIndexPreference = () => {
-    return apiHelper('/mini_program/get_index_preference', null, METHOD_GET)
+    return apiHelper('/mini_program/index_preferences', null, METHOD_GET)
 };
 
 /**
@@ -131,21 +131,21 @@ export const getIndexPreference = () => {
  * } 
  */
 export const getNotification = (data) => {
-    return apiHelper('/mini_program/get_notifications', METHOD_GET, data)
+    return apiHelper('/mini_program/notifications', METHOD_GET, data)
 };
 /**
  * @description:获取每日一图
  * @return:
  */
 export const dailyImage = () => {
-    return apiHelper('/daily/image', null, METHOD_GET, {}, 'arraybuff')
+    return apiHelper('/daily/images', null, METHOD_GET, {}, 'arraybuff')
 };
 /**
  * @description: 每日一句
  * @return:
  */
 export const dailySentence = () => {
-    return apiHelper('/daily/sentence', null, METHOD_GET)
+    return apiHelper('/daily/sentences', null, METHOD_GET)
 };
 
 /**
@@ -153,14 +153,14 @@ export const dailySentence = () => {
  * @return:
  */
 export const getHermannRemeberMemorial = () => {
-    return apiHelper('/mini_program/get_hermann_memorial', null, METHOD_GET)
+    return apiHelper('/mini_program/hermann_memorials', null, METHOD_GET)
 };
 /**
  * @description 添加背单词任务
  * @param {object} data 
  */
 export const addHermannRememberMemorial = (data) => {
-    return apiHelper('/mini_program/add_hermann_memorial', data, METHOD_POST)
+    return apiHelper('/mini_program/hermann_memorials', data, METHOD_POST)
 };
 
 /**
@@ -173,5 +173,5 @@ export const addHermannRememberMemorial = (data) => {
  * } 
  */
 export const getSponsors = (data) => {
-    return apiHelper('/mini_program/get_sponsors', data, METHOD_POST)
+    return apiHelper('/mini_program/sponsors', data, METHOD_POST)
 };
