@@ -4,14 +4,18 @@
  * @LastEditTime: 2020-03-22 23:08:58
  * @LastEditors: Please set LastEditors
  * @Description: API provider for mini program
- * @FilePath: \cgogo\src\providers\dataProvider.js
+ * @FilePath: \cgogo\src\providers\DataProvider.js
  */
 import {
     isProd,
     BASE_API_URL
 } from '../config';
-import {CacheData} from './dataCacheProvider';
+import {CacheData} from './DataCacheProvider';
 import {customRequest} from '../utils/requestProxy';
+
+const METHOD_GET = 'get'
+const METHOD_POST = 'post'
+
 
 /**
  * 把wx.request包装为promise
@@ -39,17 +43,35 @@ const service = isProd ? customRequest : wxRequestWrapper;
 const header = {
     'Authorization': CacheData.getToken(),
 };
+
+/**
+ *
+ * @param url string
+ * @param method string
+ * @param data object | null
+ * @param defaultHeader object
+ * @param responseType string
+ */
+const apiHelper = (url, data = {}, method = METHOD_POST, defaultHeader = {}, responseType = 'json') => {
+    let newHeader = {...defaultHeader, ...header};
+    let v =  {
+        method: method,
+        url: BASE_API_URL + url,
+        header: newHeader,
+        responseType,
+    };
+    if (data !== null) {
+        v.data = data
+    }
+    return service(v);
+}
+
 /**
  * api to get data
  * 使用wx.request参数格式
  */
 export const login = (data)  => {
-    return service({
-        method: 'post',
-        url: BASE_API_URL + '/auth/login',
-        header,
-        data,
-    });
+    return apiHelper('/auth/login', data)
 };
 
 /**
@@ -65,11 +87,7 @@ export const logout = () => {
  * @return:
  */
 export const me = () => {
-    return service({
-        method: 'get',
-        url: BASE_API_URL + '/auth/me',
-        header,
-    });
+    return apiHelper('/auth/me', null, METHOD_GET);
 };
 
 /**
@@ -77,11 +95,7 @@ export const me = () => {
  * @return:
  */
 export const scores = () => {
-    return service({
-        method: 'get',
-        url: BASE_API_URL + '/scores',
-        header,
-    });
+    return apiHelper('/scores', null, METHOD_GET)
 };
 /**
  * @description: 
@@ -89,23 +103,14 @@ export const scores = () => {
  * @return: 
  */
 export const updateStudentAccount = (data) => {
-    return service({
-        method: 'post',
-        url: BASE_API_URL + '/students/update_edu_account',
-        header,
-        data
-    });
+    return apiHelper('/students/update_edu_account', data, METHOD_POST)
 };
 /**
  * @description: 学生成绩同步信息详情
  * @return:
  */
 export const syncDetail = () => {
-    return service({
-        method: 'get',
-        url: BASE_API_URL + '/students/sync_detail',
-        header,
-    });
+    return apiHelper('/students/sync_detail', null, METHOD_GET)
 };
 
 /**
@@ -113,11 +118,7 @@ export const syncDetail = () => {
  * @return:
  */
 export const getIndexPreference = () => {
-    return service({
-        method: 'get',
-        url: BASE_API_URL + '/mini_program/get_index_preference',
-        header,
-    });
+    return apiHelper('/mini_program/get_index_preference', null, METHOD_GET)
 };
 
 /**
@@ -130,35 +131,21 @@ export const getIndexPreference = () => {
  * } 
  */
 export const getNotification = (data) => {
-    return service({
-        method: 'get',
-        url: BASE_API_URL + '/mini_program/get_notifications',
-        header,
-        data,
-    });
+    return apiHelper('/mini_program/get_notifications', METHOD_GET, data)
 };
 /**
  * @description:获取每日一图
  * @return:
  */
 export const dailyImage = () => {
-    return service({
-        method: 'get',
-        header,
-        url: BASE_API_URL + '/daily/image',
-        responsType: 'arraybuff',
-    });
+    return apiHelper('/daily/image', null, METHOD_GET, {}, 'arraybuff')
 };
 /**
  * @description: 每日一句
  * @return:
  */
 export const dailySentence = () => {
-    return service({
-        method: 'get',
-        url: BASE_API_URL +  '/daily/sentence',
-        header,
-    });
+    return apiHelper('/daily/sentence', null, METHOD_GET)
 };
 
 /**
@@ -166,23 +153,14 @@ export const dailySentence = () => {
  * @return:
  */
 export const getHermannRemeberMemorial = () => {
-    return service({
-        method: 'get',
-        url: BASE_API_URL + '/mini_program/get_hermann_memorial',
-        header,
-    });
+    return apiHelper('/mini_program/get_hermann_memorial', null, METHOD_GET)
 };
 /**
  * @description 添加背单词任务
  * @param {object} data 
  */
-export const addHermannRemeberMemorial = (data) => {
-    return service({
-        method: 'post',
-        url: BASE_API_URL + '/mini_program/add_hermann_memorial',
-        header,
-        data
-    });
+export const addHermannRememberMemorial = (data) => {
+    return apiHelper('/mini_program/add_hermann_memorial', data, METHOD_POST)
 };
 
 /**
@@ -195,10 +173,5 @@ export const addHermannRemeberMemorial = (data) => {
  * } 
  */
 export const getSponsors = (data) => {
-    return service({
-        method: 'get',
-        url: BASE_API_URL + '/mini_program/get_sponsors',
-        header,
-        data,
-    });
+    return apiHelper('/mini_program/get_sponsors', data, METHOD_POST)
 };

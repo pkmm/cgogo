@@ -12,10 +12,10 @@ import {
 
 import {
   login
-} from './providers/dataProvider';
+} from './providers/DataProvider';
 import {
   CacheData
-} from './providers/dataCacheProvider';
+} from './providers/DataCacheProvider';
 import {
   DeviceType
 } from "./constant/enums";

@@ -9,10 +9,10 @@
 // pages/zcmu/login/index.js
 import {
   updateStudentAccount
-} from '../../../providers/dataProvider';
+} from '../../../providers/DataProvider';
 import {
   CacheData
-} from '../../../providers/dataCacheProvider';
+} from '../../../providers/DataCacheProvider';
 import {
   Success
 } from '../../../constant/responeCode';

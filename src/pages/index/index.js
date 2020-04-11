@@ -6,12 +6,12 @@ import {
 import {
   getIndexPreference,
   getNotification
-} from '../../providers/dataProvider';
+} from '../../providers/DataProvider';
 import {
   Success
 } from '../../constant/responeCode';
-import {KEY_USERINFO} from "../../providers/cacheKeys";
-import {CacheData} from "../../providers/dataCacheProvider";
+import {KEY_USERINFO} from "../../providers/CacheKeys";
+import {CacheData} from "../../providers/DataCacheProvider";
 Page({
 
   /**

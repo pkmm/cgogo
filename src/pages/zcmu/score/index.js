@@ -1,6 +1,6 @@
 // pages/zcmu/score/index.js
-import { CacheData } from '../../../providers/dataCacheProvider';
-import { scores } from '../../../providers/dataProvider';
+import { CacheData } from '../../../providers/DataCacheProvider';
+import { scores } from '../../../providers/DataProvider';
 import { Success } from '../../../constant/responeCode';
 Page({
 

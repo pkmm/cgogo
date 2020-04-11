@@ -6,7 +6,7 @@
  * @Description: no description
  * @FilePath: \cgogo\src\pages\about\index.js
  */
-import { getSponsors } from "../../providers/dataProvider";
+import { getSponsors } from "../../providers/DataProvider";
 import { Success } from "../../constant/responeCode";
 
 Page({

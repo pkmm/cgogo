@@ -4,9 +4,9 @@
  * @LastEditTime: 2020-03-23 20:24:50
  * @LastEditors: Retain
  * @Description: 程序使用期间的共享数据存取快捷方法 
- * @FilePath: \cgogo\src\providers\dataCacheProvider.js
+ * @FilePath: \cgogo\src\providers\DataCacheProvider.js
  */
-import {KEY_AUTHORIZATION, KEY_USERINFO} from './cacheKeys';
+import {KEY_AUTHORIZATION, KEY_USERINFO} from './CacheKeys';
 
 /**
  * @description 本地缓存，没有缓存数据应通过http去取数据
