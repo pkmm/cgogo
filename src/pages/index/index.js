@@ -127,7 +127,7 @@ Page({
     });
 
     // 查询通知
-    this.loadNotify();
+    // this.loadNotify();
     // 每4分钟查询一次， 通常来说用户不会停留这么久的时间
     this.getNotificationId = setInterval(this.loadNotify, 1000 * 60 * 4);
     // 更新显示的通知

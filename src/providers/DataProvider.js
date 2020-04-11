@@ -124,7 +124,7 @@ export const getIndexPreference = () => {
  * } 
  */
 export const getNotification = (data) => {
-    return apiHelper('/mini_program/notifications', METHOD_GET, data)
+    return apiHelper('/mini_program/notifications', data, METHOD_GET)
 };
 /**
  * @description:获取每日一图
