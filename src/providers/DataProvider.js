@@ -38,13 +38,6 @@ function wxRequestWrapper(options) {
 const service = isProd ? CustomRequest : wxRequestWrapper;
 
 /**
- * 需要认证的api都要加上这个头
- */
-const header = {
-    'Authorization': CacheData.getToken(),
-};
-
-/**
  *
  * @param url string
  * @param method string
@@ -53,7 +46,7 @@ const header = {
  * @param responseType string
  */
 const apiHelper = (url, data = {}, method = METHOD_POST, defaultHeader = {}, responseType = 'text') => {
-    let newHeader = {...defaultHeader, ...header};
+    let newHeader = {...defaultHeader, 'Authorization': CacheData.getToken()};
     let v =  {
         method: method,
         url: BASE_API_URL + url,
@@ -103,7 +96,7 @@ export const scores = () => {
  * @return: 
  */
 export const updateStudentAccount = (data) => {
-    return apiHelper('/students/update_edu_account', data, METHOD_POST)
+    return apiHelper('/students/update_edu_account', data)
 };
 /**
  * @description: 学生成绩同步信息详情
@@ -160,7 +153,7 @@ export const getHermannRemeberMemorial = () => {
  * @param {object} data 
  */
 export const addHermannRememberMemorial = (data) => {
-    return apiHelper('/mini_program/hermann_memorials', data, METHOD_POST)
+    return apiHelper('/mini_program/hermann_memorials', data)
 };
 
 /**
@@ -173,5 +166,5 @@ export const addHermannRememberMemorial = (data) => {
  * } 
  */
 export const getSponsors = (data) => {
-    return apiHelper('/mini_program/sponsors', data, METHOD_POST)
+    return apiHelper('/mini_program/sponsors', data, METHOD_GET)
 };
