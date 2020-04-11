@@ -131,7 +131,7 @@ Page({
     // 每4分钟查询一次， 通常来说用户不会停留这么久的时间
     this.getNotificationId = setInterval(this.loadNotify, 1000 * 60 * 4);
     // 更新显示的通知
-    this.showNotificationId = setInterval(this.updateCurrentNotification, 1000 * 10); // 每10s更新
+    // this.showNotificationId = setInterval(this.updateCurrentNotification, 1000 * 10); // 每10s更新
 
     // 实时的数据推送 demo代码。以后可以完善实现响应的功能
     // const db = wx.cloud.database();
@@ -186,7 +186,7 @@ Page({
    */
   onUnload: function () {
     this.getNotificationId && clearInterval(this.getNotificationId);
-    this.showNotificationId && clearInterval(this.showNotificationId);
+    // this.showNotificationId && clearInterval(this.showNotificationId);
   },
 
   /**
