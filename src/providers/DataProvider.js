@@ -11,7 +11,7 @@ import {
     BASE_API_URL
 } from '../config';
 import {CacheData} from './DataCacheProvider';
-import {customRequest} from '../utils/requestProxy';
+import {CustomRequest} from '../utils/requestProxy';
 
 const METHOD_GET = 'get'
 const METHOD_POST = 'post'
@@ -35,7 +35,7 @@ function wxRequestWrapper(options) {
 }
 
 //worker to do request
-const service = isProd ? customRequest : wxRequestWrapper;
+const service = isProd ? CustomRequest : wxRequestWrapper;
 
 /**
  * 需要认证的api都要加上这个头

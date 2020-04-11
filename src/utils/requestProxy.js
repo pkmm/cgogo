@@ -70,7 +70,7 @@ function convertOptions(wx_options) {
  *    complete: func,
  * }
  */
-export const customRequest = (options) => {
+export const CustomRequest = (options) => {
   let requestOptions = convertOptions(options);
   // 开始请求
   return new Promise((resolve, reject) => {
