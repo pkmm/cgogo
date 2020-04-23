@@ -1,74 +1,42 @@
-// pages/zcmu/news/index.js
-Page({
 
-  /**
-   * 页面的初始数据
-   */
+const app = getApp();
+Page({
   data: {
+    CustomBar: app.globalData.CustomBar,
     news: [],
     currentPageNumber: 0,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    this.loadNews();
+  showModal() {
+    this.setData({
+      loadModal: true,
+    });
+    // setTimeout(() => {
+    //   this.setData({
+    //     loadModal: false,
+    //   })
+    // }, 2000)
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-    this.loadNews();
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-    this.nextPage();
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
+  closeModal() {
+    this.setData({
+      loadModal: false,
+    })
   },
 
   returnTop() {
     wx.pageScrollTo({
       scrollTop: 0,
     })
+  },
+  onLoad: function(options) {
+    this.loadNews();
+  },
+  onPullDownRefresh() {
+    this.loadNews();
+  },
+  onReachBottom() {
+    this.nextPage();
   },
 
   showDetail(evt) {
@@ -79,8 +47,7 @@ Page({
   },
 
   loadNews(pageNumber = 0) {
-    console.log(pageNumber);
-    wx.showLoading();
+    this.showModal();
     const self = this;
     wx.cloud.callFunction({
       name: 'zf-news',
@@ -88,15 +55,15 @@ Page({
         page: pageNumber,
       }
     }).then((res) => {
-      wx.hideLoading();
-      let news = this.data.news.concat(res.result.news || []);
-      if (news.length == 0) {
+      this.closeModal();
+      if (res.result.news.length === 0) {
         wx.showModal({
           title: '提示',
           content: "已经没有更多的新闻啦!"
         })
         return;
       }
+      let news = this.data.news.concat(res.result.news || []);
       self.setData({
         news,
       });
@@ -123,5 +90,4 @@ Page({
       currentPageNumber: 0,
     });
   }
-
 })

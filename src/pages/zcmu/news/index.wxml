@@ -1,13 +1,28 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">教务处发布的新闻</view>
+</cu-custom>
+
+
 <view class="" hover-class="none" hover-stop-propagation="false">
-    <view wx:for="{{news}}" wx:key="*this">
-        <view class="box" bindtap='showDetail' data-news-url='{{item.link}}'>
-            <view class='title'>{{item.title}} </view>
-            <view class='date'>post at {{item.date}}</view>
-        </view>
-    </view>
-    <view class="button-wrapper">
-      <view class="back-top" bindtap="returnTop">TOP</view>
-    </view>
+	<view wx:for="{{news}}" wx:key="item.link">
+		<view class="retain-card" bindtap='showDetail' data-news-url='{{item.link}}'>
+			<view class='title'>{{item.title}} </view>
+			<view class='date'>发布时间:{{item.date}}</view>
+		</view>
+	</view>
+	<view class="button-wrapper">
+		<view class="margin-tb-sm text-center back-top" bindtap="returnTop">
+			<button class="cu-btn round line1-red shadow">TOP</button>
+		</view>
+	</view>
+
+
 
 </view>
-  
+
+<!-- 加载动画模态框代码 -->
+<view class='cu-load load-modal' wx:if="{{loadModal}}">
+	<image src='/images/logo.png' class='png' mode='aspectFit'></image>
+	<view class='gray-text'>加载中...</view>
+</view>

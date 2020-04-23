@@ -1,9 +1,12 @@
 {
   "enablePullDownRefresh": false,
-  "navigationBarTitleText": "答应你的我一定做到",
+  "navigationBarTitleText": "相顾无言",
   "usingComponents": {
     "van-notice-bar": "/miniprogram_npm/vant-weapp/notice-bar/index",
     "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
-    "van-transition": "/miniprogram_npm/vant-weapp/transition/index"
+    "van-transition": "/miniprogram_npm/vant-weapp/transition/index",
+    "basics": "/pages/basics/home/home",
+    "about": "/pages/about/home/home",
+    "zcmu": "/pages/zcmu/home/home"
   }
 }

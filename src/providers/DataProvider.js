@@ -168,3 +168,12 @@ export const addHermannRememberMemorial = (data) => {
 export const getSponsors = (data) => {
     return apiHelper('/mini_program/sponsors', data, METHOD_GET)
 };
+
+/**
+ *
+ * @param {object} data
+ * @returns {Promise<unknown>}
+ */
+export const getThinkingList = (data) => {
+    return apiHelper('/thinking', data, METHOD_GET)
+}

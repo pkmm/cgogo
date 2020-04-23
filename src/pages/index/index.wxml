@@ -1,29 +1,52 @@
-<view class="page">
-    <view wx:if="{{notifications.length && !notifications[currentNotificationId].disabled}}">
-        <van-notice-bar backgroundColor="#FFFFCC"
-            text="{{notifications[currentNotificationId].content}}" />
-    </view>
-    <view wx:else='{{notifications.length == 0}}'>
-        <van-notice-bar backgroundColor="#f3f9f1"
-        text="努力工作，努力学习，追梦，奋斗的人生是幸福的人生" />
-    
-    </view>
-    <view class="page__hd">
-        <view class="page__title">{{indexConfig.slogan || "努力成为心里的那个自己"}}</view>
-        <view class="page__desc">{{indexConfig.motto || "好好学习，天天向上"}}</view>
-    </view>
-    <view style='text-align: center; border-radius: 4px' wx:if="{{indexConfig && indexConfig.image_url != ''}}">
-      <image src='{{indexConfig.image_url}}' mode='aspectFill' style='width: 400px; height: 500px;' class="bulr"></image>
-    </view>
-    <view class="page__bd" style="margin-top: 90px;" >
-        <view class="weui-grids">
-            <block wx:for="{{menus}}" wx:key="*this">
-                <navigator url="{{item.action_value}}" open-type='navigate' class="weui-grid"
-                    hover-class="weui-grid_active">
-                    <image class="weui-grid__icon" src="{{item.icon}}" />
-                    <view class="weui-grid__label">{{item.title}}</view>
-                </navigator>
-            </block>
-        </view>
-    </view>
+<!--<view class="page">-->
+<!--    <view wx:if="{{notifications.length && !notifications[currentNotificationId].disabled}}">-->
+<!--        <van-notice-bar backgroundColor="#FFFFCC"-->
+<!--            text="{{notifications[currentNotificationId].content}}" />-->
+<!--    </view>-->
+<!--    <view wx:else='{{notifications.length == 0}}'>-->
+<!--        <van-notice-bar backgroundColor="#f3f9f1"-->
+<!--        text="努力工作，努力学习，追梦，奋斗的人生是幸福的人生" />-->
+<!--    -->
+<!--    </view>-->
+<!--    <view class="page__hd">-->
+<!--        <view class="page__title">{{indexConfig.slogan || "努力成为心里的那个自己"}}</view>-->
+<!--        <view class="page__desc">{{indexConfig.motto || "好好学习，天天向上"}}</view>-->
+<!--    </view>-->
+<!--    <view style='text-align: center; border-radius: 4px' wx:if="{{indexConfig && indexConfig.image_url != ''}}">-->
+<!--      <image src='{{indexConfig.image_url}}' mode='aspectFill' style='width: 400px; height: 500px;' class="bulr"></image>-->
+<!--    </view>-->
+<!--    <view class="page__bd" style="margin-top: 90px;" >-->
+<!--        <view class="weui-grids">-->
+<!--            <block wx:for="{{menus}}" wx:key="*this">-->
+<!--                <navigator url="{{item.action_value}}" open-type='navigate' class="weui-grid"-->
+<!--                    hover-class="weui-grid_active">-->
+<!--                    <image class="weui-grid__icon" src="{{item.icon}}" />-->
+<!--                    <view class="weui-grid__label">{{item.title}}</view>-->
+<!--                </navigator>-->
+<!--            </block>-->
+<!--        </view>-->
+<!--    </view>-->
+<!--</view>-->
+<basics wx:if="{{pageCur == 'basics'}}"></basics>
+<zcmu wx:if="{{pageCur == 'zcmu'}}"></zcmu>
+<about wx:if="{{pageCur == 'about'}}"></about>
+<view class="cu-bar tabbar bg-white shadow foot">
+	<view class="action" bindtap="NavChange" data-cur="basics">
+		<view class='cuIcon-cu-image'>
+			<image src="/images/tabbar/basics{{pageCur=='basics' ? '_cur' : ''}}.png"></image>
+		</view>
+		<view class="{{pageCur=='basics'?'text-green':'text-gray'}}">首页</view>
+	</view>
+	<view class="action" bindtap="NavChange" data-cur="zcmu">
+		<view class="cuIcon-cu-image">
+			<image src="/images/tabbar/component{{pageCur=='zcmu' ? '_cur' : ''}}.png"></image>
+		</view>
+		<view class="{{pageCur=='zcmu'?'text-green':'text-gray'}}">教务</view>
+	</view>
+	<view class="action" bindtap="NavChange" data-cur="about">
+		<view class="cuIcon-cu-image">
+			<image src="/images/tabbar/about{{pageCur=='about' ? '_cur' : ''}}.png"></image>
+		</view>
+		<view class="{{pageCur=='about'?'text-green':'text-gray'}}">关于</view>
+	</view>
 </view>

@@ -16,6 +16,8 @@ import {
 import {
   Success
 } from '../../../constant/responeCode';
+
+const app = getApp();
 Page({
 
   /**
@@ -24,6 +26,24 @@ Page({
   data: {
     num: '',
     pwd: '',
+    CustomBar: app.globalData.CustomBar,
+  },
+
+  showModal() {
+    this.setData({
+      loadModal: true,
+    })
+    // setTimeout(() => {
+    //   this.setData({
+    //     loadModal: false,
+    //   })
+    // }, 2000)
+  },
+
+  closeModal() {
+    this.setData({
+      loadModal: false,
+    })
   },
 
   /**
@@ -39,55 +59,6 @@ Page({
         pwd: student.password || '',
       });
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   },
 
   /**
@@ -107,24 +78,24 @@ Page({
    * @description: 设置账号信息
    */
   setAccount() {
-    wx.requestSubscribeMessage({
-      tmplIds: ['t0PoxJslZasFu6ZlhZgjmSREPpMuTC88nQzYIeg4Jfw'],
-      success(res) {
-        console.error("允许接收通知: ", res);
-      }
-    });
+    // wx.requestSubscribeMessage({
+    //   tmplIds: ['t0PoxJslZasFu6ZlhZgjmSREPpMuTC88nQzYIeg4Jfw'],
+    //   success(res) {
+    //     console.error("允许接收通知: ", res);
+    //   }
+    // });
 
     if (!this.data.num || !this.data.pwd) {
       wx.showModal({
         title: "错误",
-        content: "账号/密码不能为空",
+        content: "学号/密码不能为空",
         showCancel: false,
       });
       return;
     }
-    wx.showLoading({
-      title: "保存中"
-    });
+    // wx.showLoading({
+    //   title: "保存中"
+    // });
     // 用户第一次登陆，点击按钮的时候会显示授权，授权之后调用loadUserInfo才能成功
     if (!CacheData.getToken()) {
       getApp().loadUserInfo(this.doPostData);
@@ -137,6 +108,7 @@ Page({
    * 提交数据信息
    */
   doPostData() {
+    this.showModal();
     updateStudentAccount({
       student_number: this.data.num,
       password: this.data.pwd,
@@ -145,7 +117,7 @@ Page({
       data,
       msg
     }) => {
-      wx.hideLoading();
+      this.closeModal();
       if (code === Success) {
         wx.showModal({
           title: "设置成功",
@@ -167,10 +139,10 @@ Page({
         });
       }
     }).catch(res => {
-      wx.hideLoading();
+     this.closeModal();
       wx.showToast({
         icon: 'none',
-        title: res,
+        title: "请求失败",
         duration: 2000,
       });
     });

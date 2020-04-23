@@ -1,29 +1,30 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/about/index",
         "pages/profile/index",
         "pages/zcmu/score/index",
         "pages/zcmu/login/index",
         "pages/zcmu/news/index",
         "pages/zcmu/news/newsDetail/index",
-        "pages/daily-s/index",
         "pages/daily-img/index",
         "pages/hermann-memorial/index",
-        "pages/update-log/index",
-        "pages/config/index"
+        "pages/think/think",
+        "pages/about/about/about",
+        "pages/about/log/log",
+        "pages/about/test/im"
     ],
     "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "",
-        "navigationBarTextStyle": "black",
-        "enablePullDownRefresh": true,
-        "onReachBottomDistance": 50
+        "navigationBarBackgroundColor": "#39b54a",
+        "navigationBarTitleText": "Retain-cc",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
     },
     "networkTimeout": {
         "request": 10000,
         "downloadFile": 10000
+    },
+    "usingComponents": {
+        "cu-custom": "/colorui/components/cu-custom"
     },
     "debug": true,
     "cloud": true,

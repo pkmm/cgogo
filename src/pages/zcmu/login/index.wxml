@@ -1,42 +1,23 @@
-<view class='page content' xmlns:wx="http://www.w3.org/1999/xhtml">
-    <view class='page__hd'>
-        <view class='page__title' style='text-align: center'>输入正方系统的学号密码</view>
-    </view>
 
-    <view class='page__bd'>
-        <view class='weui-toptips weui-toptips-warn' wx:if='{{showTopTips}}'>Error</view>
-        <view class='weui-cells__title'></view>
-        <view class='weui-cells weui-cells_after-title'>
-            <view class='weui-cell weui-cell_input'>
-                <view class='weui-cell__hd'>
-                    <view class='weui-label'>学号</view>
-                </view>
-                <view class='weui-cell__bd'>
-                    <input type='number' class='weui-input' placeholder='学号' data-name='num' bindinput='updateData'
-                        value='{{num}}' auto-focus='true'></input>
-                </view>
-            </view>
-
-            <view class='weui-cell weui-cell_input'>
-                <view class='weui-cell__hd'>
-                    <view class='weui-label'>密码</view>
-                </view>
-                <view class='weui-cell__bd'>
-                    <input type='password' class='weui-input' placeholder='密码' value='{{pwd}}' data-name='pwd'
-                        bindinput='updateData'></input>
-                </view>
-            </view>
-        </view>
-
-        <view class="button-sp-area">
-            <button class="weui-btn" type="primary" plain="true" bindtap='setAccount'>保存</button>
-        </view>
-
-        <view class='weui-cell__bd input-info'>
-            系统基于人工智能，自动识别验证码，验证账号可用性需要一些时间，请耐心等待哦~~
-        </view>
-
-
-    </view>
-
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">教务账号</view>
+</cu-custom>
+<form>
+	<view class="cu-form-group margin-top">
+		<view class="title">学号</view>
+		<input placeholder="学号" type="number" data-name='num' bindinput='updateData' value="{{num}}"></input>
+	</view>
+	<view class="cu-form-group margin-top">
+		<view class="title">密码</view>
+		<input placeholder="密码" type="password"  value='{{pwd}}' data-name='pwd' bindinput='updateData'></input>
+	</view>
+	<view class="padding flex flex-direction">
+		<button class="cu-btn bg-green margin-tb-sm lg" bindtap='setAccount'>提交</button>
+	</view>
+</form>
+<!-- 加载动画模态框代码 -->
+<view class='cu-load load-modal' wx:if="{{loadModal}}">
+  <image src='/images/logo.png' class='png' mode='aspectFit'></image>
+  <view class='gray-text'>加载中...</view>
 </view>

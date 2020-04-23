@@ -1,0 +1,10 @@
+<scroll-view scorll-y class="scrollPage">
+	<image src="/images/index.png" mode="widthFix" class="png" style="width:100%;height:486rpx"></image>
+	<view class="nav-list">
+		<navigator open-type="navigate" hover-class="none" url="/pages/zcmu/{{item.name}}/index" class="nav-li bg-{{item.color}}" wx:for="{{menus}}" wx:key="name">
+			<view class="nav-title">{{item.title}}</view>
+			<view class="nav-name">{{item.name}}</view>
+			<text class='cuIcon-{{item.icon}}'></text>
+		</navigator>
+	</view>
+</scroll-view>

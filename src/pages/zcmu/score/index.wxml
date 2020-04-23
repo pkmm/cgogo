@@ -1,59 +1,23 @@
-<view class='page'>
-  <view class=''>
-    <view class="">
-      <view class="weui-panel__hd">
-        <view class='jd-des'>
-          <view wx:if="{{student.name}}" style='color: black'>
-            {{student.name}}
-          </view>
-          <view>
-            总平均绩点：【{{allSemesterInfo.avg}}】已修必修课：{{allSemesterInfo.total}}
-          </view>
-          <view style='display: block'>
-            {{currentSemester}}学年均绩点：【{{currentSemesterInfo.avg}}】已修必修课：{{currentSemesterInfo.total}}
-          </view>
-          <view style='color: green'>提示: 绩点只计算必修课</view>
-        </view>
-      </view>
-      <van-collapse
-       value="{{activeNames}}"
-       bind:change="onChange"
-       accordion
-       >
-        <van-collapse-item wx:for="{{allSemesters}}" name="{{semester}}" title="{{semester}}" wx:for-index="i" wx:for-item="semester" wx:key="i">
-          <view class="cell" wx:for="{{scoreGroupInfo[semester]}}" wx:for-index="j" wx:for-item='score' wx:key="{{score.id}}">
-            <view class="kcmc">{{score.kcmc}}</view>
-            <view class="normal">成绩：{{score.cj}}</view>
-            <view class="normal">绩点：{{score.jd}}</view>
-            <view class="normal">课程性质：{{score.type}}</view>
-            <view class="normal" wx:if="{{score.bkcj}}">补考成绩：{{score.bkcj}}</view>
-            <view class="normal" wx:if="{{score.cxcj}}">重修成绩：{{score.cxcj}}</view>
-          </view>
-        </van-collapse-item>
-      </van-collapse>
-      <!-- <view class="weui-panel__bd">
-        <view class="weui-media-box weui-media-box_text cell" wx:for='{{scores}}' wx:key="{{index}}">
-          <view class="weui-media-box__title weui-media-box__title_in-text">{{item.kcmc}} -【{{item.type}}】</view>
-          <view class="weui-media-box__desc not-accept" wx:if="{{(item.cj == '不合格' || item.cj < 60)}}">
-            <icon type="info_circle" size="20"></icon>
-            <text>成绩: {{item.cj}} | 绩点:{{item.jd}} | 学分:{{item.xf}} | 学年:{{item.xn}} | 学期:{{item.xq}}</text>
-          </view>
-          <view class="weui-media-box__desc" wx:else>
-            <icon type="success_no_circle" size="20"></icon>
-            <text>成绩: {{item.cj}} | 绩点:{{item.jd}} | 学分:{{item.xf}} | 学年:{{item.xn}} | 学期:{{item.xq}}</text>
-          </view>
-          <view class="weui-media-box__desc" hover-class="none" hover-stop-propagation="false" wx:if="{{item.cxcj}}">
-            <text>重修成绩: {{item.cxcj}}</text>
-          </view>
-          <view class="weui-media-box__desc" hover-class="none" hover-stop-propagation="false" wx:if="{{item.bkcj}}">
-            <text>补考成绩: {{item.bkcj}}</text>
-          </view>
-        </view>
-      </view> -->
 
-      <view class="weui-footer">
-        <view class="weui-footer__text">Copyright © 2019 Retain-相顾无言</view>
-      </view>
+<cu-custom bgColor="bg-gradual-purple" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">成绩</view>
+</cu-custom>
+
+<view class="cu-list margin-top menu sm-border card-menu" wx:for="{{scores}}" wx:key="kch_id">
+	<view class="cu-item">
+		<view class="content">
+			<text class="cuIcon-circlefill text-grey"></text>
+			<text class="text-grey">{{item.kcmc + " " + item.cj + " " + item.kcxzmc}}</text>
+		</view> 
+    <view class="action">
+      <view class="cu-tag round light bg-{{item.bfzcj >= 60 ? 'green' : 'red'}}">{{item.bfzcj >= 60 ? '通过' : '未通过'}}</view>
     </view>
-  </view>
+	</view>
+</view>
+
+<!-- 加载动画模态框代码 -->
+<view class='cu-load load-modal' wx:if="{{loadModal}}">
+	<image src='/images/logo.png' class='png' mode='aspectFit'></image>
+	<view class='gray-text'>加载中...</view>
 </view>

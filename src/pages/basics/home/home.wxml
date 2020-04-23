@@ -1,0 +1,17 @@
+<scroll-view scroll-y class="scrollPage">
+	<view class="UCenter-bg">
+		<image src="/images/summer.jpeg" mode="widthFix" class="png" style="width:100%;height:486rpx"></image>
+		<image src="/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+	</view>
+    <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+     <view class="cu-item">
+        <image src="/images/worker_sister.jpg" mode="widthFix"></image>
+     </view>
+    </view>
+   
+	<!-- <view class="nav-list">
+		<navigator open-type="navigate" hover-class="none" url="/pages/basics/{{item.name}}/{{item.name}}" class="nav-li bg-{{item.color}}" wx:for="{{menus}}" wx:key>
+
+		</navigator>
+	</view> -->
+</scroll-view>

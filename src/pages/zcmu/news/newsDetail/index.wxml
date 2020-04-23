@@ -1,5 +1,9 @@
-
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">详情</view>
+</cu-custom>
 
 <view class='news-detail'>
-  <rich-text nodes="{{newsDetail}}"></rich-text>
+	<rich-text nodes="{{newsDetail}}"></rich-text>
 </view>
+

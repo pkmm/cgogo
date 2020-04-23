@@ -1,0 +1,13 @@
+.body {
+
+}
+
+
+.doc {
+    font-size: medium;
+    text-align: left;
+    display: inline-block;
+    font-family: console, serif;
+    line-height: 1.5;
+    padding: 15px 10px;
+}
