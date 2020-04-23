@@ -1,7 +1,6 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/profile/index",
         "pages/zcmu/score/index",
         "pages/zcmu/login/index",
         "pages/zcmu/news/index",
